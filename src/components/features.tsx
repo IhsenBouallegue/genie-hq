@@ -1,10 +1,9 @@
 import {
-  ClipboardCheckIcon,
-  FileIcon,
-  SignatureIcon,
-  TableCellsMergeIcon,
+  CheckSquareIcon,
+  LayoutIcon,
+  MonitorSmartphoneIcon,
+  Settings2Icon,
 } from "lucide-react";
-import React from "react";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 
 export function Features() {
@@ -24,36 +23,39 @@ export function Features() {
   );
 }
 const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black" />
 );
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
-    className: "md:col-span-2",
-    icon: <ClipboardCheckIcon className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
-    className: "md:col-span-1",
-    icon: <FileIcon className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    header: <Skeleton />,
-    className: "md:col-span-1",
-    icon: <SignatureIcon className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Power of Communication",
+    title: "Effortless Setup",
     description:
-      "Understand the impact of effective communication in our lives.",
+      "Experience the simplicity of setting up your device with Genie HQ. Automatically install essential programs and applications tailored to your needs.",
     header: <Skeleton />,
     className: "md:col-span-2",
-    icon: <TableCellsMergeIcon className="h-4 w-4 text-neutral-500" />,
+    icon: <CheckSquareIcon className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Cross-Platform Compatibility",
+    description:
+      "Enjoy seamless installation on any device. Genie HQ supports Windows, macOS, and Linux, ensuring you have the right tools, regardless of your operating system.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <MonitorSmartphoneIcon className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Streamlined Experience",
+    description:
+      "Understand the impact of a streamlined installation process. Genie HQ provides a smooth, user-friendly experience to get your device up and running quickly.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <LayoutIcon className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Personalized Configuration",
+    description:
+      "Discover the beauty of a personalized setup. Genie HQ installs applications based on your role, whether you're a developer, designer, or casual user.",
+    header: <Skeleton />,
+    className: "md:col-span-2",
+    icon: <Settings2Icon className="h-4 w-4 text-neutral-500" />,
   },
 ];

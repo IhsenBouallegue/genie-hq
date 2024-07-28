@@ -14,9 +14,7 @@ import { BackgroundBeams } from "./ui/background-beams";
 
 export default function Hero() {
   return (
-    <section className="w-full h-screen py-12 md:py-24 lg:py-32 realtive antialiased">
-      <BackgroundBeams className="-z-10" />
-
+    <section className="h-[40rem] w-full rounded-md relative flex flex-col items-center justify-center antialiased">
       <div className="container px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-8 max-w-xl">
           <div className="flex items-center justify-center gap-2 bg-primary/20 px-4 py-2 rounded-full text-primary font-medium text-sm backdrop-blur-sm">
@@ -80,6 +78,7 @@ export default function Hero() {
           </NeonGradientCard>
         </div>
       </div>
+      <BackgroundBeams />
     </section>
   );
 }
