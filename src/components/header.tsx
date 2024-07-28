@@ -1,5 +1,5 @@
 import { Button, buttonVariants } from "@/components/ui/button";
-import { AppWindowIcon, DownloadIcon } from "lucide-react";
+import { DownloadIcon } from "lucide-react";
 
 import {
   Tooltip,
@@ -14,7 +14,6 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 
 export default function Header() {

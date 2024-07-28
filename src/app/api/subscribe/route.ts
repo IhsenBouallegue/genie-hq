@@ -17,11 +17,17 @@ export async function POST(req: Request) {
     const { email } = EmailSchema.parse(body);
 
     // Send the subscription request to Mailchimp
-    resend.contacts.create({
+    const { error } = await resend.contacts.create({
       email: email,
       unsubscribed: false,
       audienceId: "60a37586-8af1-4ff7-9ca8-ece0ab8ee7da",
     });
+    if (error) {
+      return NextResponse.json(
+        { error: "Failed to subscribe" },
+        { status: 500 },
+      );
+    }
     return NextResponse.json(
       { message: "Successfully subscribed" },
       { status: 200 },
