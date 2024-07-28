@@ -6,15 +6,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { ChevronRightIcon, ClockIcon } from "lucide-react";
-import { AnimatedSubscribeButton } from "./magicui/animated-subscribe-button";
+import { cn } from "@/lib/utils";
+import { ClockIcon } from "lucide-react";
+import { EmailForm } from "./email-form";
+import GridPattern from "./magicui/grid-pattern";
 import { NeonGradientCard } from "./magicui/neon-gradient-card";
-import { BackgroundBeams } from "./ui/background-beams";
 
 export default function Hero() {
   return (
-    <section className="h-[40rem] w-full rounded-md relative flex flex-col items-center justify-center antialiased">
+    <section className="h-[80vh] w-full rounded-md relative flex flex-col items-center justify-center antialiased p-8">
+      <GridPattern
+        className={cn(
+          "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
+          "inset-x-0 inset-y-[-30%]  skew-y-12",
+          "bg-gradient-to-br from-primary/10 to-primary/5",
+        )}
+      />
       <div className="container px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-8 max-w-xl">
           <div className="flex items-center justify-center gap-2 bg-primary/20 px-4 py-2 rounded-full text-primary font-medium text-sm backdrop-blur-sm">
@@ -49,36 +56,12 @@ export default function Hero() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-col gap-4">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full"
-                  />
-                  <AnimatedSubscribeButton
-                    className="w-full flex-1"
-                    buttonColor="#333333"
-                    buttonTextColor="#ffffff"
-                    subscribeStatus={false}
-                    initialText={
-                      <span className="group inline-flex items-center">
-                        Subscribe{" "}
-                        <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </span>
-                    }
-                    changeText={
-                      <span className="group inline-flex items-center">
-                        Subscribed{" "}
-                      </span>
-                    }
-                  />
-                </div>
+                <EmailForm />
               </CardContent>
             </Card>
           </NeonGradientCard>
         </div>
       </div>
-      <BackgroundBeams />
     </section>
   );
 }
