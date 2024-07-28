@@ -7,14 +7,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { CheckIcon, ChevronRightIcon, ClockIcon } from "lucide-react";
+import { ChevronRightIcon, ClockIcon } from "lucide-react";
 import { AnimatedSubscribeButton } from "./magicui/animated-subscribe-button";
 import { NeonGradientCard } from "./magicui/neon-gradient-card";
 import { BackgroundBeams } from "./ui/background-beams";
 
 export default function Hero() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 realtive antialiased">
+    <section className="w-full h-screen py-12 md:py-24 lg:py-32 realtive antialiased">
       <BackgroundBeams className="-z-10" />
 
       <div className="container px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
