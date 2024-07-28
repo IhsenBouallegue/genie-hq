@@ -1,3 +1,4 @@
+import AboutUs from "@/components/abouts-us";
 import Faq from "@/components/faq";
 import { Features } from "@/components/features";
 import Hero from "@/components/hero";
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Features />
       <Faq />
+      <AboutUs />
     </main>
   );
 }

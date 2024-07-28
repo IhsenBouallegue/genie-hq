@@ -8,11 +8,17 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ClockIcon } from "lucide-react";
+import Link from "next/link";
 import { EmailForm } from "./email-form";
 import GridPattern from "./magicui/grid-pattern";
 import { NeonGradientCard } from "./magicui/neon-gradient-card";
 
 export default function Hero() {
+  const today = new Date();
+  const launchDate = new Date("2024-08-30");
+  // Calculate the difference in days
+  const differenceInTime = launchDate.getTime() - today.getTime();
+  const differenceInDays = (differenceInTime / (1000 * 3600 * 24)).toFixed(0);
   return (
     <section className="md:min-h-[80vh] w-full flex rounded-md relative justify-center antialiased p-8">
       <GridPattern
@@ -27,7 +33,8 @@ export default function Hero() {
         <div className="space-y-8 max-w-xl">
           <div className="flex items-center justify-center gap-2 bg-primary/20 px-4 py-2 rounded-full text-primary font-medium text-sm backdrop-blur-sm">
             <ClockIcon className="w-4 h-4" />
-            <span>Launching in 23 days</span>
+
+            <span>Launching in {differenceInDays} days</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             Streamline Your Device Setup with Our App Installer
@@ -38,8 +45,8 @@ export default function Hero() {
             breeze.
           </p>
           <div className="flex gap-4">
-            <Button variant="outline" className="text-primary">
-              Learn More
+            <Button variant="outline" className="text-primary" asChild>
+              <Link href="#features">Learn More</Link>
             </Button>
           </div>
         </div>
@@ -48,7 +55,7 @@ export default function Hero() {
             <Card className="bg-transparent border-0">
               <CardHeader>
                 <CardTitle>Get Early Access</CardTitle>
-                <CardDescription>
+                <CardDescription className="pt-2">
                   Sign up to be notified when our app installer launches. We
                   won't email you about anything else.
                 </CardDescription>
