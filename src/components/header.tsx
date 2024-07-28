@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { AppWindowIcon, DownloadIcon } from "lucide-react";
 
 import {
@@ -29,21 +29,27 @@ export default function Header() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="#features" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={buttonVariants({ variant: "link" })}
+                >
                   Features
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="#about-us" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={buttonVariants({ variant: "link" })}
+                >
                   About Us
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="#faq" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={buttonVariants({ variant: "link" })}
+                >
                   FAQ
                 </NavigationMenuLink>
               </Link>
@@ -56,7 +62,7 @@ export default function Header() {
       </nav>
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <Button className="hidden md:flex">
               <DownloadIcon className="h-4 w-4 mr-2" />
               Download

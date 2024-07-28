@@ -8,7 +8,10 @@ import { Card, CardContent } from "./ui/card";
 
 function Faq() {
   return (
-    <div className="flex justify-center items-center min-h-screen p-6">
+    <section
+      id="faq"
+      className="flex justify-center items-center min-h-screen p-6"
+    >
       <Card className="shadow-lg md:w-[550px]">
         <CardContent className="p-6">
           <h3 className="font-semibold text-primary">
@@ -104,7 +107,7 @@ function Faq() {
           </Accordion>
         </CardContent>
       </Card>
-    </div>
+    </section>
   );
 }
 export default Faq;

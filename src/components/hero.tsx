@@ -14,7 +14,7 @@ import { NeonGradientCard } from "./magicui/neon-gradient-card";
 
 export default function Hero() {
   return (
-    <section className="h-[80vh] w-full rounded-md relative flex flex-col items-center justify-center antialiased p-8">
+    <section className="md:min-h-[80vh] w-full flex rounded-md relative justify-center antialiased p-8">
       <GridPattern
         className={cn(
           "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",

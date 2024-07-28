@@ -8,18 +8,20 @@ import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 
 export function Features() {
   return (
-    <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem] p-6">
-      {items.map((item) => (
-        <BentoGridItem
-          key={item.title}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          className={item.className}
-          icon={item.icon}
-        />
-      ))}
-    </BentoGrid>
+    <section id="features">
+      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem] p-6">
+        {items.map((item) => (
+          <BentoGridItem
+            key={item.title}
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className={item.className}
+            icon={item.icon}
+          />
+        ))}
+      </BentoGrid>
+    </section>
   );
 }
 const Skeleton = () => (
