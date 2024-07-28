@@ -8,13 +8,13 @@ import { Card, CardContent } from "./ui/card";
 
 function Faq() {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <Card className="shadow-lg w-[550px]">
+    <div className="flex justify-center items-center min-h-screen p-6">
+      <Card className="shadow-lg md:w-[550px]">
         <CardContent className="p-6">
           <h3 className="font-semibold text-primary">
             Frequently asked questions
           </h3>
-          <p className="mt-3 text-gray-400 text-3xl font-extrabold sm:text-4xl">
+          <p className="mt-3 text-3xl font-extrabold sm:text-4xl">
             All information you need to know
           </p>
           <Accordion className="w-full mt-4" type="multiple">

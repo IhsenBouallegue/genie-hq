@@ -11,8 +11,6 @@ const EmailSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  console.log("Request body", req.body);
-
   try {
     // Parse and validate the request body
     const body = await req.json();

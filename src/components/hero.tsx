@@ -18,8 +18,9 @@ export default function Hero() {
       <GridPattern
         className={cn(
           "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
-          "inset-x-0 inset-y-[-30%]  skew-y-12",
-          "bg-gradient-to-br from-primary/10 to-primary/5",
+          "inset-x-0 inset-y-[-30%] skew-y-12",
+          "bg-gradient-to-br from-primary/50 to-primary/5",
+          "-z-10",
         )}
       />
       <div className="container px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
@@ -33,13 +34,10 @@ export default function Hero() {
           </h1>
           <p className="text-lg md:text-xl">
             Say goodbye to the hassle of manually installing apps on your new
-            devices. Genie does it all for you, making the setup process a
+            devices. GenieHQ does it all for you, making the setup process a
             breeze.
           </p>
           <div className="flex gap-4">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Get Early Access
-            </Button>
             <Button variant="outline" className="text-primary">
               Learn More
             </Button>
