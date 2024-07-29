@@ -21,7 +21,9 @@ export const metadata: Metadata = {
     siteName: "Genie HQ",
     images: [
       {
-        url: "/enrico.png",
+        url: "/preview.png",
+        width: 1200,
+        height: 630,
       },
     ],
   },
