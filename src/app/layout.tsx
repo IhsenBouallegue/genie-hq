@@ -1,36 +1,27 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/ui/footer";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { HomeIcon, MessageCircleIcon, UserIcon } from "lucide-react";
-import Link from "next/link";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const metadataTitle = "Genie HQ";
+const metadataDescription = "Automate Your Setup, Enjoy Your Device";
 
 export const metadata: Metadata = {
-  title: "Genie HQ",
-  description: "Automate Your Setup, Enjoy Your Device",
+  title: metadataTitle,
+  description: metadataDescription,
   openGraph: {
     type: "website",
-    url: "https://example.com",
-    title: "My Website",
-    description: "My Website Description",
-    siteName: "My Website",
+    url: "https://geniehq.xyz",
+    title: metadataTitle,
+    description: metadataDescription,
+    siteName: "Genie HQ",
     images: [
       {
-        url: "/public/enrico.png",
+        url: "/enrico.png",
       },
     ],
   },
