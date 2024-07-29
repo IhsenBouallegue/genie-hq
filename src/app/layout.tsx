@@ -22,6 +22,18 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Genie HQ",
   description: "Automate Your Setup, Enjoy Your Device",
+  openGraph: {
+    type: "website",
+    url: "https://example.com",
+    title: "My Website",
+    description: "My Website Description",
+    siteName: "My Website",
+    images: [
+      {
+        url: "/public/enrico.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -32,7 +44,6 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
         <body className={cn(inter.className, "relative w-full")}>
           <ThemeProvider
             attribute="class"
