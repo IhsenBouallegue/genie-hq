@@ -51,20 +51,18 @@ export default function Hero() {
           </div>
         </div>
         <div className="w-full max-w-md">
-          <NeonGradientCard className="bg-black">
-            <Card className="bg-transparent border-0">
-              <CardHeader>
-                <CardTitle>Get Early Access</CardTitle>
-                <CardDescription className="pt-2">
-                  Sign up to be notified when our app installer launches. We
-                  won't email you about anything else.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <EmailForm />
-              </CardContent>
-            </Card>
-          </NeonGradientCard>
+          <Card className="border-0">
+            <CardHeader>
+              <CardTitle>Get Early Access</CardTitle>
+              <CardDescription className="pt-2">
+                Sign up to be notified when our app installer launches. We won't
+                email you about anything else.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <EmailForm />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

@@ -4,6 +4,9 @@ import { ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 import AnimatedSubscribeButton from "./magicui/animated-subscribe-button";
 import { Input } from "./ui/input";
+import Link from "next/link";
+import { buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 export function EmailForm() {
   const [email, setEmail] = useState("");
@@ -69,6 +72,9 @@ export function EmailForm() {
             <span className="group inline-flex items-center">Failed</span>
           }
         />
+        <p className="text-sm text-muted-foreground">
+          By subscribing, you agree to our{" "}<Link className={cn(buttonVariants({variant:"link"}), "px-0")} href="/privacy-policy">Privacy Policy</Link>.
+        </p>
       </form>
     </div>
   );

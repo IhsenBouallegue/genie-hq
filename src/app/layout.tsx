@@ -13,6 +13,7 @@ const metadataDescription = "Automate Your Setup, Enjoy Your Device";
 export const metadata: Metadata = {
   title: metadataTitle,
   description: metadataDescription,
+  metadataBase: new URL("https://geniehq.xyz"),
   openGraph: {
     type: "website",
     url: "https://geniehq.xyz",
