@@ -5,7 +5,7 @@ import Hero from "@/components/hero";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between antialiased transform-gpu">
+    <main className="flex min-h-screen flex-col gap-12 items-center ">
       <Hero />
       <Features />
       <Faq />

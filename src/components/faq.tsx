@@ -9,8 +9,8 @@ import { Card, CardContent } from "./ui/card";
 function Faq() {
   return (
     <section id="faq" className="flex justify-center items-center p-6">
-      <Card className="shadow-lg md:w-[550px]">
-        <CardContent className="p-6">
+      <Card className="shadow-lg md:w-[600px]">
+        <CardContent className="p-8">
           <h3 className="font-semibold text-primary">
             Frequently asked questions
           </h3>

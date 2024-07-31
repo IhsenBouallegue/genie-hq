@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 
 function AboutUs() {
   return (
-    <section id="about-us" className="max-w-screen-md my-12 md:my-24 p-6 ">
+    <section id="about-us" className="max-w-screen-md mb-12 md:mb-24 p-6 ">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
         About Us
       </h1>
