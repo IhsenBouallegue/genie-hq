@@ -8,7 +8,7 @@ function AboutUs() {
         About Us
       </h1>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        We’re two passionate software engineers based in Germany who believe in
+        We're two passionate software engineers based in Germany who believe in
         making life easier by saving time wherever we can. GenieHQ started from
         our own frustrations with the tedious process of installing and
         configuring applications on new devices.
@@ -27,7 +27,7 @@ function AboutUs() {
           </div>
           <div className="flex flex-col items-center gap-2">
             <Avatar className="size-16">
-              <AvatarImage src="enrico.png" />
+              <AvatarImage src="enrico.jpg" />
               <AvatarFallback>EC</AvatarFallback>
             </Avatar>
             <div className="text-center">
