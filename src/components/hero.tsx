@@ -30,7 +30,7 @@ export default function Hero() {
           "-z-10",
         )}
       />
-      <div className="container px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="max-w-screen-xl px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-36">
         <div className="space-y-8 max-w-xl">
           <div className="flex items-center justify-center gap-2 bg-primary/20 px-4 py-2 rounded-full text-primary font-medium text-sm backdrop-blur-sm">
             <ClockIcon className="w-4 h-4" />

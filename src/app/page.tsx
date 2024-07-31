@@ -5,7 +5,7 @@ import Hero from "@/components/hero";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col gap-12 items-center ">
+    <main className="flex min-h-screen flex-col gap-24 items-center ">
       <Hero />
       <Features />
       <Faq />
