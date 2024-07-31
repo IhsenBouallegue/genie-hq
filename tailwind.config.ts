@@ -76,6 +76,11 @@ const config = {
           "0%": { backgroundPosition: "top center" },
           "100%": { backgroundPosition: "bottom center" },
         },
+		"shine-pulse": {
+			"0%": { backgroundPosition: "0% 0%" },
+			"50%": { backgroundPosition: "100% 100%" },
+			to: { backgroundPosition: "0% 0%" },
+		},
       },
 
       animation: {
