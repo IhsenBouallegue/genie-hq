@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileCard, { type Profile } from "./profile-card";
 import { Button } from "./ui/button";
 import { Step, type StepItem, Stepper, useStepper } from "./ui/stepper";
 
@@ -9,6 +10,12 @@ const steps = [
   { label: "Step 3" },
 ] satisfies StepItem[];
 
+const profiles: Profile[] = [
+  { title: "Profile 1" },
+  { title: "Profile 2" },
+  { title: "Profile 3" },
+];
+
 export default function SetupConfiguratorTool() {
   return (
     <div className="container flex h-full max-w-6xl">
@@ -17,8 +24,10 @@ export default function SetupConfiguratorTool() {
           {steps.map(({ label }, index) => {
             return (
               <Step key={label} label={label}>
-                <div className="h-40 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
-                  <h1 className="text-xl">Step {index + 1}</h1>
+                <div className="h-40 flex items-center justify-center my-4 border rounded-md">
+                  {profiles.map((profile) => (
+                    <ProfileCard key={profile.title} {...profile} />
+                  ))}
                 </div>
               </Step>
             );
