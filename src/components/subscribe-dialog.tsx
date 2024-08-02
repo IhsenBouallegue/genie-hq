@@ -19,10 +19,10 @@ export function SubscribeDialog({ disabled }: { disabled?: boolean }) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Get Early Access</DialogTitle>
+          <DialogTitle>Be the first to the party!</DialogTitle>
           <DialogDescription>
-            Sign up to be notified when our app installer launches. We won't
-            email you about anything else.
+            We are still working hard on GenieHQ. But we will let you know as
+            soon as we are ready.
           </DialogDescription>
         </DialogHeader>
         <EmailForm />

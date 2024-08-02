@@ -12,8 +12,9 @@ export default function ApplicationCard({ id, title, icon }: Application) {
   return (
     <div
       className={cn(
-        "h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
+        "h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer border",
         isSelected ? "bg-primary/20" : "bg-transparent",
+        isSelected ? " hover:bg-primary/30" : " hover:bg-gray-100/10",
       )}
       onClick={() => toggleApplication(id)}
       onKeyDown={() => toggleApplication(id)}

@@ -1,6 +1,7 @@
 import { useStore } from "@/lib/store/useStore";
 import ProfileCard from "./profile-card";
 import StepContainer from "./step-container";
+import StepDescription from "./step-description";
 import StepTitle from "./step-title";
 
 export default function SetupStepProfile() {
@@ -8,7 +9,10 @@ export default function SetupStepProfile() {
 
   return (
     <StepContainer>
-      <StepTitle>Choose your Profile</StepTitle>
+      <StepTitle>Who are you?</StepTitle>
+      <StepDescription>
+        Based on this profile we will help you select apps you might need.
+      </StepDescription>
       <div className="flex gap-4 flex-wrap">
         {profiles.map((profile) => (
           <ProfileCard key={profile.id} {...profile} />

@@ -1,18 +1,14 @@
-// ProfileCard.tsx
 "use client";
 
 import type { Profile } from "@/lib/store/types";
 import { useStore } from "@/lib/store/useStore";
 import { cn } from "@/lib/utils";
-import { User2 } from "lucide-react";
-import { Circle } from "./circle";
+import Image from "next/image";
 
-export default function ProfileCard({ id, title }: Profile) {
+export default function ProfileCard({ id, title, image }: Profile) {
   const selectProfile = useStore((state) => state.selectProfile);
   const currentProfileId = useStore((state) => state.selectedProfile);
-  const currentProfile = useStore(
-    (state) => state.profiles[currentProfileId || ""],
-  );
+  const isSelected = currentProfileId === id;
 
   const handleClick = () => {
     selectProfile(id);
@@ -21,18 +17,32 @@ export default function ProfileCard({ id, title }: Profile) {
   return (
     <div
       className={cn(
-        "h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
-        currentProfile?.title === title ? "bg-primary/20" : "bg-transparent",
+        "relative h-36 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
+        isSelected ? "bg-primary/20" : "bg-transparent",
+        isSelected ? " hover:bg-primary/30" : " hover:bg-gray-100/10",
       )}
       onClick={handleClick}
       onKeyDown={handleClick}
     >
-      <div className="h-1/2">
-        <Circle className=" rounded-full">
-          <User2 className="text-black size-18" />
-        </Circle>
+      <div className="relative mb-2">
+        {/* Blurred image background */}
+        <div className="absolute inset-0 rounded-full overflow-hidden blur-lg">
+          <Image
+            src={image}
+            alt={`${title} blurred`}
+            fill
+            className="rounded-full"
+          />
+        </div>
+        {/* Main image */}
+        <Image
+          src={image}
+          alt={title}
+          width={64}
+          height={64}
+          className="relative rounded-full bg-cover"
+        />
       </div>
-
       <p className="text-sm text-center">{title}</p>
     </div>
   );

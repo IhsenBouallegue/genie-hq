@@ -7,6 +7,7 @@ export type ProfileId = string;
 export interface Profile {
   id: ProfileId;
   title: string;
+  image: string;
   relevantApplications: ApplicationId[];
 }
 
@@ -18,6 +19,7 @@ export interface Application {
 }
 
 export enum Category {
+  Browser = "Browser",
   Code = "Code",
   Data = "Data",
   Design = "Design",
