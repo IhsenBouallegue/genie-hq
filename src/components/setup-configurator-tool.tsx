@@ -14,7 +14,7 @@ const steps = [
 
 export default function SetupConfiguratorTool() {
   return (
-    <div className="container flex flex-col h-full max-w-6xl">
+    <div className="container max-w-6xl mx-auto p-6 flex flex-col h-full ">
       <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         Start your Setup!
       </h1>
@@ -71,11 +71,11 @@ const Footer = () => {
   } = useStepper();
   return (
     <>
-      {hasCompletedAllSteps && (
+      {/* {hasCompletedAllSteps && (
         <div className="h-40 flex items-center justify-center my-4 border bg-secondary text-primary rounded-md">
           <h1 className="text-xl">Woohoo! All steps completed! 🎉</h1>
         </div>
-      )}
+      )} */}
       <div className="w-full flex justify-end gap-2">
         {hasCompletedAllSteps ? (
           <Button size="sm" onClick={resetSteps}>

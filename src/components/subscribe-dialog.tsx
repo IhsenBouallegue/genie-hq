@@ -11,11 +11,11 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 
-export function SubscribeDialog() {
+export function SubscribeDialog({ disabled }: { disabled?: boolean }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="sm">Download GenieHQ Installer</Button>
+        <Button disabled={disabled}>Download GenieHQ Installer</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

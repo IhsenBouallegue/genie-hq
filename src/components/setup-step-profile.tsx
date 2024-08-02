@@ -1,4 +1,3 @@
-// SetupStepProfile.tsx
 import { useStore } from "@/lib/store/useStore";
 import ProfileCard from "./profile-card";
 import StepContainer from "./step-container";
@@ -10,7 +9,7 @@ export default function SetupStepProfile() {
   return (
     <StepContainer>
       <StepTitle>Choose your Profile</StepTitle>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
         {profiles.map((profile) => (
           <ProfileCard key={profile.id} {...profile} />
         ))}

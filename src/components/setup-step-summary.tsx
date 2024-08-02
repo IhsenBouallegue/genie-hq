@@ -42,7 +42,7 @@ export default function SetupStepSummary() {
             )}
           </>
         )}
-        <SubscribeDialog />
+        <SubscribeDialog disabled={isNothingSelected} />
       </div>
     </StepContainer>
   );
