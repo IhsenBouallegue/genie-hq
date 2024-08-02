@@ -10,13 +10,11 @@ import {
   SiCplusplus,
   SiDbeaver,
   SiDiscord,
-  SiDuckduckgo,
   SiEclipseide,
   SiEvernote,
   SiFigma,
   SiFirefox,
   SiGit,
-  SiGithub,
   SiGooglechrome,
   SiIntellijidea,
   SiJavascript,
@@ -44,7 +42,6 @@ import {
   SiVlcmediaplayer,
   SiZoom,
 } from "@icons-pack/react-simple-icons";
-import { LucideFileQuestion } from "lucide-react";
 import { type Application, Category, type Profile } from "../store/types";
 
 export const applications: Application[] = [
