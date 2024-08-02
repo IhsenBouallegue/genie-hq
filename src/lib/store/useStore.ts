@@ -1,3 +1,4 @@
+import { track } from "@vercel/analytics/react";
 // store/useStore.ts
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
@@ -45,14 +46,17 @@ export const useStore = create<State & Actions>()(
           state.selectedProfile = profileId;
           state.selectedApplicationIds = profile.relevantApplications;
           state.customApplicationIds = [];
+          track("selected_profile", { profile: profile.title });
         }
       }),
     toggleApplication: (applicationId) =>
       set((state) => {
         const index = state.selectedApplicationIds.indexOf(applicationId);
         if (index > -1) {
+          // Remove application
           state.selectedApplicationIds.splice(index, 1);
         } else {
+          // Add application
           state.selectedApplicationIds.push(applicationId);
         }
       }),

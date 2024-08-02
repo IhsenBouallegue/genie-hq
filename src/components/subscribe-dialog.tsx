@@ -25,7 +25,7 @@ export function SubscribeDialog({ disabled }: { disabled?: boolean }) {
             soon as we are ready.
           </DialogDescription>
         </DialogHeader>
-        <EmailForm />
+        <EmailForm origin="setup-tool" />
       </DialogContent>
     </Dialog>
   );

@@ -1,20 +1,22 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { track } from "@vercel/analytics/react";
 import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import AnimatedSubscribeButton from "./magicui/animated-subscribe-button";
-import { Input } from "./ui/input";
-import Link from "next/link";
 import { buttonVariants } from "./ui/button";
-import { cn } from "@/lib/utils";
+import { Input } from "./ui/input";
 
-export function EmailForm() {
+export function EmailForm({ origin }: { origin: "hero" | "setup-tool" }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<
     "default" | "loading" | "success" | "failed"
   >("default");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    track("subscribed", { email, origin });
     e.preventDefault();
     setStatus("loading");
 
@@ -73,7 +75,14 @@ export function EmailForm() {
           }
         />
         <p className="text-sm text-muted-foreground">
-          By subscribing, you agree to our{" "}<Link className={cn(buttonVariants({variant:"link"}), "px-0")} href="/privacy-policy">Privacy Policy</Link>.
+          By subscribing, you agree to our{" "}
+          <Link
+            className={cn(buttonVariants({ variant: "link" }), "px-0")}
+            href="/privacy-policy"
+          >
+            Privacy Policy
+          </Link>
+          .
         </p>
       </form>
     </div>

@@ -65,7 +65,7 @@ export default function Hero() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <EmailForm />
+                <EmailForm origin="hero" />
               </CardContent>
             </Card>
           </ShineBorder>
