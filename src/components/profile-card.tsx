@@ -1,34 +1,39 @@
+// ProfileCard.tsx
 "use client";
+
+import type { Profile } from "@/lib/store/types";
+import { useStore } from "@/lib/store/useStore";
 import { cn } from "@/lib/utils";
 import { User2 } from "lucide-react";
 import { Circle } from "./circle";
 
-export interface Profile {
-  title: string;
-}
+export default function ProfileCard({ id, title }: Profile) {
+  const selectProfile = useStore((state) => state.selectProfile);
+  const currentProfileId = useStore((state) => state.selectedProfile);
+  const currentProfile = useStore(
+    (state) => state.profiles[currentProfileId || ""],
+  );
 
-export default function ProfileCard({
-  title,
-  currentProfile,
-  setCurrentProfile,
-}: Profile & {
-  setCurrentProfile: (profile: Profile) => void;
-  currentProfile: Profile | null;
-}) {
+  const handleClick = () => {
+    selectProfile(id);
+  };
+
   return (
-    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <div
       className={cn(
-        "h-32 flex flex-col items-center gap-2 rounded-lg p-3  cursor-pointer hover:bg-gray-100/10",
+        "h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
         currentProfile?.title === title ? "bg-primary/20" : "bg-transparent",
       )}
-      onClick={() => setCurrentProfile({ title })}
+      onClick={handleClick}
+      onKeyDown={handleClick}
     >
-      <Circle className="size-20 rounded-full">
-        <User2 className="text-black size-18" />
-      </Circle>
+      <div className="h-1/2">
+        <Circle className=" rounded-full">
+          <User2 className="text-black size-18" />
+        </Circle>
+      </div>
 
-      <p className="text-sm">{title}</p>
+      <p className="text-sm text-center">{title}</p>
     </div>
   );
 }

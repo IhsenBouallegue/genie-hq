@@ -14,6 +14,9 @@ import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 export function Features() {
   return (
     <section id="features">
+      <h2 className="text-3xl sm:text-4xl mb-6 font-bold text-center">
+        Discover GenieHQ
+      </h2>
       <BentoGrid className="max-w-6xl mx-auto p-6">
         {items.map((item) => (
           <BentoGridItem

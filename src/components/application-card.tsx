@@ -1,36 +1,29 @@
 "use client";
+import type { Application } from "@/lib/store/types";
+import { useStore } from "@/lib/store/useStore";
 import { cn } from "@/lib/utils";
 import React from "react";
 
-export interface Application {
-  title: string;
-  icon: React.ReactElement;
-}
-
-export default function ApplicationCard({
-  title,
-  icon,
-  currentApplications,
-  toggleApplication,
-}: Application & {
-  toggleApplication: (application: Application) => void;
-  currentApplications: Application[];
-}) {
-  const isSelected = currentApplications.some((app) => app.title === title);
-
+export default function ApplicationCard({ id, title, icon }: Application) {
+  const toggleApplication = useStore((state) => state.toggleApplication);
+  const isSelected = useStore((state) =>
+    state.selectedApplicationIds.includes(id),
+  );
   return (
-    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <div
       className={cn(
-        "h-32 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
+        "h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
         isSelected ? "bg-primary/20" : "bg-transparent",
       )}
-      onClick={() => toggleApplication({ title, icon })}
+      onClick={() => toggleApplication(id)}
+      onKeyDown={() => toggleApplication(id)}
     >
-      <div className="size-16 rounded-full">
-        {React.cloneElement(icon, { className: "text-white size-16" })}
+      <div className="h-1/2">
+        <div className="size-16 rounded-full flex flex-1">
+          {React.createElement(icon, { className: "text-white m-auto size-8" })}
+        </div>
       </div>
-      <p className="text-sm">{title}</p>
+      <p className="text-sm text-wrap text-center">{title}</p>
     </div>
   );
 }
