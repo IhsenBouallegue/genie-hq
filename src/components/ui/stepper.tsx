@@ -5,6 +5,7 @@ import { CheckIcon, Loader2, type LucideIcon, X } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { Element, scroller } from "react-scroll";
 import { Button } from "./button";
 import { Collapsible, CollapsibleContent } from "./collapsible";
 
@@ -51,10 +52,12 @@ const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
 
   const nextStep = () => {
     setActiveStep((prev) => prev + 1);
+    scroller.scrollTo(`step-${activeStep + 1}`, {});
   };
 
   const prevStep = () => {
     setActiveStep((prev) => prev - 1);
+    scroller.scrollTo(`step-${activeStep - 1}`, {});
   };
 
   const resetSteps = () => {
@@ -63,6 +66,7 @@ const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
 
   const setStep = (step: number) => {
     setActiveStep(step);
+    scroller.scrollTo(`step-${step}`, {});
   };
 
   return (
@@ -554,58 +558,56 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
           onClickStepGeneral?.(index || 0, setStep)
         }
       >
-        <div
-          data-vertical={true}
-          data-active={active}
-          className={cn(
-            "stepper__vertical-step-container",
-            "flex items-center",
-            variant === "line" &&
-              "border-s-[3px] data-[active=true]:border-primary-500 py-2 ps-3",
-            styles?.["vertical-step-container"],
-          )}
-        >
-          <StepButtonContainer
-            {...{ isLoading: localIsLoading, isError: localIsError, ...props }}
+        <Element name={`step-${index}`}>
+          <div
+            data-vertical={true}
+            data-active={active}
+            className={cn(
+              "stepper__vertical-step-container",
+              "flex items-center",
+              variant === "line" &&
+                "border-s-[3px] data-[active=true]:border-primary-500 py-2 ps-3",
+              styles?.["vertical-step-container"],
+            )}
           >
-            <StepIcon
+            <StepButtonContainer
               {...{
-                index,
-                isError: localIsError,
                 isLoading: localIsLoading,
-                isCurrentStep,
-                isCompletedStep,
+                isError: localIsError,
+                ...props,
               }}
-              icon={icon}
-              checkIcon={checkIcon}
-              errorIcon={errorIcon}
+            >
+              <StepIcon
+                {...{
+                  index,
+                  isError: localIsError,
+                  isLoading: localIsLoading,
+                  isCurrentStep,
+                  isCompletedStep,
+                }}
+                icon={icon}
+                checkIcon={checkIcon}
+                errorIcon={errorIcon}
+              />
+            </StepButtonContainer>
+            <StepLabel
+              label={label}
+              description={description}
+              {...{ isCurrentStep, opacity }}
             />
-          </StepButtonContainer>
-          <StepLabel
-            label={label}
-            description={description}
-            {...{ isCurrentStep, opacity }}
-          />
-        </div>
-        <div
-          ref={(node) => {
-            if (scrollTracking) {
-              node?.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-              });
-            }
-          }}
-          className={cn(
-            "stepper__vertical-step-content",
-            "min-h-4",
-            variant !== "line" && "ps-[--step-icon-size]",
-            variant === "line" && orientation === "vertical" && "min-h-0",
-            styles?.["vertical-step-content"],
-          )}
-        >
-          {renderChildren()}
-        </div>
+          </div>
+          <div
+            className={cn(
+              "stepper__vertical-step-content",
+              "min-h-4",
+              variant !== "line" && "ps-[--step-icon-size]",
+              variant === "line" && orientation === "vertical" && "min-h-0",
+              styles?.["vertical-step-content"],
+            )}
+          >
+            {renderChildren()}
+          </div>
+        </Element>
       </div>
     );
   },
@@ -681,38 +683,44 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
         onClick={() => onClickStep?.(index || 0, setStep)}
         ref={ref}
       >
-        <div
-          className={cn(
-            "stepper__horizontal-step-container",
-            "flex items-center",
-            variant === "circle-alt" && "flex-col justify-center gap-1",
-            variant === "line" && "w-full",
-            styles?.["horizontal-step-container"],
-          )}
-        >
-          <StepButtonContainer
-            {...{ ...props, isError: localIsError, isLoading: localIsLoading }}
+        <Element name={`step-${index}`}>
+          <div
+            className={cn(
+              "stepper__horizontal-step-container",
+              "flex items-center",
+              variant === "circle-alt" && "flex-col justify-center gap-1",
+              variant === "line" && "w-full",
+              styles?.["horizontal-step-container"],
+            )}
           >
-            <StepIcon
+            <StepButtonContainer
               {...{
-                index,
-                isCompletedStep,
-                isCurrentStep,
+                ...props,
                 isError: localIsError,
-                isKeepError,
                 isLoading: localIsLoading,
               }}
-              icon={icon}
-              checkIcon={checkIcon}
-              errorIcon={errorIcon}
+            >
+              <StepIcon
+                {...{
+                  index,
+                  isCompletedStep,
+                  isCurrentStep,
+                  isError: localIsError,
+                  isKeepError,
+                  isLoading: localIsLoading,
+                }}
+                icon={icon}
+                checkIcon={checkIcon}
+                errorIcon={errorIcon}
+              />
+            </StepButtonContainer>
+            <StepLabel
+              label={label}
+              description={description}
+              {...{ isCurrentStep, opacity }}
             />
-          </StepButtonContainer>
-          <StepLabel
-            label={label}
-            description={description}
-            {...{ isCurrentStep, opacity }}
-          />
-        </div>
+          </div>
+        </Element>
       </div>
     );
   },
@@ -989,5 +997,5 @@ const StepLabel = ({
   ) : null;
 };
 
-export { Stepper, Step, useStepper };
-export type { StepProps, StepperProps, StepItem };
+export { Step, Stepper, useStepper };
+export type { StepItem, StepProps, StepperProps };
