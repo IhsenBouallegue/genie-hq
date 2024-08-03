@@ -295,7 +295,7 @@ export const applications: Application[] = [
   {
     id: "42",
     title: "DBeaver",
-    category: Category.Miscellaneous,
+    category: Category.Data,
     icon: SiDbeaver,
   },
 ];
