@@ -13,7 +13,7 @@ export default function FeatureAccountSync() {
 
   return (
     <div
-      className="relative flex w-full items-center justify-center overflow-hidden rounded-lg border bg-background p-6 md:shadow-xl"
+      className="relative flex w-full items-center justify-center overflow-hidden rounded-lg border p-6 md:shadow-xl"
       ref={containerRef}
     >
       <div className="flex h-full w-full flex-col items-stretch justify-between gap-10">

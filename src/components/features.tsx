@@ -47,7 +47,7 @@ const items = [
     description:
       "Windows, macOS, and Linux, doesn't matter. We got you covered.",
     header: (
-      <div className="h-full flex items-center justify-center gap-8 rounded-lg border bg-background p-6 md:shadow-xl">
+      <div className="h-full flex items-center justify-center gap-8 rounded-lg border p-6 md:shadow-xl">
         <Circle>
           <SiApple className="text-black" />
         </Circle>
@@ -75,7 +75,7 @@ const items = [
     description:
       "Discover the beauty of a personalized setup. Genie HQ installs applications based on your role, whether you're a developer, designer, or casual user.",
     header: (
-      <div className="h-full flex items-center justify-center gap-8 rounded-lg border bg-background p-6 md:shadow-xl">
+      <div className="h-full flex items-center justify-center gap-8 rounded-lg border p-6 md:shadow-xl">
         <Circle className="bg-pink-700">
           <UserRound />
         </Circle>
