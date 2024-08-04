@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import SubscriptionConfirmationEmail from "../../../../emails/confirmation-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -22,6 +22,14 @@ export async function POST(req: Request) {
       unsubscribed: false,
       audienceId: "60a37586-8af1-4ff7-9ca8-ece0ab8ee7da",
     });
+
+    await resend.emails.send({
+      from: "GenieHQ <hello@geniehq.xyz>",
+      to: `${email}`,
+      subject: "GenieHQ Subscription Confirmation",
+      react: SubscriptionConfirmationEmail({ email }),
+    });
+
     if (error) {
       return NextResponse.json(
         { error: "Failed to subscribe" },
