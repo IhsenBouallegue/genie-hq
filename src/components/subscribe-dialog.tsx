@@ -11,12 +11,13 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 
-export function SubscribeDialog({ disabled }: { disabled?: boolean }) {
+export function SubscribeDialog({
+  disabled,
+  children = <Button disabled={disabled}>Download GenieHQ Installer</Button>,
+}: { disabled?: boolean; children?: React.ReactNode }) {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button disabled={disabled}>Download GenieHQ Installer</Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Be the first to the party!</DialogTitle>

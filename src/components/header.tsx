@@ -9,6 +9,7 @@ import {
 } from "@radix-ui/react-tooltip";
 import Image from "next/image";
 import Link from "next/link";
+import { SubscribeDialog } from "./subscribe-dialog";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -59,19 +60,13 @@ export default function Header() {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button className="hidden md:flex">
-              <DownloadIcon className="h-4 w-4 mr-2" />
-              Download
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p className="text-sm">Coming soon!</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+
+      <SubscribeDialog>
+        <Button className="hidden md:flex">
+          <DownloadIcon className="h-4 w-4 mr-2" />
+          Download
+        </Button>
+      </SubscribeDialog>
     </header>
   );
 }
