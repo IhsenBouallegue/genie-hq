@@ -22,7 +22,6 @@ function AboutUs() {
             </Avatar>
             <div className="text-center">
               <div className="font-medium">Ihsen</div>
-              <div className="text-sm text-muted-foreground">Genie Boss</div>
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -32,7 +31,6 @@ function AboutUs() {
             </Avatar>
             <div className="text-center">
               <div className="font-medium">Enrico</div>
-              <div className="text-sm text-muted-foreground">Chief Genie</div>
             </div>
           </div>
         </div>
