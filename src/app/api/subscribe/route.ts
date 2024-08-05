@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import SubscriptionConfirmationEmail from "../../../../emails/confirmation-email";
+import SubscriptionConfirmationEmail from "../../../emails/confirmation-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

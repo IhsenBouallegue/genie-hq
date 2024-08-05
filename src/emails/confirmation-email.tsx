@@ -13,7 +13,7 @@ import {
 import * as React from "react";
 
 import GenieHQLogo from "@/components/geniehq-logo";
-import { buttonVariants } from "../src/components/ui/button";
+import { buttonVariants } from "../components/ui/button";
 
 type SubscriptionConfirmationEmailProps = {
   email: string;
