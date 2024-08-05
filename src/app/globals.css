@@ -3,47 +3,85 @@
 @tailwind utilities;
 @layer base {
   :root {
+    /* #ffffff */
     --background: 0 0% 100%;
+    /* #0d0d0d */
     --foreground: 0 0% 5%;
+    /* #e3e3e3 */
     --muted: 0 0% 89.23%;
+    /* #737373 */
     --muted-foreground: 0 0% 45%;
+    /* #ffffff */
     --popover: 0 0% 100%;
+    /* #0d0d0d */
     --popover-foreground: 0 0% 5%;
+    /* #ffffff */
     --card: 0 0% 100%;
+    /* #0d0d0d */
     --card-foreground: 0 0% 5%;
+    /* #ebebeb */
     --border: 0 0% 92%;
+    /* #d9d9d9 */
     --input: 0 0% 85%;
+    /* #ff7f00 */
     --primary: 24.58 100% 55.08%;
+    /* #fafafa */
     --primary-foreground: 0 0% 98%;
+    /* #272727 */
     --secondary: 0 0% 15.85%;
+    /* #ffffff */
     --secondary-foreground: 0 0% 100%;
+    /* #f0f0f0 */
     --accent: 0 0% 94.62%;
+    /* #0d0d0d */
     --accent-foreground: 0 0% 5%;
+    /* #ff1a1a */
     --destructive: 0 95.28% 58.43%;
+    /* #fafafa */
     --destructive-foreground: 0 0% 98%;
+    /* #d3d3d3 */
     --ring: 24.63 0% 83.69%;
     --radius: 0.5rem;
   }
 
   .dark {
+    /* #000000 */
     --background: 240 0% 0%;
+    /* #fafafa */
     --foreground: 0 0% 98%;
+    /* #2f2f2f */
     --muted: 260 0% 18.46%;
+    /* #7d7d7d */
     --muted-foreground: 260 5% 49%;
+    /* #1a1a1a */
     --popover: 240 5.26% 7.45%;
+    /* #fafafa */
     --popover-foreground: 0 0% 98%;
+    /* #1a1a1a */
     --card: 240 3.4% 7.44%;
+    /* #fafafa */
     --card-foreground: 0 0% 98%;
+    /* #1e1e1e */
     --border: 260 4.92% 11.96%;
+    /* #2e2e2e */
     --input: 255 4% 18%;
+    /* #ff7f00 */
     --primary: 24.63 100% 54.64%;
+    /* #fafafa */
     --primary-foreground: 0 0% 98%;
+    /* #d9d9d9 */
     --secondary: 255 0% 85.85%;
+    /* #0f0f0f */
     --secondary-foreground: 0 0% 5.85%;
+    /* #2f2f2f */
     --accent: 24.68 0% 18.46%;
+    /* #fafafa */
     --accent-foreground: 0 0% 98%;
+    /* #ff1a1a */
     --destructive: 0 95.54% 58.57%;
+    /* #fafafa */
     --destructive-foreground: 0 0% 98%;
+    /* #514f4f */
     --ring: 24.68 0.04% 31.83%;
   }
 }
