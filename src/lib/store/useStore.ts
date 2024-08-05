@@ -58,6 +58,9 @@ export const useStore = create<State & Actions>()(
         } else {
           // Add application
           state.selectedApplicationIds.push(applicationId);
+          if (!state.selectedProfile) {
+            state.selectedProfile = "custom";
+          }
         }
       }),
     getSelectedProfile: () => {
