@@ -1,18 +1,33 @@
 "use client";
 
-import SetupStepApplications from "./setup-step-applications";
-import SetupStepProfile from "./setup-step-profile";
-import SetupStepSummary from "./setup-step-summary";
-import { Button } from "./ui/button";
-import { Step, type StepItem, Stepper, useStepper } from "./ui/stepper";
+import SetupConfiguratorTool from "@/components/setup-configurator-tool";
+import SetupStepApplications from "@/components/setup-step-applications";
+import SetupStepProfile from "@/components/setup-step-profile";
+import SetupStepSummary from "@/components/setup-step-summary";
+import { Button } from "@/components/ui/button";
+import {
+  Step,
+  type StepItem,
+  Stepper,
+  useStepper,
+} from "@/components/ui/stepper";
 
 const steps = [
-  { label: "Choose your Profile" },
-  { label: "Choose your Applications" },
-  { label: "Configuration Summary" },
+  { label: "Step 1" },
+  { label: "Step 2" },
+  { label: "Step 3" },
 ] satisfies StepItem[];
 
-export default function SetupConfiguratorTool() {
+export default function ScrollerPage() {
+  return (
+    <>
+      <StepperTool />
+      <div className="bg-white/10 h-[200vh] m-12" />
+    </>
+  );
+}
+
+export function StepperTool() {
   return (
     <div className="container max-w-screen-lg flex w-full flex-col gap-4">
       <Stepper
@@ -26,7 +41,7 @@ export default function SetupConfiguratorTool() {
             case 0:
               return (
                 <Step key={label} label={label}>
-                  <SetupStepProfile />
+                  <div className="bg-slate-800 h-[50vh]" />
                   <StepButtons />
                 </Step>
               );
@@ -34,7 +49,7 @@ export default function SetupConfiguratorTool() {
             case 1:
               return (
                 <Step key={label} label={label}>
-                  <SetupStepApplications />
+                  <div className="bg-slate-800 h-[200vh]" />
                   <StepButtons />
                 </Step>
               );
@@ -42,7 +57,7 @@ export default function SetupConfiguratorTool() {
             case 2:
               return (
                 <Step key={label} label={label}>
-                  <SetupStepSummary />
+                  <div className="bg-slate-800 h-[30vh]" />
                   <StepButtons />
                 </Step>
               );
@@ -51,7 +66,7 @@ export default function SetupConfiguratorTool() {
               return null;
           }
         })}
-        {/* <FinalStep /> */}
+        <FinalStep />
       </Stepper>
     </div>
   );
@@ -73,17 +88,15 @@ const StepButtons = () => {
       >
         Prev
       </Button>
-      {!isLastStep && (
-        <Button
-          size="sm"
-          onClick={(event) => {
-            event.stopPropagation();
-            nextStep();
-          }}
-        >
-          {isLastStep ? "Finish" : isOptionalStep ? "Skip" : "Next"}
-        </Button>
-      )}
+      <Button
+        size="sm"
+        onClick={(event) => {
+          event.stopPropagation();
+          nextStep();
+        }}
+      >
+        {isLastStep ? "Finish" : isOptionalStep ? "Skip" : "Next"}
+      </Button>
     </div>
   );
 };

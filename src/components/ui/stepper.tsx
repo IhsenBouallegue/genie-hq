@@ -4,10 +4,9 @@ import { cva } from "class-variance-authority";
 import { CheckIcon, Loader2, type LucideIcon, X } from "lucide-react";
 import * as React from "react";
 
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
-import { Element, scroller } from "react-scroll";
-import { Button } from "./button";
-import { Collapsible, CollapsibleContent } from "./collapsible";
 
 // <---------- CONTEXT ---------->
 
@@ -52,12 +51,10 @@ const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
 
   const nextStep = () => {
     setActiveStep((prev) => prev + 1);
-    scroller.scrollTo(`step-${activeStep + 1}`, {});
   };
 
   const prevStep = () => {
     setActiveStep((prev) => prev - 1);
-    scroller.scrollTo(`step-${activeStep - 1}`, {});
   };
 
   const resetSteps = () => {
@@ -66,7 +63,6 @@ const StepperProvider = ({ value, children }: StepperContextProviderProps) => {
 
   const setStep = (step: number) => {
     setActiveStep(step);
-    scroller.scrollTo(`step-${step}`, {});
   };
 
   return (
@@ -317,7 +313,6 @@ const VerticalContent = ({ children }: { children: React.ReactNode }) => {
       {React.Children.map(children, (child, i) => {
         const isCompletedStep =
           (React.isValidElement(child) &&
-            // biome-ignore lint/suspicious/noExplicitAny: <explanation>
             (child.props as any).isCompletedStep) ??
           i < activeStep;
         const isLastStep = i === stepCount - 1;
@@ -396,7 +391,6 @@ interface StepInternalConfig {
 interface FullStepProps extends StepProps, StepInternalConfig {}
 
 const Step = React.forwardRef<HTMLLIElement, StepProps>(
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   (props, ref: React.Ref<any>) => {
     const {
       children,
@@ -461,12 +455,16 @@ type VerticalStepProps = StepSharedProps & {
 };
 
 const verticalStepVariants = cva(
-  "flex flex-col relative transition-all duration-200",
+  [
+    "flex flex-col relative transition-all duration-200",
+    "data-[completed=true]:[&:not(:last-child)]:after:bg-primary",
+    "data-[invalid=true]:[&:not(:last-child)]:after:bg-destructive",
+  ],
   {
     variants: {
       variant: {
         circle: cn(
-          "pb-[var(--step-gap)] gap-[var(--step-gap)]",
+          "[&:not(:last-child)]:pb-[var(--step-gap)] [&:not(:last-child)]:gap-[var(--step-gap)]",
           "[&:not(:last-child)]:after:content-[''] [&:not(:last-child)]:after:w-[2px] [&:not(:last-child)]:after:bg-border",
           "[&:not(:last-child)]:after:inset-x-[calc(var(--step-icon-size)/2)]",
           "[&:not(:last-child)]:after:absolute",
@@ -511,11 +509,14 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
       orientation,
       steps,
       setStep,
+      isLastStep: isLastStepCurrentStep,
     } = useStepper();
 
     const opacity = hasVisited ? 1 : 0.8;
     const localIsLoading = isLoading || state === "loading";
     const localIsError = isError || state === "error";
+
+    const isLastStep = index === steps.length - 1;
 
     const active =
       variant === "line" ? isCompletedStep || isCurrentStep : isCompletedStep;
@@ -544,8 +545,7 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
           verticalStepVariants({
             variant: variant?.includes("circle") ? "circle" : "line",
           }),
-          "data-[completed=true]:[&:not(:last-child)]:after:bg-primary-500",
-          "data-[invalid=true]:[&:not(:last-child)]:after:bg-destructive",
+          isLastStepCurrentStep && "gap-[var(--step-gap)]",
           styles?.["vertical-step"],
         )}
         data-optional={steps[index || 0]?.optional}
@@ -558,56 +558,58 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
           onClickStepGeneral?.(index || 0, setStep)
         }
       >
-        <Element name={`step-${index}`}>
-          <div
-            data-vertical={true}
-            data-active={active}
-            className={cn(
-              "stepper__vertical-step-container",
-              "flex items-center",
-              variant === "line" &&
-                "border-s-[3px] data-[active=true]:border-primary-500 py-2 ps-3",
-              styles?.["vertical-step-container"],
-            )}
+        <div
+          data-vertical={true}
+          data-active={active}
+          className={cn(
+            "stepper__vertical-step-container",
+            "flex items-center",
+            variant === "line" &&
+              "border-s-[3px] data-[active=true]:border-primary py-2 ps-3",
+            styles?.["vertical-step-container"],
+          )}
+        >
+          <StepButtonContainer
+            {...{ isLoading: localIsLoading, isError: localIsError, ...props }}
           >
-            <StepButtonContainer
+            <StepIcon
               {...{
-                isLoading: localIsLoading,
+                index,
                 isError: localIsError,
-                ...props,
+                isLoading: localIsLoading,
+                isCurrentStep,
+                isCompletedStep,
               }}
-            >
-              <StepIcon
-                {...{
-                  index,
-                  isError: localIsError,
-                  isLoading: localIsLoading,
-                  isCurrentStep,
-                  isCompletedStep,
-                }}
-                icon={icon}
-                checkIcon={checkIcon}
-                errorIcon={errorIcon}
-              />
-            </StepButtonContainer>
-            <StepLabel
-              label={label}
-              description={description}
-              {...{ isCurrentStep, opacity }}
+              icon={icon}
+              checkIcon={checkIcon}
+              errorIcon={errorIcon}
             />
-          </div>
-          <div
-            className={cn(
-              "stepper__vertical-step-content",
-              "min-h-4",
-              variant !== "line" && "ps-[--step-icon-size]",
-              variant === "line" && orientation === "vertical" && "min-h-0",
-              styles?.["vertical-step-content"],
-            )}
-          >
-            {renderChildren()}
-          </div>
-        </Element>
+          </StepButtonContainer>
+          <StepLabel
+            label={label}
+            description={description}
+            {...{ isCurrentStep, opacity }}
+          />
+        </div>
+        <div
+          ref={(node) => {
+            if (scrollTracking) {
+              node?.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
+          }}
+          className={cn(
+            "stepper__vertical-step-content",
+            !isLastStep && "min-h-4",
+            variant !== "line" && "ps-[--step-icon-size]",
+            variant === "line" && orientation === "vertical" && "min-h-0",
+            styles?.["vertical-step-content"],
+          )}
+        >
+          {renderChildren()}
+        </div>
       </div>
     );
   },
@@ -656,7 +658,6 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
     const errorIcon = errorIconProp || errorIconContext;
 
     return (
-      // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
       <div
         aria-disabled={!hasVisited}
         className={cn(
@@ -665,14 +666,14 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
           "[&:not(:last-child)]:flex-1",
           "[&:not(:last-child)]:after:transition-all [&:not(:last-child)]:after:duration-200",
           "[&:not(:last-child)]:after:content-[''] [&:not(:last-child)]:after:h-[2px] [&:not(:last-child)]:after:bg-border",
-          "data-[completed=true]:[&:not(:last-child)]:after:bg-primary-500",
+          "data-[completed=true]:[&:not(:last-child)]:after:bg-primary",
           "data-[invalid=true]:[&:not(:last-child)]:after:bg-destructive",
           variant === "circle-alt" &&
             "justify-start flex-col flex-1 [&:not(:last-child)]:after:relative [&:not(:last-child)]:after:order-[-1] [&:not(:last-child)]:after:start-[50%] [&:not(:last-child)]:after:end-[50%] [&:not(:last-child)]:after:top-[calc(var(--step-icon-size)/2)] [&:not(:last-child)]:after:w-[calc((100%-var(--step-icon-size))-(var(--step-gap)))]",
           variant === "circle" &&
             "[&:not(:last-child)]:after:flex-1 [&:not(:last-child)]:after:ms-[var(--step-gap)] [&:not(:last-child)]:after:me-[var(--step-gap)]",
           variant === "line" &&
-            "flex-col flex-1 border-t-[3px] data-[active=true]:border-primary-500",
+            "flex-col flex-1 border-t-[3px] data-[active=true]:border-primary",
           styles?.["horizontal-step"],
         )}
         data-optional={steps[index || 0]?.optional}
@@ -683,44 +684,38 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
         onClick={() => onClickStep?.(index || 0, setStep)}
         ref={ref}
       >
-        <Element name={`step-${index}`}>
-          <div
-            className={cn(
-              "stepper__horizontal-step-container",
-              "flex items-center",
-              variant === "circle-alt" && "flex-col justify-center gap-1",
-              variant === "line" && "w-full",
-              styles?.["horizontal-step-container"],
-            )}
+        <div
+          className={cn(
+            "stepper__horizontal-step-container",
+            "flex items-center bgh-",
+            variant === "circle-alt" && "flex-col justify-center gap-1",
+            variant === "line" && "w-full",
+            styles?.["horizontal-step-container"],
+          )}
+        >
+          <StepButtonContainer
+            {...{ ...props, isError: localIsError, isLoading: localIsLoading }}
           >
-            <StepButtonContainer
+            <StepIcon
               {...{
-                ...props,
+                index,
+                isCompletedStep,
+                isCurrentStep,
                 isError: localIsError,
+                isKeepError,
                 isLoading: localIsLoading,
               }}
-            >
-              <StepIcon
-                {...{
-                  index,
-                  isCompletedStep,
-                  isCurrentStep,
-                  isError: localIsError,
-                  isKeepError,
-                  isLoading: localIsLoading,
-                }}
-                icon={icon}
-                checkIcon={checkIcon}
-                errorIcon={errorIcon}
-              />
-            </StepButtonContainer>
-            <StepLabel
-              label={label}
-              description={description}
-              {...{ isCurrentStep, opacity }}
+              icon={icon}
+              checkIcon={checkIcon}
+              errorIcon={errorIcon}
             />
-          </div>
-        </Element>
+          </StepButtonContainer>
+          <StepLabel
+            label={label}
+            description={description}
+            {...{ isCurrentStep, opacity }}
+          />
+        </div>
       </div>
     );
   },
@@ -764,9 +759,9 @@ const StepButtonContainer = ({
         "w-[var(--step-icon-size)] h-[var(--step-icon-size)]",
         "border-2 flex rounded-full justify-center items-center",
         "data-[clickable=true]:pointer-events-auto",
-        "data-[active=true]:bg-primary-500 data-[active=true]:border-primary-500 data-[active=true]:text-primary-foreground dark:data-[active=true]:text-primary",
-        "data-[current=true]:border-primary-500 data-[current=true]:bg-secondary data-[current=true]:text-secondary-foreground",
-        "data-[invalid=true]:!bg-destructive data-[invalid=true]:!border-destructive data-[invalid=true]:!text-primary-foreground dark:data-[invalid=true]:!text-primary",
+        "data-[active=true]:bg-primary data-[active=true]:border-primary data-[active=true]:text-primary-foreground",
+        "data-[current=true]:border-primary data-[current=true]:bg-secondary",
+        "data-[invalid=true]:bg-destructive data-[invalid=true]:border-destructive data-[invalid=true]:text-destructive-foreground",
         styles?.["step-button-container"],
       )}
       aria-current={isCurrentStep ? "step" : undefined}
@@ -783,7 +778,6 @@ const StepButtonContainer = ({
 
 // <---------- STEP ICON ---------->
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type IconType = LucideIcon | React.ComponentType<any> | undefined;
 
 const iconVariants = cva("", {
@@ -997,5 +991,5 @@ const StepLabel = ({
   ) : null;
 };
 
-export { Step, Stepper, useStepper };
-export type { StepItem, StepProps, StepperProps };
+export { Stepper, Step, useStepper };
+export type { StepProps, StepperProps, StepItem };
