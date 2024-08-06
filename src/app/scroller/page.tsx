@@ -27,7 +27,7 @@ export default function ScrollerPage() {
   );
 }
 
-export function StepperTool() {
+function StepperTool() {
   return (
     <div className="container max-w-screen-lg flex w-full flex-col gap-4">
       <Stepper
