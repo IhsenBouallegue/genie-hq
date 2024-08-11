@@ -6,6 +6,7 @@ import { applications, profiles } from "./data";
 import type { Application, ApplicationId, Profile, ProfileId } from "./types";
 
 type State = {
+  openSteps: string[];
   profiles: Record<ProfileId, Profile>;
   applications: Record<ApplicationId, Application>;
   selectedProfile: ProfileId | null;
@@ -14,6 +15,7 @@ type State = {
 };
 
 type Actions = {
+  setOpenSteps: (steps: string[]) => void;
   addProfile: (profile: Profile) => void;
   addApplication: (application: Application) => void;
   selectProfile: (profileId: ProfileId) => void;
@@ -24,6 +26,7 @@ type Actions = {
 
 export const useStore = create<State & Actions>()(
   immer((set, get) => ({
+    openSteps: ["profile-step"],
     profiles: Object.fromEntries(
       profiles.map((profile) => [profile.id, profile]),
     ),
@@ -31,6 +34,10 @@ export const useStore = create<State & Actions>()(
     selectedProfile: null,
     customApplicationIds: [],
     selectedApplicationIds: [],
+    setOpenSteps: (steps) =>
+      set((state) => {
+        state.openSteps = steps;
+      }),
     addProfile: (profile) =>
       set((state) => {
         state.profiles[profile.id] = profile;
@@ -46,7 +53,11 @@ export const useStore = create<State & Actions>()(
           state.selectedProfile = profileId;
           state.selectedApplicationIds = profile.relevantApplications;
           state.customApplicationIds = [];
-          track("selected_profile", { profile: profile.title });
+          state.openSteps = [
+            "profile-step",
+            "applications-step",
+            "summary-step",
+          ];
         }
       }),
     toggleApplication: (applicationId) =>

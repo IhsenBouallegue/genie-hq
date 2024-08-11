@@ -9,7 +9,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const metadataTitle = "Genie HQ";
+const metadataTitle = "GenieHQ";
 const metadataDescription = "Automate Your Setup, Enjoy Your Device";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: "https://geniehq.xyz",
     title: metadataTitle,
     description: metadataDescription,
-    siteName: "Genie HQ",
+    siteName: "GenieHQ",
     images: [
       {
         url: "/preview.png",

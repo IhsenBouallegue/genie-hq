@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Genie HQ Privacy Policy",
+  description: "GenieHQ Privacy Policy",
 };
 
 export default function PrivacyPolicy() {
