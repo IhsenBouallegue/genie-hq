@@ -11,9 +11,9 @@ function Faq() {
   return (
     <section
       id="faq"
-      className="flex justify-center items-center p-6 max-w-6xl"
+      className="flex flex-col justify-center items-center p-6 max-w-6xl"
     >
-      <div className="grid grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <Card className="shadow-lg md:w-[600px] md:max-w-fit">
           <CardContent className="p-8">
             <h3 className="font-semibold text-primary">
@@ -109,8 +109,14 @@ function Faq() {
             </Accordion>
           </CardContent>
         </Card>
-        <div className=" relative w-full h-full">
-          <Image src="/genie-no-bg.png" alt="Genie" fill objectFit="contain" />
+        <div className=" relative w-full min-h-80 h-full">
+          <Image
+            src="/genie-no-bg.png"
+            alt="Genie"
+            fill
+            sizes="100vw"
+            objectFit="contain"
+          />
         </div>
       </div>
     </section>

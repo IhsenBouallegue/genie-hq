@@ -31,7 +31,9 @@ export default function ProfileCard({ id, title, image }: Profile) {
             src={image}
             alt={`${title} blurred`}
             fill
+            sizes="64px"
             className="rounded-full"
+            quality={20}
           />
         </div>
         {/* Main image */}
