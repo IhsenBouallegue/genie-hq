@@ -19,7 +19,7 @@ function AboutUs() {
 
       <h3 className="text-2xl font-semibold text-primary mt-8">Who are we?</h3>
       <div className="mx-auto grid max-w-5xl items-center gap-12 py-6 lg:gap-12 w-full [&:not(:first-child)]:mt-6">
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col items-center gap-2 p-6">
             <Avatar className="size-32 rounded-xl">
               <AvatarImage src="ihsen.jpg" />
@@ -75,7 +75,7 @@ function AboutUs() {
 export default AboutUs;
 function Quote({ children }: { children: React.ReactNode }) {
   return (
-    <blockquote className="text-xl italic font-semibold text-gray-900 dark:text-gray-300 text-left">
+    <blockquote className="text-xl italic font-semibold text-gray-900 dark:text-gray-300 text-left ">
       <svg
         className="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4"
         aria-hidden="true"
