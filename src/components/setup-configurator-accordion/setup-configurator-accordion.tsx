@@ -12,7 +12,7 @@ import SetupStepProfile from "../setup-step-profile";
 import SetupStepApplications from "../setup-step-applications";
 import SetupStepSummary from "../setup-step-summary";
 
-export default function SetupConfiguratorAccordions() {
+export default function SetupConfiguratorAccordion() {
   return (
     <section className="flex justify-center items-center p-6 w-full">
       <Card className="shadow-lg w-full max-w-[1100px]">
