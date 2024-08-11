@@ -36,7 +36,7 @@ const items = [
   {
     title: "Effortless Setup",
     description:
-      "Experience the simplicity of setting up your device with Genie HQ. Automatically install essential programs and applications tailored to your needs.",
+      "Experience the simplicity of setting up your device with GenieHQ. Automatically install essential programs and applications tailored to your needs.",
     header: <FeatureAnimatedProgram />,
     className: "md:col-span-2",
     icon: <CheckSquareIcon className="h-4 w-4 text-neutral-500" />,
@@ -64,7 +64,7 @@ const items = [
   {
     title: "Account Sync",
     description:
-      "Sync your Genie HQ account across multiple devices for a consistent and up-to-date setup.",
+      "Sync your GenieHQ account across multiple devices for a consistent and up-to-date setup.",
     header: <FeatureAccountSync />,
     className: "md:col-span-1",
     icon: <LayoutIcon className="h-4 w-4 text-neutral-500" />,
@@ -72,7 +72,7 @@ const items = [
   {
     title: "Personalized Profile",
     description:
-      "Discover the beauty of a personalized setup. Genie HQ installs applications based on your role, whether you're a developer, designer, or casual user.",
+      "Discover the beauty of a personalized setup. GenieHQ installs applications based on your role, whether you're a developer, designer, or casual user.",
     header: (
       <div className="h-full flex items-center justify-center gap-8 rounded-lg border p-6 md:shadow-xl">
         <Circle className="bg-pink-700">

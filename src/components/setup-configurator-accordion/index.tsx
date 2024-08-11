@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useStore } from "@/lib/store/useStore";
 import SetupStepApplications from "../setup-step-applications";
 import SetupStepProfile from "../setup-step-profile";
 import SetupStepSummary from "../setup-step-summary";
@@ -13,8 +13,11 @@ import {
 import { Card, CardContent } from "../ui/card";
 
 export default function SetupConfiguratorAccordion() {
+  const openSteps = useStore((state) => state.openSteps);
+  const setOpenSteps = useStore((state) => state.setOpenSteps);
+
   return (
-    <section className="flex justify-center items-center p-6 w-full max-w-6xl">
+    <section className="flex justify-center items-center p-6 w-full max-w-6xl flex-col">
       <Card className="shadow-lg w-full">
         <CardContent className="p-8">
           <h3 className="font-semibold text-primary">Setup Configurator</h3>
@@ -24,7 +27,8 @@ export default function SetupConfiguratorAccordion() {
           <Accordion
             className="w-full mt-4"
             type="multiple"
-            defaultValue={["profile-step"]}
+            value={openSteps}
+            onValueChange={setOpenSteps}
           >
             <AccordionItem value="profile-step">
               <AccordionTrigger className="hover:underline-none">
