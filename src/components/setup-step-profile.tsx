@@ -13,7 +13,7 @@ export default function SetupStepProfile() {
       <StepDescription>
         Based on this profile we will help you select apps you might need.
       </StepDescription>
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap items-center justify-center">
         {profiles.map((profile) => (
           <ProfileCard key={profile.id} {...profile} />
         ))}
