@@ -21,7 +21,7 @@ export default function Hero() {
   const differenceInDays = (differenceInTime / (1000 * 3600 * 24)).toFixed(0);
 
   return (
-    <section className="md:min-h-[80vh] w-full flex rounded-md relative justify-center antialiased p-8">
+    <section className="md:min-h-[70vh] w-full flex rounded-md relative justify-center antialiased p-8">
       <GridPattern
         className={cn(
           "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",

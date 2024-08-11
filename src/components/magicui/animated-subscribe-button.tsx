@@ -52,7 +52,14 @@ const AnimatedSubscribeButton: React.FC<AnimatedSubscribeButtonProps> = ({
             key="loading-span"
             className="relative block font-semibold"
             initial={{ x: -50 }}
-            animate={{ x: 0 }}
+            animate={{
+              x: [0, -2, 2, -4, 4, -6, 6, -8, 8, -10, 10, -12, 12, -14, 14, 0],
+              transition: {
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              },
+            }}
           >
             {loadingText}
           </motion.span>

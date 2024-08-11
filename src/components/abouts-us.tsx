@@ -51,6 +51,7 @@ function AboutUs() {
                 className={buttonVariants({ variant: "link" })}
                 href="mailto:enrico@geniehq.xyz"
               >
+                <MailIcon className="size-4 mr-2" />
                 enrico@geniehq.xyz
               </a>
               <Quote>Hold on let me overthink this 🤔</Quote>
