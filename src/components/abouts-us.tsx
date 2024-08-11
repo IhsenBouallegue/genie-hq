@@ -27,6 +27,7 @@ function AboutUs() {
             </Avatar>
             <div className="text-center">
               <div className="font-medium">Ihsen</div>
+              <div className="text-sm text-muted-foreground">Genie Boss</div>
               <a
                 className={buttonVariants({ variant: "link" })}
                 href="mailto:ihen@geniehq.xyz"
@@ -47,6 +48,7 @@ function AboutUs() {
             </Avatar>
             <div className="text-center">
               <div className="font-medium text-lg">Enrico</div>
+              <div className="text-sm text-muted-foreground">Chief Genie</div>
               <a
                 className={buttonVariants({ variant: "link" })}
                 href="mailto:enrico@geniehq.xyz"
