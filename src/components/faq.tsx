@@ -115,7 +115,7 @@ function Faq() {
             alt="Genie"
             fill
             sizes="100vw"
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         </div>
       </div>
