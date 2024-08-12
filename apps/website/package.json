@@ -41,6 +41,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@repo/email-stuff": "workspace:*",
     "@biomejs/biome": "1.8.3",
     "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20",
