@@ -1,5 +1,4 @@
 "use client";
-
 import { cva } from "class-variance-authority";
 import { CheckIcon, Loader2, type LucideIcon, X } from "lucide-react";
 import * as React from "react";
@@ -313,6 +312,7 @@ const VerticalContent = ({ children }: { children: React.ReactNode }) => {
       {React.Children.map(children, (child, i) => {
         const isCompletedStep =
           (React.isValidElement(child) &&
+            // biome-ignore lint: <explanation>
             (child.props as any).isCompletedStep) ??
           i < activeStep;
         const isLastStep = i === stepCount - 1;
@@ -391,6 +391,7 @@ interface StepInternalConfig {
 interface FullStepProps extends StepProps, StepInternalConfig {}
 
 const Step = React.forwardRef<HTMLLIElement, StepProps>(
+  // biome-ignore lint: <explanation>
   (props, ref: React.Ref<any>) => {
     const {
       children,
@@ -658,6 +659,7 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
     const errorIcon = errorIconProp || errorIconContext;
 
     return (
+      // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
       <div
         aria-disabled={!hasVisited}
         className={cn(
@@ -778,6 +780,7 @@ const StepButtonContainer = ({
 
 // <---------- STEP ICON ---------->
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type IconType = LucideIcon | React.ComponentType<any> | undefined;
 
 const iconVariants = cva("", {

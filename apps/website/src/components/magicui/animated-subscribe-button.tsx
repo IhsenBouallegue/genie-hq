@@ -1,8 +1,8 @@
 "use client";
+import { startConfetti } from "@/lib/confetti";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { buttonVariants } from "../ui/button";
-import { startConfetti } from "@/lib/confetti";
 
 interface AnimatedSubscribeButtonProps {
   status: "default" | "loading" | "success" | "failed";

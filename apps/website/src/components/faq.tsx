@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import { MotionCard, CardContent } from "./ui/card";
+import { CardContent, MotionCard } from "./ui/card";
 
 function Faq() {
   return (

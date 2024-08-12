@@ -1,5 +1,6 @@
 "use client";
 
+import { startConfetti } from "@/lib/confetti";
 import { cn } from "@/lib/utils";
 import { track } from "@vercel/analytics/react";
 import { ChevronRightIcon } from "lucide-react";
@@ -8,7 +9,6 @@ import { useState } from "react";
 import AnimatedSubscribeButton from "./magicui/animated-subscribe-button";
 import { buttonVariants } from "./ui/button";
 import { Input } from "./ui/input";
-import { startConfetti } from "@/lib/confetti";
 
 export function EmailForm({ origin }: { origin: "hero" | "setup-tool" }) {
   const [email, setEmail] = useState("");
