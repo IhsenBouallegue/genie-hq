@@ -11,7 +11,7 @@ import { ClockIcon } from "lucide-react";
 import Link from "next/link";
 import { EmailForm } from "./email-form";
 import GridPattern from "./magicui/grid-pattern";
-import ShineBorder from "./magicui/shine-border";
+import { MotionShineBorder, ShineBorder } from "./magicui/shine-border";
 
 export default function Hero() {
   const today = new Date();
@@ -52,7 +52,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="w-full max-w-lg">
-          <ShineBorder
+          <MotionShineBorder
             className="p-0"
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
           >
@@ -68,7 +68,7 @@ export default function Hero() {
                 <EmailForm origin="hero" />
               </CardContent>
             </Card>
-          </ShineBorder>
+          </MotionShineBorder>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Card } from "./card";
+import { MotionCard } from "./card";
 
 export const BentoGrid = ({
   className,
@@ -34,7 +34,7 @@ export const BentoGridItem = ({
   icon?: React.ReactNode;
 }) => {
   return (
-    <Card
+    <MotionCard
       className={cn(
         "row-span-1 rounded-lg group/bento transition duration-200 shadow-input dark:shadow-none p-4  border border-transparent justify-between flex flex-col space-y-4",
         className,
@@ -50,6 +50,6 @@ export const BentoGridItem = ({
           {description}
         </div>
       </div>
-    </Card>
+    </MotionCard>
   );
 };

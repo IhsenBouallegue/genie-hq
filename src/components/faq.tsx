@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import { Card, CardContent } from "./ui/card";
+import { MotionCard, CardContent } from "./ui/card";
 
 function Faq() {
   return (
@@ -14,7 +14,7 @@ function Faq() {
       className="flex flex-col justify-center items-center p-6 max-w-6xl"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <Card className="shadow-lg md:w-[600px] md:max-w-fit">
+        <MotionCard className="shadow-lg md:w-[600px] md:max-w-fit">
           <CardContent className="p-8">
             <h3 className="font-semibold text-primary">
               Frequently asked questions
@@ -108,7 +108,7 @@ function Faq() {
               </AccordionItem>
             </Accordion>
           </CardContent>
-        </Card>
+        </MotionCard>
         <div className=" relative w-full min-h-80 h-full">
           <Image
             src="/genie-no-bg.png"

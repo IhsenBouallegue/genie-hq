@@ -1,31 +1,35 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, motionVariants } from "@/lib/utils";
 import { type HTMLMotionProps, motion } from "framer-motion";
 import * as React from "react";
 
 const Card = React.forwardRef<
   HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className,
+    )}
+    {...props}
+  >
+    {children}
+  </div>
+));
+Card.displayName = "Card";
+
+const MotionCard = React.forwardRef<
+  HTMLDivElement,
   HTMLMotionProps<"div"> & React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => {
-  const variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      variants={variants}
+      variants={motionVariants}
       viewport={{ once: true, amount: 0.2 }}
       ref={ref}
       className={cn(
@@ -100,6 +104,7 @@ CardFooter.displayName = "CardFooter";
 
 export {
   Card,
+  MotionCard,
   CardHeader,
   CardFooter,
   CardTitle,
