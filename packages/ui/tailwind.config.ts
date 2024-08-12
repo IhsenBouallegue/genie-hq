@@ -1,8 +1,5 @@
 import type { Config } from "tailwindcss";
-const colors = require("tailwindcss/colors");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config = {
   darkMode: ["class"],
@@ -11,6 +8,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "../../packages/ui/src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -62,7 +60,6 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -72,51 +69,14 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "background-position-spin": {
-          "0%": { backgroundPosition: "top center" },
-          "100%": { backgroundPosition: "bottom center" },
-        },
-        "shine-pulse": {
-          "0%": { backgroundPosition: "0% 0%" },
-          "50%": { backgroundPosition: "100% 100%" },
-          to: { backgroundPosition: "0% 0%" },
-        },
-        "collapsible-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-collapsible-content-height)" },
-        },
-        "collapsible-up": {
-          from: { height: "var(--radix-collapsible-content-height)" },
-          to: { height: "0" },
-        },
       },
-
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "collapsible-down": "collapsible-down 0.2s ease-out",
-        "collapsible-up": "collapsible-up 0.2s ease-out",
-        backgroundPositionSpin:
-          "background-position-spin 3000ms infinite alternate",
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    addVariablesForColors,
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-function addVariablesForColors({ addBase, theme }: any) {
-  const allColors = flattenColorPalette(theme("colors"));
-  const newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
-  );
-
-  addBase({
-    ":root": newVars,
-  });
-}
 export default config;

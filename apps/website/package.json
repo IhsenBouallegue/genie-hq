@@ -1,5 +1,5 @@
 {
-  "name": "genie-hq",
+  "name": "website",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev --turbo",

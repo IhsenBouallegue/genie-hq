@@ -1,5 +1,3 @@
-import { track } from "@vercel/analytics/react";
-// store/useStore.ts
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { applications, profiles } from "./data";
@@ -34,19 +32,19 @@ export const useStore = create<State & Actions>()(
     selectedProfile: null,
     customApplicationIds: [],
     selectedApplicationIds: [],
-    setOpenSteps: (steps) =>
+    setOpenSteps: (steps: string[]) =>
       set((state) => {
         state.openSteps = steps;
       }),
-    addProfile: (profile) =>
+    addProfile: (profile: Profile) =>
       set((state) => {
         state.profiles[profile.id] = profile;
       }),
-    addApplication: (application) =>
+    addApplication: (application: Application) =>
       set((state) => {
         state.applications[application.id] = application;
       }),
-    selectProfile: (profileId) =>
+    selectProfile: (profileId: string) =>
       set((state) => {
         const profile = state.profiles[profileId];
         if (profile) {
@@ -60,7 +58,7 @@ export const useStore = create<State & Actions>()(
           ];
         }
       }),
-    toggleApplication: (applicationId) =>
+    toggleApplication: (applicationId: string) =>
       set((state) => {
         const index = state.selectedApplicationIds.indexOf(applicationId);
         if (index > -1) {
@@ -77,12 +75,14 @@ export const useStore = create<State & Actions>()(
     getSelectedProfile: () => {
       const state = get();
       return state.selectedProfile
-        ? state.profiles[state.selectedProfile]
+        ? state.profiles[state.selectedProfile] || null
         : null;
     },
     getSelectedApplications: () => {
       const state = get();
-      return state.selectedApplicationIds.map((id) => state.applications[id]);
+      return state.selectedApplicationIds
+        .map((id) => state.applications[id])
+        .filter((app): app is Application => app !== undefined);
     },
   })),
 );

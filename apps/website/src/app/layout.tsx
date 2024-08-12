@@ -1,12 +1,12 @@
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
-import Footer from "@/components/ui/footer";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const metadataTitle = "GenieHQ";

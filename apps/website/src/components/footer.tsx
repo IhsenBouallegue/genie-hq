@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { buttonVariants } from "./button";
+import { buttonVariants } from "./ui/button";
 
 function Footer() {
   return (
