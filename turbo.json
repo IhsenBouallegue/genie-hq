@@ -11,6 +11,12 @@
       "cache": false,
       "persistent": true
     },
+    "website#build": {
+      "env": ["RESEND_API_KEY"]
+    },
+    "website#dev": {
+      "env": ["RESEND_API_KEY"]
+    },
     "//#format-and-lint": {},
     "//#format-and-lint:fix": {
       "cache": false
