@@ -59,15 +59,14 @@ const SubscriptionConfirmationEmail = ({
                 Visit Our Website
               </Button>
             </div>
-            {/* Uncomment the following block if you want to add an unsubscribe link */}
-            {/* <div className="text-center mt-6 text-sm">
-          <a
-            href="https://geniehq.xyz/unsubscribe"
-            className="text-gray-400 underline hover:text-gray-300"
-          >
-            Unsubscribe
-          </a>
-        </div> */}
+            <div className="text-center mt-6 text-sm">
+              <a
+                href={`https://geniehq.xyz/unsubscribe?email=${encodeURIComponent(email)}`}
+                className="text-gray-400 underline hover:text-gray-300"
+              >
+                Unsubscribe
+              </a>
+            </div>
           </Container>
         </Body>
       </Tailwind>
