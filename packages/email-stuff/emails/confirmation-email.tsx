@@ -12,9 +12,6 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-import GenieHQLogo from "@/components/geniehq-logo";
-import { buttonVariants } from "../components/ui/button";
-
 type SubscriptionConfirmationEmailProps = {
   email: string;
 };
@@ -31,7 +28,6 @@ const SubscriptionConfirmationEmail = ({
       <Tailwind>
         <Body className="bg-gray-900 my-auto mx-auto font-sans text-white">
           <Container className="my-8 mx-auto p-8 max-w-4xl bg-gray-800 rounded-lg shadow-lg">
-            <GenieHQLogo className="mx-auto mb-6 w-24 h-24" />
             <Heading className="text-white text-2xl font-bold text-center mb-4">
               Subscription Confirmed! 🎉
             </Heading>
