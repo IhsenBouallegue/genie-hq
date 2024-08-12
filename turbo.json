@@ -12,11 +12,6 @@
       "cache": false,
       "persistent": true
     },
-    "website#build": {
-      "dependsOn": ["^build"],
-      "env": ["RESEND_API_KEY"],
-      "outputs": ["dist/**"]
-    },
     "//#format-and-lint": {},
     "//#format-and-lint:fix": {
       "cache": false
