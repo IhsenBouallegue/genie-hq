@@ -17,9 +17,8 @@ export default function ProfileCard({ id, title, image }: Profile) {
   return (
     <div
       className={cn(
-        "relative h-36 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer hover:bg-gray-100/10",
+        "relative h-36 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer",
         isSelected ? "bg-primary/40" : "bg-transparent",
-        isSelected ? " hover:bg-primary/60" : " hover:bg-slate-400/20",
       )}
       onClick={handleClick}
       onKeyDown={handleClick}

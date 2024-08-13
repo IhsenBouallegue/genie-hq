@@ -4,6 +4,7 @@ import {
   SiAdobepremierepro,
   SiAnaconda,
   SiApacheopenoffice,
+  SiArc,
   SiArduino,
   SiBlender,
   SiBrave,
@@ -95,19 +96,19 @@ export const applications: Application[] = [
   },
   {
     id: "9",
-    title: "Python",
+    title: "Python (latest)",
     category: Category.Code,
     icon: SiPython,
   },
   {
     id: "10",
-    title: "Java (JDK)",
+    title: "Java (JDK) (latest)",
     category: Category.Code,
     icon: SiJavascript,
   },
   {
     id: "11",
-    title: "C++",
+    title: "C++ (latest)",
     category: Category.Code,
     icon: SiCplusplus,
   },
@@ -297,6 +298,12 @@ export const applications: Application[] = [
     title: "DBeaver",
     category: Category.Data,
     icon: SiDbeaver,
+  },
+  {
+    id: "43",
+    title: "Arc",
+    category: Category.Browser,
+    icon: SiArc,
   },
 ];
 

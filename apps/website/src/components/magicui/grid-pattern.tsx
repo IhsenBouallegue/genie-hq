@@ -1,19 +1,13 @@
+import { cn } from "@/lib/utils";
 import { useId } from "react";
 
-import { cn } from "@/lib/utils";
-
 interface GridPatternProps {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  width?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  height?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  x?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  y?: any;
+  width?: number;
+  height?: number;
+  x?: number;
+  y?: number;
   squares?: Array<[x: number, y: number]>;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  strokeDasharray?: any;
+  strokeDasharray?: string;
   className?: string;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   [key: string]: any;
@@ -24,7 +18,7 @@ export function GridPattern({
   height = 40,
   x = -1,
   y = -1,
-  strokeDasharray = 0,
+  strokeDasharray = "0",
   squares,
   className,
   ...props
@@ -41,6 +35,21 @@ export function GridPattern({
       {...props}
     >
       <defs>
+        {/* More prominent noise filter */}
+        <filter id={`${id}-noise`} x="0" y="0" width="100%" height="100%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="1.5" /* Increased frequency for more noise */
+            numOctaves="4" /* More octaves for a richer noise texture */
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="10" /* Increased scale for more prominent distortion */
+          />
+        </filter>
+
         <pattern
           id={id}
           width={width}
@@ -56,10 +65,15 @@ export function GridPattern({
           />
         </pattern>
       </defs>
-      <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
+      <rect
+        width="100%"
+        height="100%"
+        strokeWidth={0}
+        fill={`url(#${id})`}
+        filter={`url(#${id}-noise)`}
+      />
       {squares && (
-        // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
-        <svg x={x} y={y} className="overflow-visible">
+        <svg x={x} y={y} className="overflow-visible" role="presentation">
           {squares.map(([x, y]) => (
             <rect
               strokeWidth="0"
