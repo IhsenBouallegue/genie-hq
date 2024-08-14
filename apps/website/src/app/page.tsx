@@ -8,8 +8,8 @@ import SetupConfiguratorAccordion from "@/components/setup-configurator-accordio
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col gap-24 items-center ">
-      <ParallaxBackground />
       <Hero />
+      <ParallaxBackground />
       <SetupConfiguratorAccordion />
       <Features />
       <Faq />

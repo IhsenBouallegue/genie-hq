@@ -4,23 +4,23 @@ import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const icons = [
-  { src: "/discord.svg", depth: 0.1 },
-  { src: "/adobephotoshop.svg", depth: 0.4 },
-  { src: "/adobeillustrator.svg", depth: 0.6 },
+  { src: "/discord.svg", depth: 0.05 },
+  { src: "/adobephotoshop.svg", depth: 0.1 },
+  { src: "/adobeillustrator.svg", depth: 0.15 },
+  { src: "/figma.svg", depth: 0.2 },
+  { src: "/git.svg", depth: 0.25 },
+  { src: "/vlcmediaplayer.svg", depth: 0.3 },
+  { src: "/notion.svg", depth: 0.35 },
+  { src: "/zoom.svg", depth: 0.4 },
+  { src: "/jupyter.svg", depth: 0.45 },
+  { src: "/slack.svg", depth: 0.5 },
+  { src: "/spotify.svg", depth: 0.55 },
+  { src: "/postman.svg", depth: 0.6 },
+  { src: "/python.svg", depth: 0.65 },
+  { src: "/firefox.svg", depth: 0.7 },
+  { src: "/figma.svg", depth: 0.75 },
   { src: "/figma.svg", depth: 0.8 },
-  { src: "/git.svg", depth: 1.0 },
-  { src: "/vlcmediaplayer.svg", depth: 1.2 },
-  { src: "/notion.svg", depth: 1.5 },
-  { src: "/zoom.svg", depth: 1.8 },
-  { src: "/jupyter.svg", depth: 2.0 },
-  { src: "/slack.svg", depth: 2.2 },
-  { src: "/spotify.svg", depth: 2.5 },
-  { src: "/postman.svg", depth: 2.8 },
-  { src: "/python.svg", depth: 3.0 },
-  { src: "/firefox.svg", depth: 3.5 },
-  { src: "/figma.svg", depth: 4.0 },
-  { src: "/figma.svg", depth: 4.5 },
-  { src: "/figma.svg", depth: 5.0 },
+  { src: "/figma.svg", depth: 0.85 },
 ];
 
 export default function ParallaxBackground() {
@@ -54,8 +54,14 @@ export default function ParallaxBackground() {
   return (
     <div className="parallax-background relative w-full h-full overflow-hidden">
       {icons.map((icon, index) => {
-        const parallaxShiftX = useTransform(x, (value) => value * icon.depth);
-        const parallaxShiftY = useTransform(y, (value) => value * icon.depth);
+        const parallaxShiftX = useTransform(
+          x,
+          (value) => value * icon.depth * 0.2,
+        );
+        const parallaxShiftY = useTransform(
+          y,
+          (value) => value * icon.depth * 0.2,
+        );
 
         return (
           <motion.img
