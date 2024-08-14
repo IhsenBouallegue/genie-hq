@@ -28,7 +28,7 @@ export default function Header() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="#features" legacyBehavior passHref>
+              <Link href="/#features" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={buttonVariants({ variant: "link" })}
                 >
@@ -37,7 +37,7 @@ export default function Header() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="#about-us" legacyBehavior passHref>
+              <Link href="/#about-us" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={buttonVariants({ variant: "link" })}
                 >
@@ -46,7 +46,7 @@ export default function Header() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="#faq" legacyBehavior passHref>
+              <Link href="/#faq" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={buttonVariants({ variant: "link" })}
                 >
