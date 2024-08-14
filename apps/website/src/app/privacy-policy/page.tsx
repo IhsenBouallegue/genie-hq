@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicy() {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="prose dark:prose-invert lg:prose-lg max-w-screen-lg py-24">
+      <div className="prose dark:prose-invert lg:prose-lg max-w-screen-lg py-24 px-6">
         <h1>Privacy Policy</h1>
         <p>
           <strong>Effective Date:</strong> 30 July 2024
