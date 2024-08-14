@@ -5,6 +5,7 @@ import StepContainer from "./step-container";
 import StepDescription from "./step-description";
 import StepTitle from "./step-title";
 import AnimatedBackground from "./ui/animated-background";
+import ComingSoonCard from "./coming-soon-card";
 const ITEMS = [
   {
     id: 1,
@@ -63,14 +64,22 @@ export default function SetupStepApplications() {
               }}
               enableHover
             >
-              {applications
-                .filter((application) => application.category === category)
-                .sort((a, b) => a.title.localeCompare(b.title))
-                .map((application, index) => (
-                  <div key={application.id} data-id={`card-${index}`}>
-                    <ApplicationCard {...application} />
-                  </div>
-                ))}
+              <div>
+                {applications
+                  .filter((application) => application.category === category)
+                  .sort((a, b) => a.title.localeCompare(b.title))
+                  .map((application, index) => (
+                    <div key={application.id} data-id={`card-${index}`}>
+                      <ApplicationCard {...application} />
+                    </div>
+                  ))}
+                <ComingSoonCard
+                  id={""}
+                  title={""}
+                  icon={""}
+                  category={category}
+                />
+              </div>
             </AnimatedBackground>
           </div>
         </div>
