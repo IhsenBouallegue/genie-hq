@@ -1,5 +1,6 @@
 import { Category } from "@/lib/store/types";
 import { useStore } from "@/lib/store/useStore";
+import { Files, PlusCircle, PlusCircleIcon, PlusIcon } from "lucide-react";
 import ApplicationCard from "./application-card";
 import StepContainer from "./step-container";
 import StepDescription from "./step-description";
@@ -72,6 +73,14 @@ export default function SetupStepApplications() {
                   </div>
                 ))}
             </AnimatedBackground>
+            <div className="text-xs text-muted-foreground h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 border border-dashed ">
+              <div className="h-1/2">
+                <div className="size-16 rounded-full flex flex-1">
+                  <PlusIcon className="m-auto size-8" />
+                </div>
+              </div>
+              <p className="text-xs text-wrap text-center">More Coming Soon</p>
+            </div>
           </div>
         </div>
       ))}
