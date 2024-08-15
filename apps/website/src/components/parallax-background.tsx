@@ -1,7 +1,7 @@
 "use client";
 
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const icons = [
   { src: "/discord.svg", depth: 0.05 },
@@ -26,6 +26,18 @@ const icons = [
 export default function ParallaxBackground() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+
+  const springX = useSpring(x, {
+    stiffness: 40,
+    damping: 20,
+    mass: 0.2,
+  });
+
+  const springY = useSpring(y, {
+    stiffness: 40,
+    damping: 20,
+    mass: 0.2,
+  });
 
   const [positions, setPositions] = useState(
     icons.map(() => ({
@@ -52,14 +64,14 @@ export default function ParallaxBackground() {
   }, [x, y]);
 
   return (
-    <div className="parallax-background relative w-full h-full overflow-hidden">
+    <div className="absolute h-[100vh] w-full -z-10 overflow-hidden">
       {icons.map((icon, index) => {
         const parallaxShiftX = useTransform(
-          x,
+          springX,
           (value) => value * icon.depth * 0.2,
         );
         const parallaxShiftY = useTransform(
-          y,
+          springY,
           (value) => value * icon.depth * 0.2,
         );
 
