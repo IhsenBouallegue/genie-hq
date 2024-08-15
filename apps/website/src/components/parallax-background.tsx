@@ -56,10 +56,39 @@ export default function ParallaxBackground() {
       y.set(offsetY - rect.height / 2);
     };
 
+    const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
+      const { beta, gamma } = e; // We use beta and gamma for tilt
+      // Beta is front-to-back tilt, gamma is left-to-right tilt
+
+      const sensitivity = 520; // Control the sensitivity of the effect
+
+      if (beta !== null && gamma !== null) {
+        // Adjust the x and y values based on orientation
+        const motionX = gamma * sensitivity; // Gamma controls the horizontal axis
+        const motionY = beta * sensitivity; // Beta controls the vertical axis
+
+        x.set(motionX);
+        y.set(motionY);
+      }
+    };
+
+    // Detect mouse movements (for desktops)
     document.addEventListener("mousemove", handleMouseMove);
 
+    // Detect orientation (for mobile devices)
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", handleDeviceOrientation);
+    }
+
     return () => {
+      // Cleanup event listeners
       document.removeEventListener("mousemove", handleMouseMove);
+      if (window.DeviceOrientationEvent) {
+        window.removeEventListener(
+          "deviceorientation",
+          handleDeviceOrientation,
+        );
+      }
     };
   }, [x, y]);
 
