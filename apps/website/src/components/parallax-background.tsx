@@ -1,27 +1,8 @@
 "use client";
 
+import { parallaxIcons } from "@/lib/store/data";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useEffect, useState } from "react";
-
-const icons = [
-  { src: "/discord.svg", depth: 0.05 },
-  { src: "/adobephotoshop.svg", depth: 0.1 },
-  { src: "/adobeillustrator.svg", depth: 0.15 },
-  { src: "/figma.svg", depth: 0.2 },
-  { src: "/git.svg", depth: 0.25 },
-  { src: "/vlcmediaplayer.svg", depth: 0.3 },
-  { src: "/notion.svg", depth: 0.35 },
-  { src: "/zoom.svg", depth: 0.4 },
-  { src: "/jupyter.svg", depth: 0.45 },
-  { src: "/slack.svg", depth: 0.5 },
-  { src: "/spotify.svg", depth: 0.55 },
-  { src: "/postman.svg", depth: 0.6 },
-  { src: "/python.svg", depth: 0.65 },
-  { src: "/firefox.svg", depth: 0.7 },
-  { src: "/figma.svg", depth: 0.75 },
-  { src: "/figma.svg", depth: 0.8 },
-  { src: "/figma.svg", depth: 0.85 },
-];
 
 export default function ParallaxBackground() {
   const x = useMotionValue(0);
@@ -40,7 +21,7 @@ export default function ParallaxBackground() {
   });
 
   const [positions, setPositions] = useState(
-    icons.map(() => ({
+    parallaxIcons.map(() => ({
       left: Math.random() * 80 + 10,
       top: Math.random() * 80 + 10,
     })),
@@ -92,33 +73,57 @@ export default function ParallaxBackground() {
     };
   }, [x, y]);
 
-  return (
-    <div className="absolute h-[100vh] w-full -z-10 overflow-hidden">
-      {icons.map((icon, index) => {
-        const parallaxShiftX = useTransform(
-          springX,
-          (value) => value * icon.depth * 0.2,
-        );
-        const parallaxShiftY = useTransform(
-          springY,
-          (value) => value * icon.depth * 0.2,
-        );
+  const iconSize: Record<number, number> = {
+    1: 16,
+    2: 14,
+    3: 12,
+    4: 10,
+    5: 8,
+    6: 6,
+  };
 
-        return (
-          <motion.img
-            key={`${icon.src}-${index}`}
-            src={icon.src}
-            alt={`Icon ${index}`}
-            style={{
-              x: parallaxShiftX,
-              y: parallaxShiftY,
-              left: `${positions[index]?.left}%`,
-              top: `${positions[index]?.top}%`,
-            }}
-            className="absolute w-12 h-12"
-          />
-        );
-      })}
+  const iconPadding: Record<number, number> = {
+    1: 3,
+    2: 3,
+    3: 3,
+    4: 2,
+    5: 2,
+    6: 2,
+  };
+
+  return (
+    <div
+      className={`absolute h-[100vh] w-full -z-10 overflow-hidden top-${window.innerWidth <= 768 ? 32 : 12}`}
+    >
+      {parallaxIcons
+        .slice(0, window.innerWidth <= 768 ? 10 : parallaxIcons.length)
+        .map((icon, index) => {
+          const parallaxShiftX = useTransform(
+            springX,
+            (value) => value * (1 / icon.depth) * 0.2,
+          );
+          const parallaxShiftY = useTransform(
+            springY,
+            (value) => value * (1 / icon.depth) * 0.2,
+          );
+
+          return (
+            <motion.div
+              key={icon.id}
+              style={{
+                x: parallaxShiftX,
+                y: parallaxShiftY,
+                left: `${positions[index]?.left}%`,
+                top: `${positions[index]?.top}%`,
+              }}
+              className={`absolute size-${iconSize[icon.depth]} backdrop-blur-[2px] rounded-lg p-${iconPadding[icon.depth]} bg-gray-200/20`}
+            >
+              {React.createElement(icon.icon, {
+                className: "text-zinc-400 m-auto w-full h-full",
+              })}
+            </motion.div>
+          );
+        })}
     </div>
   );
 }

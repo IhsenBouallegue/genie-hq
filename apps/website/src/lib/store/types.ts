@@ -1,5 +1,4 @@
 import type { IconType } from "@icons-pack/react-simple-icons";
-import type { ReactElement } from "react";
 
 export type ApplicationId = string;
 export type ProfileId = string;
@@ -25,4 +24,10 @@ export enum Category {
   Design = "Design",
   Communication = "Communication",
   Miscellaneous = "Miscellaneous",
+}
+
+export interface ParallaxIcon {
+  id: string;
+  depth: number;
+  icon: IconType;
 }
