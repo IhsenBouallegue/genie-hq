@@ -60,7 +60,7 @@ export default function ParallaxBackground() {
       const { beta, gamma } = e; // We use beta and gamma for tilt
       // Beta is front-to-back tilt, gamma is left-to-right tilt
 
-      const sensitivity = 520; // Control the sensitivity of the effect
+      const sensitivity = 25; // Control the sensitivity of the effect
 
       if (beta !== null && gamma !== null) {
         // Adjust the x and y values based on orientation
