@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 export default function ParallaxBackground() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
+  const [isMobile, setIsMobile] = useState(false);
   const springX = useSpring(x, {
     stiffness: 40,
     damping: 20,
@@ -38,31 +38,25 @@ export default function ParallaxBackground() {
     };
 
     const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
-      const { beta, gamma } = e; // We use beta and gamma for tilt
-      // Beta is front-to-back tilt, gamma is left-to-right tilt
-
-      const sensitivity = 25; // Control the sensitivity of the effect
+      const { beta, gamma } = e;
+      const sensitivity = 25;
 
       if (beta !== null && gamma !== null) {
-        // Adjust the x and y values based on orientation
-        const motionX = gamma * sensitivity; // Gamma controls the horizontal axis
-        const motionY = beta * sensitivity; // Beta controls the vertical axis
+        const motionX = gamma * sensitivity;
+        const motionY = beta * sensitivity;
 
         x.set(motionX);
         y.set(motionY);
       }
     };
 
-    // Detect mouse movements (for desktops)
     document.addEventListener("mousemove", handleMouseMove);
 
-    // Detect orientation (for mobile devices)
     if (window.DeviceOrientationEvent) {
       window.addEventListener("deviceorientation", handleDeviceOrientation);
     }
 
     return () => {
-      // Cleanup event listeners
       document.removeEventListener("mousemove", handleMouseMove);
       if (window.DeviceOrientationEvent) {
         window.removeEventListener(
@@ -72,6 +66,19 @@ export default function ParallaxBackground() {
       }
     };
   }, [x, y]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Call initially in case the page loads on mobile
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const iconSize: Record<number, number> = {
     1: 16,
@@ -91,39 +98,41 @@ export default function ParallaxBackground() {
     6: 2,
   };
 
-  return (
-    <div
-      className={`absolute h-[100vh] w-full -z-10 overflow-hidden top-${window.innerWidth <= 768 ? 32 : 12}`}
-    >
-      {parallaxIcons
-        .slice(0, window.innerWidth <= 768 ? 10 : parallaxIcons.length)
-        .map((icon, index) => {
-          const parallaxShiftX = useTransform(
-            springX,
-            (value) => value * (1 / icon.depth) * 0.2,
-          );
-          const parallaxShiftY = useTransform(
-            springY,
-            (value) => value * (1 / icon.depth) * 0.2,
-          );
+  // Calculate the displayed icons but always keep the hook structure consistent
+  const displayedIcons = isMobile ? parallaxIcons.slice(0, 5) : parallaxIcons;
 
-          return (
-            <motion.div
-              key={icon.id}
-              style={{
-                x: parallaxShiftX,
-                y: parallaxShiftY,
-                left: `${positions[index]?.left}%`,
-                top: `${positions[index]?.top}%`,
-              }}
-              className={`absolute size-${iconSize[icon.depth]} backdrop-blur-[2px] rounded-lg p-${iconPadding[icon.depth]} bg-gray-200/20`}
-            >
-              {React.createElement(icon.icon, {
-                className: "text-zinc-400 m-auto w-full h-full",
-              })}
-            </motion.div>
-          );
-        })}
+  return (
+    <div className={"absolute h-[100vh] w-full -z-10 overflow-hidden"}>
+      {parallaxIcons.map((icon, index) => {
+        const parallaxShiftX = useTransform(
+          springX,
+          (value) => value * (1 / icon.depth) * 0.2,
+        );
+        const parallaxShiftY = useTransform(
+          springY,
+          (value) => value * (1 / icon.depth) * 0.2,
+        );
+
+        // Check if the icon is supposed to be displayed
+        if (index >= displayedIcons.length) return null;
+
+        return (
+          <motion.div
+            key={icon.id}
+            style={{
+              x: parallaxShiftX,
+              y: parallaxShiftY,
+              left: `${positions[index]?.left}%`,
+              top: `${positions[index]?.top}%`,
+            }}
+            className={`absolute size-${iconSize[icon.depth]} backdrop-blur-[2px] rounded-lg p-${iconPadding[icon.depth]} bg-gray-200/20`}
+          >
+            {React.createElement(icon.icon, {
+              className: "text-zinc-400 m-auto w-full h-full",
+            })}
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
