@@ -1,45 +1,37 @@
 "use client";
 
 import { parallaxImages } from "@/lib/store/data";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import React, { useEffect } from "react";
 
 export default function ParallaxBackground() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springX = useSpring(x, {
-    stiffness: 40,
-    damping: 20,
-    mass: 0.2,
-  });
-
-  const springY = useSpring(y, {
-    stiffness: 40,
-    damping: 20,
-    mass: 0.2,
-  });
-
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = document.body.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left;
-      const offsetY = e.clientY - rect.top;
+      requestAnimationFrame(() => {
+        const rect = document.body.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
 
-      x.set(offsetX - rect.width / 2);
-      y.set(offsetY - rect.height / 2);
+        x.set(offsetX - rect.width / 2);
+        y.set(offsetY - rect.height / 2);
+      });
     };
 
     const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
       const { beta, gamma } = e;
-      const sensitivity = 25;
+      const sensitivity = 20;
 
       if (beta !== null && gamma !== null) {
-        const motionX = gamma * sensitivity;
-        const motionY = beta * sensitivity;
+        requestAnimationFrame(() => {
+          const motionX = gamma * sensitivity;
+          const motionY = beta * sensitivity;
 
-        x.set(motionX);
-        y.set(motionY);
+          x.set(motionX);
+          y.set(motionY);
+        });
       }
     };
 
@@ -64,12 +56,12 @@ export default function ParallaxBackground() {
     <div className="absolute h-[100vh] w-full -z-10 overflow-x-clip overflow-y-visible">
       {parallaxImages.map((image) => {
         const parallaxShiftX = useTransform(
-          springX,
-          (value) => value * (1 / image.depth) * 0.2,
+          x,
+          (value) => value * (1 / image.depth) * 0.05,
         );
         const parallaxShiftY = useTransform(
-          springY,
-          (value) => value * (1 / image.depth) * 0.2,
+          y,
+          (value) => value * (1 / image.depth) * 0.05,
         );
 
         return (
@@ -78,6 +70,7 @@ export default function ParallaxBackground() {
             style={{
               x: parallaxShiftX,
               y: parallaxShiftY,
+              willChange: "transform",
             }}
             className="absolute w-full h-auto bg-no-repeat bg-cover"
           >

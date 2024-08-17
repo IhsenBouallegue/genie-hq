@@ -386,9 +386,9 @@ export const profiles: Profile[] = [
 ];
 
 export const parallaxImages: ParallaxImage[] = [
-  { id: "image1", iconSrc: "/bg-1.svg", depth: 1 },
-  { id: "image2", iconSrc: "/bg-2.svg", depth: 2 },
-  { id: "image3", iconSrc: "/bg-3.svg", depth: 3 },
-  { id: "image4", iconSrc: "/bg-4.svg", depth: 4 },
-  { id: "image5", iconSrc: "/bg-5.svg", depth: 5 },
+  { id: "image1", iconSrc: "/l1.svg", depth: 1 },
+  { id: "image2", iconSrc: "/l2.svg", depth: 2 },
+  { id: "image3", iconSrc: "/l3.svg", depth: 3 },
+  { id: "image4", iconSrc: "/l4.svg", depth: 4 },
+  { id: "image5", iconSrc: "/l5.svg", depth: 5 },
 ];
