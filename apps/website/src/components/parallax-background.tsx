@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 export default function ParallaxBackground() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const [isMobile, setIsMobile] = useState(false);
 
   const springX = useSpring(x, {
     stiffness: 40,
@@ -63,7 +62,7 @@ export default function ParallaxBackground() {
 
   return (
     <div className="absolute h-[100vh] w-full -z-10 overflow-x-clip overflow-y-visible">
-      {parallaxImages.map((image, index) => {
+      {parallaxImages.map((image) => {
         const parallaxShiftX = useTransform(
           springX,
           (value) => value * (1 / image.depth) * 0.2,
