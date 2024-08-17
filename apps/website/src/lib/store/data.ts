@@ -46,7 +46,7 @@ import {
 import {
   type Application,
   Category,
-  type ParallaxIcon,
+  type ParallaxImage,
   type Profile,
 } from "../store/types";
 
@@ -385,112 +385,10 @@ export const profiles: Profile[] = [
   },
 ];
 
-export const parallaxIcons: ParallaxIcon[] = [
-  // {
-  //   id: "adobeillustrator",
-  //   depth: Math.random() * 6 + 1,
-  //   icon: SiAdobeillustrator,
-  // },
-  {
-    id: "adobephotoshop",
-    depth: Math.random() * 6 + 1,
-    icon: SiAdobephotoshop,
-  },
-  // {
-  //   id: "adobepremierepro",
-  //   depth: Math.random() * 6 + 1,
-  //   icon: SiAdobepremierepro,
-  // },
-  // { id: "anaconda", depth: Math.random() * 6 + 1, icon: SiAnaconda },
-  // {
-  //   id: "apacheopenoffice",
-  //   depth: Math.random() * 6 + 1,
-  //   icon: SiApacheopenoffice,
-  // },
-  // { id: "arc", depth: Math.floor(Math.random() * 6) + 1, icon: SiArc },
-  // { id: "arduino", depth: Math.floor(Math.random() * 6) + 1, icon: SiArduino },
-  // { id: "blender", depth: Math.floor(Math.random() * 6) + 1, icon: SiBlender },
-  // { id: "brave", depth: Math.floor(Math.random() * 6) + 1, icon: SiBrave },
-  // {
-  //   id: "cplusplus",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiCplusplus,
-  // },
-  // { id: "dbeaver", depth: Math.floor(Math.random() * 6) + 1, icon: SiDbeaver },
-  // { id: "discord", depth: Math.floor(Math.random() * 6) + 1, icon: SiDiscord },
-  // {
-  //   id: "eclipseide",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiEclipseide,
-  // },
-  // {
-  //   id: "evernote",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiEvernote,
-  // },
-  // { id: "figma", depth: Math.floor(Math.random() * 6) + 1, icon: SiFigma },
-  // { id: "firefox", depth: Math.floor(Math.random() * 6) + 1, icon: SiFirefox },
-  // { id: "git", depth: Math.floor(Math.random() * 6) + 1, icon: SiGit },
-  {
-    id: "googlechrome",
-    depth: Math.floor(Math.random() * 6) + 1,
-    icon: SiGooglechrome,
-  },
-  // {
-  //   id: "intellijidea",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiIntellijidea,
-  // },
-  // {
-  //   id: "javascript",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiJavascript,
-  // },
-  // { id: "jupyter", depth: Math.floor(Math.random() * 6) + 1, icon: SiJupyter },
-  // { id: "krita", depth: Math.floor(Math.random() * 6) + 1, icon: SiKrita },
-  // {
-  //   id: "libreoffice",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiLibreoffice,
-  // },
-  // {
-  //   id: "microsoftedge",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiMicrosoftedge,
-  // },
-  // { id: "mongodb", depth: Math.floor(Math.random() * 6) + 1, icon: SiMongodb },
-  // { id: "notion", depth: Math.floor(Math.random() * 6) + 1, icon: SiNotion },
-  // { id: "opera", depth: Math.floor(Math.random() * 6) + 1, icon: SiOpera },
-  // { id: "postman", depth: Math.floor(Math.random() * 6) + 1, icon: SiPostman },
-  { id: "powerbi", depth: Math.floor(Math.random() * 6) + 1, icon: SiPowerbi },
-  { id: "pycharm", depth: Math.floor(Math.random() * 6) + 1, icon: SiPycharm },
-  { id: "python", depth: Math.floor(Math.random() * 6) + 1, icon: SiPython },
-  { id: "safari", depth: Math.floor(Math.random() * 6) + 1, icon: SiSafari },
-  { id: "sketch", depth: Math.floor(Math.random() * 6) + 1, icon: SiSketch },
-  { id: "skype", depth: Math.floor(Math.random() * 6) + 1, icon: SiSkype },
-  { id: "slack", depth: Math.floor(Math.random() * 6) + 1, icon: SiSlack },
-  { id: "spotify", depth: Math.floor(Math.random() * 6) + 1, icon: SiSpotify },
-  { id: "tableau", depth: Math.floor(Math.random() * 6) + 1, icon: SiTableau },
-  {
-    id: "thunderbird",
-    depth: Math.floor(Math.random() * 6) + 1,
-    icon: SiThunderbird,
-  },
-  // { displays empty icon, do not use }
-  //   id: "torbrowser",
-  //   depth: Math.floor(Math.random() * 6) + 1,
-  //   icon: SiTorbrowser,
-  // },
-  {
-    id: "visualstudiocode",
-    depth: Math.floor(Math.random() * 6) + 1,
-    icon: SiVisualstudiocode,
-  },
-  { id: "vivaldi", depth: Math.floor(Math.random() * 6) + 1, icon: SiVivaldi },
-  {
-    id: "vlcmediaplayer",
-    depth: Math.floor(Math.random() * 6) + 1,
-    icon: SiVlcmediaplayer,
-  },
-  { id: "zoom", depth: Math.floor(Math.random() * 6) + 1, icon: SiZoom },
+export const parallaxImages: ParallaxImage[] = [
+  { id: "image1", iconSrc: "/bg-1.svg", depth: 1 },
+  { id: "image2", iconSrc: "/bg-2.svg", depth: 2 },
+  { id: "image3", iconSrc: "/bg-3.svg", depth: 3 },
+  { id: "image4", iconSrc: "/bg-4.svg", depth: 4 },
+  { id: "image5", iconSrc: "/bg-5.svg", depth: 5 },
 ];

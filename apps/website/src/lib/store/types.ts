@@ -26,8 +26,8 @@ export enum Category {
   Miscellaneous = "Miscellaneous",
 }
 
-export interface ParallaxIcon {
+export interface ParallaxImage {
   id: string;
+  iconSrc: string;
   depth: number;
-  icon: IconType;
 }
