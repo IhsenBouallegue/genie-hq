@@ -1,45 +1,38 @@
 "use client";
 
 import { parallaxImages } from "@/lib/store/data";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import React, { useEffect } from "react";
 
 export default function ParallaxBackground() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springX = useSpring(x, {
-    stiffness: 40,
-    damping: 20,
-    mass: 0.2,
-  });
-
-  const springY = useSpring(y, {
-    stiffness: 40,
-    damping: 20,
-    mass: 0.2,
-  });
-
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = document.body.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left;
-      const offsetY = e.clientY - rect.top;
+      requestAnimationFrame(() => {
+        const rect = document.body.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
 
-      x.set(offsetX - rect.width / 2);
-      y.set(offsetY - rect.height / 2);
+        x.set(offsetX - rect.width / 2);
+        y.set(offsetY - rect.height / 2);
+      });
     };
 
     const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
       const { beta, gamma } = e;
-      const sensitivity = 25;
+      const sensitivity = 20;
 
       if (beta !== null && gamma !== null) {
-        const motionX = gamma * sensitivity;
-        const motionY = beta * sensitivity;
+        requestAnimationFrame(() => {
+          const motionX = gamma * sensitivity;
+          const motionY = beta * sensitivity;
 
-        x.set(motionX);
-        y.set(motionY);
+          x.set(motionX);
+          y.set(motionY);
+        });
       }
     };
 
@@ -48,12 +41,6 @@ export default function ParallaxBackground() {
     if (window.DeviceOrientationEvent) {
       window.addEventListener("deviceorientation", handleDeviceOrientation);
     }
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-    };
-
-    animate();
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
@@ -70,11 +57,11 @@ export default function ParallaxBackground() {
     <div className="absolute h-[100vh] w-full -z-10 overflow-x-clip overflow-y-visible">
       {parallaxImages.map((image) => {
         const parallaxShiftX = useTransform(
-          springX,
+          x,
           (value) => value * (1 / image.depth) * 0.05,
         );
         const parallaxShiftY = useTransform(
-          springY,
+          y,
           (value) => value * (1 / image.depth) * 0.05,
         );
 
@@ -86,7 +73,13 @@ export default function ParallaxBackground() {
               y: parallaxShiftY,
               willChange: "transform",
             }}
-            className="absolute w-full h-auto bg-no-repeat bg-cover"
+            className={cn(
+              "absolute w-full h-auto bg-no-repeat bg-cover saturate-0 opacity-70",
+              image.depth === 2 ? "blur-[1px]" : "",
+              image.depth === 3 ? "blur-[1.5px]" : "",
+              image.depth === 4 ? "blur-[2px]" : "",
+              image.depth === 5 ? "blur-[2.5px]" : "",
+            )}
           >
             <img src={image.iconSrc} alt=" " className="w-full h-auto" />
           </motion.div>
