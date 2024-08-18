@@ -22,7 +22,7 @@ export default function SetupConfiguratorAccordion() {
         <CardContent className="p-8">
           <h3 className="font-semibold text-primary">Setup Configurator</h3>
           <p className="mt-3 text-3xl font-extrabold sm:text-4xl">
-            Configure your setup in three easy steps
+            Setup your device in 3 easy steps:
           </p>
           <Accordion
             className="w-full mt-4"

@@ -2,6 +2,7 @@ import AboutUs from "@/components/abouts-us";
 import Faq from "@/components/faq";
 import { Features } from "@/components/features";
 import Hero from "@/components/hero";
+import { NoiseBackground } from "@/components/noise-background";
 import ParallaxBackground from "@/components/parallax-background";
 import SetupConfiguratorAccordion from "@/components/setup-configurator-accordion";
 

@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
+import { NoiseBackground } from "@/components/noise-background";
 
 const inter = Inter({ subsets: ["latin"] });
 const metadataTitle = "GenieHQ";
@@ -41,25 +42,6 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <head>
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff7f00" />
-          <meta name="msapplication-TileColor" content="#ff7f00" />
           <meta name="theme-color" content="#ff7f00" />
         </head>
         <body className={cn(inter.className, "relative w-full")}>
@@ -69,9 +51,11 @@ export default function RootLayout({
             enableSystem={false}
             disableTransitionOnChange
           >
-            <Header />
-            {children}
-            <Footer />
+            <NoiseBackground>
+              <Header />
+              {children}
+              <Footer />
+            </NoiseBackground>
             <Analytics />
             <SpeedInsights />
           </ThemeProvider>
