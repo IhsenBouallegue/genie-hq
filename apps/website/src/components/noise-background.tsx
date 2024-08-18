@@ -16,7 +16,7 @@ export function NoiseBackground({ children }: NoiseBackgroundProps) {
 export function NoiseSvg() {
   return (
     <svg
-      className="absolute inset-0 z-0 w-full h-full opacity-10"
+      className="absolute inset-0 z-0 w-full h-full opacity-5"
       xmlns="http://www.w3.org/2000/svg"
       width="100"
       height="100"
