@@ -1,8 +1,7 @@
 "use client";
 
 import { parallaxImages } from "@/lib/store/data";
-import useDeviceOrientation from "@/lib/use-device-orientation"; // Import the device orientation hook
-import useMousePosition from "@/lib/use-mouse-position";
+import useMousePosition from "@/lib/use-mouse-position"; // Import the mouse position hook
 import { cn } from "@/lib/utils";
 import { motion, useAnimationFrame, useSpring } from "framer-motion";
 import Image from "next/image";
@@ -11,9 +10,8 @@ import { useEffect, useRef, useState } from "react";
 export default function ParallaxBackground() {
   const [isMobile, setIsMobile] = useState(false); // State to track if the device is mobile
 
-  // Use appropriate hook based on the device
+  // Use the mouse position hook for desktop
   const mousePosition = useMousePosition();
-  const deviceOrientation = useDeviceOrientation();
 
   const container = useRef<HTMLDivElement>(null);
   const parallaxRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -41,36 +39,30 @@ export default function ParallaxBackground() {
     };
   }, []);
 
+  // Only apply parallax animation on desktop
   useAnimationFrame(() => {
-    const rect = container.current?.getBoundingClientRect();
+    if (!isMobile) {
+      const rect = container.current?.getBoundingClientRect();
 
-    if (rect) {
-      let offsetX = 0;
-      let offsetY = 0;
+      if (rect && mousePosition.x !== null && mousePosition.y !== null) {
+        const offsetX = mousePosition.x - rect.width / 2;
+        const offsetY = mousePosition.y - rect.height / 2;
 
-      // Use device orientation on mobile, otherwise use mouse position for desktop
-      if (isMobile) {
-        offsetX = deviceOrientation.x;
-        offsetY = deviceOrientation.y;
-      } else if (mousePosition.x !== null && mousePosition.y !== null) {
-        offsetX = mousePosition.x - rect.width / 2;
-        offsetY = mousePosition.y - rect.height / 2;
+        // Update spring values based on the mouse position
+        springX.set(offsetX);
+        springY.set(offsetY);
+
+        // Apply the spring values to each parallax element
+        parallaxImages.forEach((image, index) => {
+          const depthFactor = (1 / image.depth) * 0.2;
+          const element = parallaxRefs.current[index];
+
+          if (element) {
+            element.style.transform = `translate(${springX.get() * depthFactor}px, ${springY.get() * depthFactor}px)`;
+          }
+        });
       }
-
-      // Update spring values based on the detected device input
-      springX.set(offsetX);
-      springY.set(offsetY);
     }
-
-    // Apply the spring values to each parallax element
-    parallaxImages.forEach((image, index) => {
-      const depthFactor = (1 / image.depth) * 0.2;
-      const element = parallaxRefs.current[index];
-
-      if (element) {
-        element.style.transform = `translate(${springX.get() * depthFactor}px, ${springY.get() * depthFactor}px)`;
-      }
-    });
   });
 
   return (

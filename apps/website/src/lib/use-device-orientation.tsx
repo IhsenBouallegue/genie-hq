@@ -12,7 +12,7 @@ const useDeviceOrientation = () => {
   React.useEffect(() => {
     const handleOrientation = (event: DeviceOrientationEvent) => {
       const { beta, gamma } = event; // `beta`: front-back tilt, `gamma`: left-right tilt
-      const sensitivity = 20; // Adjust sensitivity as needed
+      const sensitivity = 2; // Adjust sensitivity as needed
 
       if (beta !== null && gamma !== null) {
         setOrientation({
