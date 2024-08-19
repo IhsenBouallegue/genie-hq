@@ -6,11 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { ClockIcon } from "lucide-react";
 import Link from "next/link";
 import { EmailForm } from "./email-form";
-import GridPattern from "./magicui/grid-pattern";
 import { MotionShineBorder } from "./magicui/shine-border";
 
 export default function Hero() {
@@ -22,14 +20,14 @@ export default function Hero() {
 
   return (
     <section className="md:min-h-[70vh] w-full flex rounded-md relative justify-center antialiased p-8">
-      <GridPattern
+      {/* <GridPattern
         className={cn(
           "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
           "inset-x-0 inset-y-[-30%] skew-y-12",
           "blur-sm",
           "-z-20",
         )}
-      />
+      /> */}
       <div className="max-w-screen-xl px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-36">
         <div className="space-y-8 max-w-xl">
           <div className="flex items-center justify-center gap-2 bg-primary/20 px-4 py-2 rounded-full text-primary font-medium text-sm backdrop-blur-sm">
