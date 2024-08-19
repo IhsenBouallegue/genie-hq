@@ -10,7 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import { CardContent, MotionCard } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 
 export default function SetupConfiguratorAccordion() {
   const openSteps = useStore((state) => state.openSteps);
@@ -18,7 +18,7 @@ export default function SetupConfiguratorAccordion() {
 
   return (
     <section className="flex justify-center items-center p-6 w-full max-w-6xl flex-col">
-      <MotionCard className="shadow-lg w-full">
+      <Card className="shadow-lg w-full">
         <CardContent className="p-8">
           <h3 className="font-semibold text-primary">Setup Configurator</h3>
           <p className="mt-3 text-3xl font-extrabold sm:text-4xl">
@@ -56,7 +56,7 @@ export default function SetupConfiguratorAccordion() {
             </AccordionItem>
           </Accordion>
         </CardContent>
-      </MotionCard>
+      </Card>
     </section>
   );
 }

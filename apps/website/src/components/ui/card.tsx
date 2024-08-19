@@ -42,6 +42,7 @@ const MotionCard = React.forwardRef<
     </motion.div>
   );
 });
+MotionCard.displayName = "MotionCard";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
