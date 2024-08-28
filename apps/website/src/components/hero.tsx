@@ -1,16 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@repo/ui/components/ui/card";
 import { ClockIcon } from "lucide-react";
 import Link from "next/link";
 import { EmailForm } from "./email-form";
 import { MotionShineBorder } from "./magicui/shine-border";
-
 export default function Hero() {
   const today = new Date();
   const launchDate = new Date("2024-08-30");

@@ -1,9 +1,9 @@
 import { useStore } from "@/lib/store/useStore";
+import AnimatedBackground from "@repo/ui/components/ui/animated-background";
 import ProfileCard from "./profile-card";
 import StepContainer from "./step-container";
 import StepDescription from "./step-description";
 import StepTitle from "./step-title";
-import AnimatedBackground from "./ui/animated-background";
 
 export default function SetupStepProfile() {
   const profiles = useStore((state) => Object.values(state.profiles));

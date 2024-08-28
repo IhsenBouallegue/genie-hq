@@ -1,11 +1,11 @@
-import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion";
-import { CardContent, MotionCard } from "./ui/card";
+} from "@repo/ui/components/ui/accordion";
+import { CardContent, MotionCard } from "@repo/ui/components/ui/card";
+import Image from "next/image";
 
 function Faq() {
   return (

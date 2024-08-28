@@ -1,7 +1,6 @@
 "use client";
 
-import { EmailForm } from "./email-form";
-import { Button } from "./ui/button";
+import { Button } from "@repo/ui/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from "@repo/ui/components/ui/dialog";
+import { EmailForm } from "./email-form";
 
 export function SubscribeDialog({
   disabled,

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "ui:add": "pnpm dlx shadcn-ui@latest add"
+    "ui:add": "pnpm dlx shadcn-ui@latest add",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": "^18"
@@ -19,7 +20,16 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-collapsible": "^1.1.0",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-hover-card": "^1.1.1",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.2",
+    "framer-motion": "^11.3.19",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.395.0",

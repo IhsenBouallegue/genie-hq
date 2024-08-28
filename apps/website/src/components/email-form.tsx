@@ -2,13 +2,13 @@
 
 import { startConfetti } from "@/lib/confetti";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@repo/ui/components/ui/button";
+import { Input } from "@repo/ui/components/ui/input";
 import { track } from "@vercel/analytics/react";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import AnimatedSubscribeButton from "./magicui/animated-subscribe-button";
-import { buttonVariants } from "./ui/button";
-import { Input } from "./ui/input";
 
 export function EmailForm({ origin }: { origin: "hero" | "setup-tool" }) {
   const [email, setEmail] = useState("");

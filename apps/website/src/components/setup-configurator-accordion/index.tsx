@@ -1,16 +1,16 @@
 "use client";
 
 import { useStore } from "@/lib/store/useStore";
-import SetupStepApplications from "../setup-step-applications";
-import SetupStepProfile from "../setup-step-profile";
-import SetupStepSummary from "../setup-step-summary";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
-import { Card, CardContent } from "../ui/card";
+} from "@repo/ui/components/ui/accordion";
+import { Card, CardContent } from "@repo/ui/components/ui/card";
+import SetupStepApplications from "../setup-step-applications";
+import SetupStepProfile from "../setup-step-profile";
+import SetupStepSummary from "../setup-step-summary";
 
 export default function SetupConfiguratorAccordion() {
   const openSteps = useStore((state) => state.openSteps);

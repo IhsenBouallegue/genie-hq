@@ -1,11 +1,11 @@
 import { Category } from "@/lib/store/types";
 import { useStore } from "@/lib/store/useStore";
+import AnimatedBackground from "@repo/ui/components/ui/animated-background";
 import { Files, PlusCircle, PlusCircleIcon, PlusIcon } from "lucide-react";
 import ApplicationCard from "./application-card";
 import StepContainer from "./step-container";
 import StepDescription from "./step-description";
 import StepTitle from "./step-title";
-import AnimatedBackground from "./ui/animated-background";
 const ITEMS = [
   {
     id: 1,

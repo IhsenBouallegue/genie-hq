@@ -1,13 +1,13 @@
+import "@repo/ui/globals.css";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { NoiseBackground } from "@/components/noise-background";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Footer from "@/components/footer";
-import { NoiseBackground } from "@/components/noise-background";
 
 const inter = Inter({ subsets: ["latin"] });
 const metadataTitle = "GenieHQ";

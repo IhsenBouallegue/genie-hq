@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "turbo": "^2.0.12",
-    "typescript": "^5.4.5"
+    "turbo": "^2.1.0",
+    "typescript": "5.4.5"
   },
   "engines": {
     "node": ">=18"
@@ -15,7 +15,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "format-and-lint": "biome check .",
-    "format-and-lint:fix": "biome check . --write"
+    "format-and-lint:fix": "biome check . --write",
+    "ui:add": "bun --filter @repo/ui ui:add"
   },
   "workspaces": ["apps/*", "packages/*"]
 }

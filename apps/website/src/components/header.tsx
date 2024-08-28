@@ -1,21 +1,15 @@
-import { Button, buttonVariants } from "@/components/ui/button";
 import { DownloadIcon } from "lucide-react";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
-import Image from "next/image";
-import Link from "next/link";
-import { SubscribeDialog } from "./subscribe-dialog";
+import { Button, buttonVariants } from "@repo/ui/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "./ui/navigation-menu";
+} from "@repo/ui/components/ui/navigation-menu";
+import Image from "next/image";
+import Link from "next/link";
+import { SubscribeDialog } from "./subscribe-dialog";
 
 export default function Header() {
   return (

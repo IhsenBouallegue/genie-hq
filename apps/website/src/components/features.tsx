@@ -14,7 +14,7 @@ import { Circle } from "./circle";
 import FeatureAccountSync from "./feature-accounts-sync";
 import { FeatureAnimatedProgram } from "./feature-animated-program";
 import Heading from "./heading";
-import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
+import { BentoGrid, BentoGridItem } from "@repo/ui/components/ui/bento-grid";
 
 export function Features() {
   return (
