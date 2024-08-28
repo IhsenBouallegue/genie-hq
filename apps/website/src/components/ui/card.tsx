@@ -33,9 +33,10 @@ const MotionCard = React.forwardRef<
       viewport={{ once: true, amount: 0.2 }}
       ref={ref}
       className={cn(
-        "rounded-lg border bg-card text-card-foreground shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl", // Default classes with hover effects
+        "rounded-lg border bg-card text-card-foreground shadow-lg ", // Default classes with hover effects
         className,
       )}
+      key="div"
       {...props}
     >
       {children}
