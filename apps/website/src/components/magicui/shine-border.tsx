@@ -82,7 +82,7 @@ export function MotionShineBorder({
         } as React.CSSProperties
       }
       className={cn(
-        "relative grid min-h-[60px] min-w-[300px] place-items-center rounded-[--border-radius] bg-white p-3 text-black dark:bg-black dark:text-white transform transition-all duration-300 w-full max-w-lg",
+        "relative grid min-h-[60px] min-w-[300px] place-items-center rounded-[--border-radius] bg-white p-3 text-black dark:bg-black dark:text-white transform w-full max-w-lg",
         className,
       )}
     >
