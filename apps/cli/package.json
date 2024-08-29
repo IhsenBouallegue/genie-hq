@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "bun --watch run ./src/index.ts",
-    "build": "bun build ./src/index.ts  --compile --outfile ./dist/cli",
+    "build": "bun build ./src/index.ts --compile --outfile ./dist/cli",
     "serve": "./dist/cli"
   },
   "module": "index.ts",

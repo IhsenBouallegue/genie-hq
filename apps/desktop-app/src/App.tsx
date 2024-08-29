@@ -1,53 +1,50 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
+import { Command } from "@tauri-apps/plugin-shell";
+import type React from "react";
 
-function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+const App: React.FC = () => {
+  // Function to determine the correct install command based on the OS
+  const getInstallCommand = (): string[] => {
+    const platform = window.navigator.platform;
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
+    switch (platform) {
+      case "Linux x86_64":
+        return ["-c", "sudo apt-get install -y packageName"];
+      case "MacIntel":
+        return ["-c", "brew install packageName"];
+      case "Win32":
+        return ["-c", "scoop install packageName"];
+      default:
+        throw new Error("Unsupported platform");
+    }
+  };
+
+  // Function to handle the installation process
+  const handleInstall = async () => {
+    try {
+      const args = getInstallCommand(); // Get the command arguments based on the OS
+      const command = Command.create("exec-sh", args); // Use the shell command defined in main.json
+
+      const output = await command.execute(); // Execute the command and capture the output
+
+      console.log("Install Output:", output.stdout);
+
+      if (output.code === 0) {
+        alert("Installation successful");
+      } else {
+        alert(`Installation failed: ${output.stderr}`);
+      }
+    } catch (error) {
+      console.error("Error running install command:", error);
+      alert(`Error: ${error.message}`);
+    }
+  };
 
   return (
-    <div className="container">
-      <h1>Welcome to Tauri!</h1>
-
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-
-      <p>{greetMsg}</p>
+    <div>
+      <h1>Install Application</h1>
+      <button onClick={handleInstall}>Install Package</button>
     </div>
   );
-}
+};
 
 export default App;
