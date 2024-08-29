@@ -1,4 +1,4 @@
-import "@repo/ui/globals.css";
+import "@geniehq/ui/globals.css";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { NoiseBackground } from "@/components/noise-background";

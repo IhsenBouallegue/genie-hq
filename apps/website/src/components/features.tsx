@@ -1,3 +1,4 @@
+import { BentoGrid, BentoGridItem } from "@geniehq/ui/components/ui/bento-grid";
 import { SiApple, SiLinux, SiWindows11 } from "@icons-pack/react-simple-icons";
 import {
   CheckSquareIcon,
@@ -14,7 +15,6 @@ import { Circle } from "./circle";
 import FeatureAccountSync from "./feature-accounts-sync";
 import { FeatureAnimatedProgram } from "./feature-animated-program";
 import Heading from "./heading";
-import { BentoGrid, BentoGridItem } from "@repo/ui/components/ui/bento-grid";
 
 export function Features() {
   return (

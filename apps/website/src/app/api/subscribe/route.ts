@@ -1,4 +1,4 @@
-import SubscriptionConfirmationEmail from "@repo/email-stuff/emails/confirmation-email";
+import SubscriptionConfirmationEmail from "@geniehq/email-stuff/emails/confirmation-email";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";

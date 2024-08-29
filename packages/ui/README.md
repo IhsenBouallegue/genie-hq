@@ -1,1 +1,1 @@
-# `@repo/ui`
+# `@geniehq/ui`

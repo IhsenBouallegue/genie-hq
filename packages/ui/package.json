@@ -1,16 +1,15 @@
 {
-  "name": "@repo/ui",
+  "name": "@geniehq/ui",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "ui:add": "pnpm dlx shadcn-ui@latest add",
-    "lint": "eslint ."
+    "ui:add": "pnpm dlx shadcn-ui@latest add"
   },
   "peerDependencies": {
     "react": "^18"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
+    "@geniehq/typescript-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "autoprefixer": "^10.4.19",

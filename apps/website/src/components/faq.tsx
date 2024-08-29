@@ -3,8 +3,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@repo/ui/components/ui/accordion";
-import { CardContent, MotionCard } from "@repo/ui/components/ui/card";
+} from "@geniehq/ui/components/ui/accordion";
+import { CardContent, MotionCard } from "@geniehq/ui/components/ui/card";
 import Image from "next/image";
 
 function Faq() {

@@ -2,8 +2,8 @@
 
 import { startConfetti } from "@/lib/confetti";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@repo/ui/components/ui/button";
-import { Input } from "@repo/ui/components/ui/input";
+import { buttonVariants } from "@geniehq/ui/components/ui/button";
+import { Input } from "@geniehq/ui/components/ui/input";
 import { track } from "@vercel/analytics/react";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";

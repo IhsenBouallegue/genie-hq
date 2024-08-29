@@ -1,7 +1,7 @@
 "use client";
 import { startConfetti } from "@/lib/confetti";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@repo/ui/components/ui/button";
+import { buttonVariants } from "@geniehq/ui/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface AnimatedSubscribeButtonProps {
