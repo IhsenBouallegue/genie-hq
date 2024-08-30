@@ -1,3 +1,4 @@
+import { Button } from "@geniehq/ui/components/ui/button";
 import { Command } from "@tauri-apps/plugin-shell";
 import type React from "react";
 
@@ -12,7 +13,7 @@ const App: React.FC = () => {
       case "MacIntel":
         return ["-c", "brew install packageName"];
       case "Win32":
-        return ["-c", "scoop install packageName"];
+        return ["-c", "scoop install 7zip"];
       default:
         throw new Error("Unsupported platform");
     }
@@ -34,15 +35,17 @@ const App: React.FC = () => {
         alert(`Installation failed: ${output.stderr}`);
       }
     } catch (error) {
-      console.error("Error running install command:", error);
-      alert(`Error: ${error.message}`);
+      if (error instanceof Error) {
+        console.error("Error running install command:", error);
+        alert(`Error: ${error.message}`);
+      }
     }
   };
 
   return (
     <div>
       <h1>Install Application</h1>
-      <button onClick={handleInstall}>Install Package</button>
+      <Button onClick={handleInstall}>Install Package</Button>
     </div>
   );
 };

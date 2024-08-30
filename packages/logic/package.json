@@ -1,0 +1,12 @@
+{
+  "name": "@geniehq/logic",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "export": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@geniehq/typescript-config": "*"
+  }
+}
