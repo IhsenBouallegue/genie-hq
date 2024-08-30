@@ -6,8 +6,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@geniehq/ui/components/ui/accordion";
-import { CardContent, MotionCard } from "@geniehq/ui/components/ui/card";
+} from "@geniehq/ui/components/accordion";
+import { CardContent, MotionCard } from "@geniehq/ui/components/card";
 import SetupStepApplications from "../setup-step-applications";
 import SetupStepProfile from "../setup-step-profile";
 import SetupStepSummary from "../setup-step-summary";

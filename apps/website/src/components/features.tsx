@@ -1,4 +1,4 @@
-import { BentoGrid, BentoGridItem } from "@geniehq/ui/components/ui/bento-grid";
+import { BentoGrid, BentoGridItem } from "@geniehq/ui/components/bento-grid";
 import { SiApple, SiLinux, SiWindows11 } from "@icons-pack/react-simple-icons";
 import {
   CheckSquareIcon,

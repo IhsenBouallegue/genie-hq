@@ -1,11 +1,11 @@
-import { Button } from "@geniehq/ui/components/ui/button";
+import { Button } from "@geniehq/ui/components/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@geniehq/ui/components/ui/card";
+} from "@geniehq/ui/components/card";
 import { ClockIcon } from "lucide-react";
 import Link from "next/link";
 import { EmailForm } from "./email-form";

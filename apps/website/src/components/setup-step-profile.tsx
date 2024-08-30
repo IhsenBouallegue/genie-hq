@@ -1,5 +1,5 @@
 import { useStore } from "@/lib/store/useStore";
-import AnimatedBackground from "@geniehq/ui/components/ui/animated-background";
+import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import ProfileCard from "./profile-card";
 import StepContainer from "./step-container";
 import StepDescription from "./step-description";

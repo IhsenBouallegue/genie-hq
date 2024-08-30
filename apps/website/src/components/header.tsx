@@ -1,12 +1,12 @@
 import { DownloadIcon } from "lucide-react";
 
-import { Button, buttonVariants } from "@geniehq/ui/components/ui/button";
+import { Button, buttonVariants } from "@geniehq/ui/components/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@geniehq/ui/components/ui/navigation-menu";
+} from "@geniehq/ui/components/navigation-menu";
 import Image from "next/image";
 import Link from "next/link";
 import { SubscribeDialog } from "./subscribe-dialog";

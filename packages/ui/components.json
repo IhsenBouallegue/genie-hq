@@ -11,7 +11,8 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@geniehq/ui/components",
-    "utils": "@geniehq/ui/lib/utils"
+    "components": "#components",
+    "utils": "#lib/utils",
+    "ui": "src/components"
   }
 }

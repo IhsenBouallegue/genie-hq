@@ -1,6 +1,6 @@
 import { AvatarFallback } from "@radix-ui/react-avatar";
-import { Avatar, AvatarImage } from "@geniehq/ui/components/ui/avatar";
-import { buttonVariants } from "@geniehq/ui/components/ui/button";
+import { Avatar, AvatarImage } from "@geniehq/ui/components/avatar";
+import { buttonVariants } from "@geniehq/ui/components/button";
 import { MailIcon } from "lucide-react";
 import Heading from "./heading";
 

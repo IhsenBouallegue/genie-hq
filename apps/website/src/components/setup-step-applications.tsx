@@ -1,6 +1,6 @@
 import { Category } from "@/lib/store/types";
 import { useStore } from "@/lib/store/useStore";
-import AnimatedBackground from "@geniehq/ui/components/ui/animated-background";
+import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import { Files, PlusCircle, PlusCircleIcon, PlusIcon } from "lucide-react";
 import ApplicationCard from "./application-card";
 import StepContainer from "./step-container";

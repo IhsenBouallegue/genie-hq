@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@geniehq/ui/components/ui/button";
+import { Button } from "@geniehq/ui/components/button";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@geniehq/ui/components/ui/dialog";
+} from "@geniehq/ui/components/dialog";
 import { EmailForm } from "./email-form";
 
 export function SubscribeDialog({

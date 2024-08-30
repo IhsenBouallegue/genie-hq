@@ -1,4 +1,4 @@
-import { Button } from "@geniehq/ui/components/ui/button";
+import { Button } from "@geniehq/ui/components/button";
 import { Command } from "@tauri-apps/plugin-shell";
 import type React from "react";
 
