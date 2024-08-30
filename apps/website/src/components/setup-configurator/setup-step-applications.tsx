@@ -1,43 +1,12 @@
 import { Category } from "@/lib/store/types";
 import { useStore } from "@/lib/store/useStore";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
-import { Files, PlusCircle, PlusCircleIcon, PlusIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import ApplicationCard from "./application-card";
-import StepContainer from "./step-container";
-import StepDescription from "./step-description";
-import StepTitle from "./step-title";
-const ITEMS = [
-  {
-    id: 1,
-    title: "Dialog",
-    description: "Enhances modal presentations.",
-  },
-  {
-    id: 2,
-    title: "Popover",
-    description: "For small interactive overlays.",
-  },
-  {
-    id: 3,
-    title: "Accordion",
-    description: "Collapsible sections for more content.",
-  },
-  {
-    id: 4,
-    title: "Collapsible",
-    description: "Collapsible sections for more content.",
-  },
-  {
-    id: 5,
-    title: "Drag to Reorder",
-    description: "Reorder items with drag and drop.",
-  },
-  {
-    id: 6,
-    title: "Swipe to Delete",
-    description: "Delete items with swipe gestures.",
-  },
-];
+import StepContainer from "./base/step-container";
+import StepDescription from "./base/step-description";
+import StepTitle from "./base/step-title";
+
 export default function SetupStepApplications() {
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);

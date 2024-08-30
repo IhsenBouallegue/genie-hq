@@ -3,11 +3,11 @@
 import { useStore } from "@/lib/store/useStore";
 import { ShieldCheckIcon, UserXIcon, XIcon } from "lucide-react";
 import { useState } from "react";
+import { SubscribeDialog } from "../subscribe-dialog";
+import StepContainer from "./base/step-container";
+import StepDescription from "./base/step-description";
+import StepTitle from "./base/step-title";
 import SelectableCard from "./selectable-card";
-import StepContainer from "./step-container";
-import StepDescription from "./step-description";
-import StepTitle from "./step-title";
-import { SubscribeDialog } from "./subscribe-dialog";
 
 export default function SetupStepSummary() {
   const selectedProfile = useStore((state) => state.getSelectedProfile());

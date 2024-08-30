@@ -1,8 +1,11 @@
-import { Button } from "@geniehq/ui/components/button";
-import { Command } from "@tauri-apps/plugin-shell";
-import type React from "react";
+"use client"
 
-const App: React.FC = () => {
+import { Button } from "@geniehq/ui/components/button";
+import SetupConfiguratorAccordion from "@geniehq/ui/setup-configurator/index";
+import { Command } from "@tauri-apps/plugin-shell";
+import Image from "next/image";
+import type React from "react";
+export default function Home() {
   // Function to determine the correct install command based on the OS
   const getInstallCommand = (): string[] => {
     const platform = window.navigator.platform;
@@ -45,9 +48,9 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Install Application</h1>
+      <Image src="/next.svg" alt="App Icon" width={100} height={100} />
       <Button onClick={handleInstall}>Install Package</Button>
+      <SetupConfiguratorAccordion />
     </div>
   );
-};
-
-export default App;
+}

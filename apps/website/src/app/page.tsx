@@ -3,7 +3,7 @@ import Faq from "@/components/faq";
 import { Features } from "@/components/features";
 import Hero from "@/components/hero";
 import ParallaxBackground from "@/components/parallax-background";
-import SetupConfiguratorAccordion from "@/components/setup-configurator-accordion";
+import SetupConfiguratorAccordion from "@/components/setup-configurator";
 
 export default function Home() {
   return (

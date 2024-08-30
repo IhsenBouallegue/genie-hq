@@ -33,7 +33,9 @@
     "framer-motion": "^11.3.19",
     "lucide-react": "^0.395.0",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.4",
+    "immer": "^10.1.1"
   },
   "imports": {
     "#*": [
@@ -49,6 +51,10 @@
     "./postcss.config": "./postcss.config.mjs",
     "./tailwind.config": "./tailwind.config.ts",
     "./lib/*": "./src/lib/*.ts",
-    "./components/*": ["./src/components/*.tsx", "./src/components/*.ts"]
+    "./components/*": ["./src/components/*.tsx", "./src/components/*.ts"],
+    "./setup-configurator/*": [
+      "./src/setup-configurator/*.tsx",
+      "./src/setup-configurator/*.ts"
+    ]
   }
 }

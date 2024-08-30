@@ -1,9 +1,9 @@
-import { useStore } from "@/lib/store/useStore";
-import AnimatedBackground from "@geniehq/ui/components/animated-background";
+import AnimatedBackground from "#components/animated-background";
+import { useStore } from "#lib/store/useStore";
+import StepContainer from "./base/step-container";
+import StepDescription from "./base/step-description";
+import StepTitle from "./base/step-title";
 import ProfileCard from "./profile-card";
-import StepContainer from "./step-container";
-import StepDescription from "./step-description";
-import StepTitle from "./step-title";
 
 export default function SetupStepProfile() {
   const profiles = useStore((state) => Object.values(state.profiles));

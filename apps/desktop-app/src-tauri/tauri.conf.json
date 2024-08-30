@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "identifier": "com.geniehq.app",
   "build": {
-    "beforeDevCommand": "bun run vite",
-    "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "bun run build",
-    "frontendDist": "../dist"
+    "beforeDevCommand": "bun run next-dev",
+    "beforeBuildCommand": "bun run next-build",
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../out"
   },
   "app": {
     "windows": [
       {
-        "title": "desktop-app",
+        "title": "GenieHQ",
         "width": 800,
         "height": 600
       }
