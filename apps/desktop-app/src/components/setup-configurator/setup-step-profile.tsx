@@ -1,12 +1,15 @@
-import AnimatedBackground from "#components/animated-background";
-import { useStore } from "#lib/store/useStore";
-import StepContainer from "./base/step-container";
-import StepDescription from "./base/step-description";
-import StepTitle from "./base/step-title";
-import ProfileCard from "./profile-card";
+import { useStore } from "@/lib/store/useStore";
+import AnimatedBackground from "@geniehq/ui/components/animated-background";
+import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
+import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
+import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
+
+import ProfileCard from "@geniehq/ui/setup-configurator/profile-card";
 
 export default function SetupStepProfile() {
   const profiles = useStore((state) => Object.values(state.profiles));
+  const selectProfile = useStore((state) => state.selectProfile);
+  const currentProfileId = useStore((state) => state.selectedProfile);
 
   return (
     <StepContainer>
@@ -26,7 +29,7 @@ export default function SetupStepProfile() {
         >
           {profiles.map((profile, index) => (
             <div key={profile.id} data-id={`card-${index}`}>
-              <ProfileCard {...profile} />
+              <ProfileCard {...profile} onSelect={selectProfile} currentProfileId={currentProfileId}/>
             </div>
           ))}
         </AnimatedBackground>
@@ -34,3 +37,4 @@ export default function SetupStepProfile() {
     </StepContainer>
   );
 }
+

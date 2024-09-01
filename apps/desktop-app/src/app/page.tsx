@@ -1,7 +1,7 @@
 "use client"
 
+import SetupConfiguratorAccordion from "@/components/setup-configurator";
 import { Button } from "@geniehq/ui/components/button";
-import SetupConfiguratorAccordion from "@geniehq/ui/setup-configurator/index";
 import { Command } from "@tauri-apps/plugin-shell";
 import Image from "next/image";
 import type React from "react";

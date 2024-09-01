@@ -1,13 +1,13 @@
 "use client";
 
+import { useStore } from "@/lib/store/useStore";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "#components/accordion";
-import { CardContent, MotionCard } from "#components/card";
-import { useStore } from "#lib/store/useStore";
+} from "@geniehq/ui/components/accordion";
+import { CardContent, MotionCard } from "@geniehq/ui/components/card";
 import SetupStepApplications from "./setup-step-applications";
 import SetupStepProfile from "./setup-step-profile";
 import SetupStepSummary from "./setup-step-summary";

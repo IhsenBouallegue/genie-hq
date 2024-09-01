@@ -4,10 +4,10 @@ import { useStore } from "@/lib/store/useStore";
 import { ShieldCheckIcon, UserXIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { SubscribeDialog } from "../subscribe-dialog";
-import StepContainer from "./base/step-container";
-import StepDescription from "./base/step-description";
-import StepTitle from "./base/step-title";
-import SelectableCard from "./selectable-card";
+import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
+import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
+import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
+import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
 
 export default function SetupStepSummary() {
   const selectedProfile = useStore((state) => state.getSelectedProfile());

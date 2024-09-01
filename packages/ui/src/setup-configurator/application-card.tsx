@@ -1,18 +1,18 @@
-import React from "react";
-import type { Application } from "#lib/store/types";
-import { useStore } from "#lib/store/useStore";
+import type { Application, ApplicationId } from "#lib/store/types";
 import SelectableCard from "./selectable-card";
 
 export default function ApplicationCard({
   id,
   title,
   icon,
+  onToggle,
+  selectedApplicationIds,
   ...rest
-}: Application) {
-  const toggleApplication = useStore((state) => state.toggleApplication);
-  const isSelected = useStore((state) =>
-    state.selectedApplicationIds.includes(id),
-  );
+}: Application & {
+  onToggle: (id: string) => void;
+  selectedApplicationIds: ApplicationId[];
+}) {
+  const isSelected = selectedApplicationIds.includes(id);
 
   return (
     <SelectableCard
@@ -20,7 +20,7 @@ export default function ApplicationCard({
       title={title}
       icon={icon}
       isSelected={isSelected}
-      onToggle={toggleApplication}
+      onToggle={onToggle}
       enableHover={false}
       enableBorder={false}
       {...rest}

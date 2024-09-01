@@ -1,16 +1,18 @@
+import { useStore } from "@/lib/store/useStore";
+import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import { PlusIcon } from "lucide-react";
-import AnimatedBackground from "#components/animated-background";
-import { Category } from "#lib/store/types";
-import { useStore } from "#lib/store/useStore";
-import ApplicationCard from "./application-card";
-import StepContainer from "./base/step-container";
-import StepDescription from "./base/step-description";
-import StepTitle from "./base/step-title";
-
+import ApplicationCard from "@geniehq/ui/setup-configurator/application-card";
+import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
+import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
+import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
+import { Category } from "@geniehq/ui/lib/store/types";
 export default function SetupStepApplications() {
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);
-
+  const toggleApplication = useStore((state) => state.toggleApplication);
+  const selectedApplicationIds = useStore((state) =>
+    state.selectedApplicationIds,
+  );
   return (
     <StepContainer>
       <StepTitle>What do you like to install?</StepTitle>
@@ -38,7 +40,7 @@ export default function SetupStepApplications() {
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((application, index) => (
                   <div key={application.id} data-id={`card-${index}`}>
-                    <ApplicationCard {...application} />
+                    <ApplicationCard {...application} onToggle={toggleApplication} selectedApplicationIds={selectedApplicationIds} />
                   </div>
                 ))}
             </AnimatedBackground>
