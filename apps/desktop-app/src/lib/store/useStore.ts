@@ -1,5 +1,10 @@
-import { profiles, applications } from "@geniehq/ui/lib/store/data";
-import { ProfileId, Profile, ApplicationId, Application } from "@geniehq/ui/lib/store/types";
+import { applications, profiles } from "@geniehq/ui/lib/store/data";
+import type {
+  Application,
+  ApplicationId,
+  Profile,
+  ProfileId,
+} from "@geniehq/ui/lib/store/types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 

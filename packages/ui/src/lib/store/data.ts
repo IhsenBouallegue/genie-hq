@@ -46,7 +46,8 @@ import {
 import {
   type Application,
   Category,
-  type ParallaxImage,
+  OperatingSystem,
+  PackageManager,
   type Profile,
 } from "../store/types";
 
@@ -54,261 +55,905 @@ export const applications: Application[] = [
   {
     id: "1",
     title: "Visual Studio Code",
-    category: Category.Code,
     icon: SiVisualstudiocode,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=Microsoft.VisualStudioCode --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask visual-studio-code",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install code",
+      },
+    ],
   },
   {
     id: "2",
     title: "Jupyter Notebook",
-    category: Category.Data,
     icon: SiJupyter,
+    category: Category.Data,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Jupyter.Jupyter --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install jupyter",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install jupyter-notebook",
+      },
+    ],
   },
   {
     id: "3",
     title: "Adobe Photoshop",
-    category: Category.Design,
     icon: SiAdobephotoshop,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Adobe.Photoshop --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask adobe-photoshop",
+      },
+    ],
   },
   {
     id: "4",
     title: "Arduino IDE",
-    category: Category.Code,
     icon: SiArduino,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=Arduino.ArduinoIDE --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask arduino",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install arduino",
+      },
+    ],
   },
   {
     id: "5",
     title: "Slack",
-    category: Category.Communication,
     icon: SiSlack,
+    category: Category.Communication,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=SlackTechnologies.Slack --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask slack",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install slack --classic",
+      },
+    ],
   },
   {
     id: "6",
     title: "Git",
-    category: Category.Code,
     icon: SiGit,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Git.Git --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install git",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install git",
+      },
+    ],
   },
   {
     id: "7",
     title: "Tableau",
-    category: Category.Data,
     icon: SiTableau,
+    category: Category.Data,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Tableau.Tableau --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask tableau",
+      },
+    ],
   },
   {
     id: "8",
     title: "Sketch",
-    category: Category.Design,
     icon: SiSketch,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask sketch",
+      },
+    ],
   },
   {
     id: "9",
     title: "Python (latest)",
-    category: Category.Code,
     icon: SiPython,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Python.Python.3 --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install python",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install python3",
+      },
+    ],
   },
   {
     id: "10",
     title: "Java (JDK) (latest)",
-    category: Category.Code,
     icon: SiJavascript,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Oracle.JavaJDK --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install openjdk",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install default-jdk",
+      },
+    ],
   },
   {
     id: "11",
     title: "C++ (latest)",
-    category: Category.Code,
     icon: SiCplusplus,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=Microsoft.VisualStudioCommunity --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install gcc",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install g++",
+      },
+    ],
   },
   {
     id: "12",
     title: "PyCharm",
-    category: Category.Code,
     icon: SiPycharm,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=JetBrains.PyCharm.Community --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask pycharm-ce",
+      },
+    ],
   },
   {
     id: "13",
     title: "IntelliJ IDEA",
-    category: Category.Code,
     icon: SiIntellijidea,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=JetBrains.IntelliJIDEA.Community --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask intellij-idea-ce",
+      },
+    ],
   },
   {
     id: "14",
     title: "Eclipse",
-    category: Category.Code,
     icon: SiEclipseide,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=EclipseFoundation.EclipseIDE --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask eclipse-java",
+      },
+    ],
   },
   {
     id: "15",
     title: "Power BI",
-    category: Category.Data,
     icon: SiPowerbi,
+    category: Category.Data,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Microsoft.PowerBI --source winget",
+      },
+    ],
   },
   {
     id: "16",
     title: "Figma",
-    category: Category.Design,
     icon: SiFigma,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask figma",
+      },
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Figma.Figma --source winget",
+      },
+    ],
   },
   {
     id: "17",
     title: "Google Chrome",
-    category: Category.Browser,
     icon: SiGooglechrome,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Google.Chrome --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask google-chrome",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install google-chrome-stable",
+      },
+    ],
   },
   {
     id: "18",
     title: "Firefox",
-    category: Category.Browser,
     icon: SiFirefox,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Mozilla.Firefox --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask firefox",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install firefox",
+      },
+    ],
   },
   {
     id: "19",
     title: "Safari",
-    category: Category.Browser,
     icon: SiSafari,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask safari",
+      },
+    ],
   },
   {
     id: "20",
     title: "Opera",
-    category: Category.Browser,
     icon: SiOpera,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Opera.Opera --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask opera",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install opera",
+      },
+    ],
   },
   {
     id: "21",
     title: "Microsoft Edge",
-    category: Category.Browser,
     icon: SiMicrosoftedge,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Microsoft.Edge --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask microsoft-edge",
+      },
+    ],
   },
   {
     id: "22",
     title: "Brave",
-    category: Category.Browser,
     icon: SiBrave,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=BraveSoftware.BraveBrowser --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask brave-browser",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install brave-browser",
+      },
+    ],
   },
   {
     id: "23",
     title: "Vivaldi",
-    category: Category.Browser,
     icon: SiVivaldi,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=VivaldiTechnologies.Vivaldi --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask vivaldi",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install vivaldi-stable",
+      },
+    ],
   },
   {
     id: "24",
     title: "Tor Browser",
-    category: Category.Browser,
     icon: SiTorbrowser,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=TheTorProject.TorBrowser --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask tor-browser",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install torbrowser-launcher",
+      },
+    ],
   },
   {
     id: "25",
     title: "Postman",
-    category: Category.Code,
     icon: SiPostman,
+    category: Category.Code,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Postman.Postman --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask postman",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install postman",
+      },
+    ],
   },
   {
     id: "26",
     title: "MongoDB Compass",
-    category: Category.Data,
     icon: SiMongodb,
+    category: Category.Data,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=MongoDB.MongoDBCompass --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask mongodb-compass",
+      },
+    ],
   },
   {
     id: "27",
     title: "Anaconda",
-    category: Category.Data,
     icon: SiAnaconda,
+    category: Category.Data,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Anaconda.Anaconda --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask anaconda",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install anaconda", // Assuming there's a custom PPA, as Anaconda isn't directly in default APT repositories
+      },
+    ],
   },
   {
     id: "28",
     title: "Zoom",
-    category: Category.Communication,
     icon: SiZoom,
+    category: Category.Communication,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Zoom.Zoom --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask zoom",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install zoom-client",
+      },
+    ],
   },
   {
     id: "29",
     title: "Notion",
-    category: Category.Communication,
     icon: SiNotion,
+    category: Category.Communication,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Notion.Notion --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask notion",
+      },
+    ],
   },
   {
     id: "30",
     title: "Adobe Illustrator",
-    category: Category.Design,
     icon: SiAdobeillustrator,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Adobe.Illustrator --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask adobe-illustrator",
+      },
+    ],
   },
   {
     id: "31",
     title: "Adobe Premiere",
-    category: Category.Design,
     icon: SiAdobepremierepro,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Adobe.PremierePro --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask adobe-premiere-pro",
+      },
+    ],
   },
-  // Miscellaneous Applications
   {
     id: "32",
     title: "Spotify",
-    category: Category.Miscellaneous,
     icon: SiSpotify,
+    category: Category.Miscellaneous,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Spotify.Spotify --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask spotify",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install spotify",
+      },
+    ],
   },
   {
     id: "33",
     title: "VLC Media Player",
-    category: Category.Miscellaneous,
     icon: SiVlcmediaplayer,
+    category: Category.Miscellaneous,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=VideoLAN.VLC --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask vlc",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install vlc",
+      },
+    ],
   },
   {
     id: "34",
     title: "Discord",
-    category: Category.Miscellaneous,
     icon: SiDiscord,
+    category: Category.Miscellaneous,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Discord.Discord --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask discord",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install discord",
+      },
+    ],
   },
   {
     id: "35",
     title: "Evernote",
-    category: Category.Miscellaneous,
     icon: SiEvernote,
+    category: Category.Miscellaneous,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Evernote.Evernote --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask evernote",
+      },
+    ],
   },
   {
     id: "36",
     title: "Thunderbird",
-    category: Category.Communication,
     icon: SiThunderbird,
+    category: Category.Communication,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=Mozilla.Thunderbird --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask thunderbird",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install thunderbird",
+      },
+    ],
   },
   {
     id: "37",
     title: "Skype",
-    category: Category.Communication,
     icon: SiSkype,
+    category: Category.Communication,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Skype.Skype --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask skype",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install skype --classic",
+      },
+    ],
   },
   {
     id: "38",
     title: "Krita",
-    category: Category.Design,
     icon: SiKrita,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Krita.Krita --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask krita",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install krita",
+      },
+    ],
   },
   {
     id: "39",
     title: "Blender",
-    category: Category.Design,
     icon: SiBlender,
+    category: Category.Design,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=BlenderFoundation.Blender --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask blender",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install blender",
+      },
+    ],
   },
   {
     id: "40",
     title: "OpenOffice",
-    category: Category.Miscellaneous,
     icon: SiApacheopenoffice,
+    category: Category.Miscellaneous,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=Apache.OpenOffice --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask apache-openoffice",
+      },
+    ],
   },
   {
     id: "41",
     title: "LibreOffice",
-    category: Category.Miscellaneous,
     icon: SiLibreoffice,
+    category: Category.Miscellaneous,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand:
+          "winget install --id=TheDocumentFoundation.LibreOffice --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask libreoffice",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo apt install libreoffice",
+      },
+    ],
   },
   {
     id: "42",
     title: "DBeaver",
-    category: Category.Data,
     icon: SiDbeaver,
+    category: Category.Data,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=DBeaver.DBeaver --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask dbeaver-community",
+      },
+      {
+        os: OperatingSystem.Ubuntu,
+        packageManager: PackageManager.APT,
+        installCommand: "sudo snap install dbeaver-ce",
+      },
+    ],
   },
   {
     id: "43",
     title: "Arc",
-    category: Category.Browser,
     icon: SiArc,
+    category: Category.Browser,
+    installationMethods: [
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Winget,
+        installCommand: "winget install --id=TheArcBrowser.Arc --source winget",
+      },
+      {
+        os: OperatingSystem.MacOS,
+        packageManager: PackageManager.Homebrew,
+        installCommand: "brew install --cask arc-browser",
+      },
+    ],
   },
 ];
 
@@ -383,12 +1028,4 @@ export const profiles: Profile[] = [
     relevantApplications: [],
     image: "/avatars/avatar-8.jpg",
   },
-];
-
-export const parallaxImages: ParallaxImage[] = [
-  { id: "image1", iconSrc: "/l1.svg", depth: 1 },
-  { id: "image2", iconSrc: "/l2.svg", depth: 2 },
-  { id: "image3", iconSrc: "/l3.svg", depth: 3 },
-  { id: "image4", iconSrc: "/l4.svg", depth: 4 },
-  { id: "image5", iconSrc: "/l5.svg", depth: 5 },
 ];

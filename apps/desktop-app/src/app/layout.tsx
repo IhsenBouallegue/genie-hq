@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@geniehq/ui/globals.css";
-import { ThemeProvider } from "@/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@geniehq/ui/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
