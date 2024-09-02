@@ -1,18 +1,24 @@
 import { useStore } from "@/lib/store/useStore";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
-import { PlusIcon } from "lucide-react";
+import { Category } from "@geniehq/ui/lib/store/types";
 import ApplicationCard from "@geniehq/ui/setup-configurator/application-card";
 import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
-import { Category } from "@geniehq/ui/lib/store/types";
+import { PlusIcon } from "lucide-react";
 export default function SetupStepApplications() {
+  const selectedPackageManager = useStore(
+    (state) => state.currentPackageManager,
+  );
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);
   const toggleApplication = useStore((state) => state.toggleApplication);
-  const selectedApplicationIds = useStore((state) =>
-    state.selectedApplicationIds,
+  const selectedApplicationIds = useStore(
+    (state) => state.selectedApplicationIds,
   );
+  if (!selectedPackageManager) {
+    return null;
+  }
   return (
     <StepContainer>
       <StepTitle>What do you like to install?</StepTitle>
@@ -36,11 +42,20 @@ export default function SetupStepApplications() {
               enableHover
             >
               {applications
+                .filter((application) =>
+                  application.installationMethods
+                    .map((method) => method.packageManager)
+                    .includes(selectedPackageManager),
+                )
                 .filter((application) => application.category === category)
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((application, index) => (
                   <div key={application.id} data-id={`card-${index}`}>
-                    <ApplicationCard {...application} onToggle={toggleApplication} selectedApplicationIds={selectedApplicationIds} />
+                    <ApplicationCard
+                      {...application}
+                      onToggle={toggleApplication}
+                      selectedApplicationIds={selectedApplicationIds}
+                    />
                   </div>
                 ))}
             </AnimatedBackground>

@@ -1,26 +1,68 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "default",
+  "identifier": "main-capability",
   "description": "Capability for the main window",
-  "windows": ["main"],
+  "windows": [
+    "main"
+  ],
   "permissions": [
-    "core:app:default",
-    "shell:allow-open",
     {
       "identifier": "shell:allow-execute",
       "allow": [
         {
-          "name": "exec-sh",
-          "cmd": "sh",
+          "name": "brew",
+          "cmd": "brew",
           "args": [
-            "-c",
+            "install",
             {
-              "validator": "^.*$"
+              "validator": "\\S+"
             }
+          ],
+          "sidecar": false
+        },
+        {
+          "name": "apt",
+          "cmd": "sudo",
+          "args": [
+            "apt-get",
+            "install",
+            "-y",
+            {
+              "validator": "\\S+"
+            }
+          ],
+          "sidecar": false
+        },
+        {
+          "name": "scoop",
+          "cmd": "scoop",
+          "args": [
+            "install",
+            {
+              "validator": "\\S+"
+            }
+          ],
+          "sidecar": false
+        },
+        {
+          "name": "winget",
+          "cmd": "winget",
+          "args": [
+            "install",
+            "--id",
+            {
+              "validator": "\\S+"
+            },
+            "--silent",
+            "--exact",
+            "--source",
+            "winget"
           ],
           "sidecar": false
         }
       ]
-    }
+    },
+    "os:default",
+    "os:default"
   ]
 }

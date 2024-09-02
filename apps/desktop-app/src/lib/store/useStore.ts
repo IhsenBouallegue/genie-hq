@@ -1,12 +1,16 @@
 import { applications, profiles } from "@geniehq/ui/lib/store/data";
-import type {
-  Application,
-  ApplicationId,
-  Profile,
-  ProfileId,
+import {
+  type Application,
+  type ApplicationId,
+  type OperatingSystem,
+  type PackageManager,
+  type Profile,
+  type ProfileId,
+  supportedPackageManagerForOS,
 } from "@geniehq/ui/lib/store/types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { detectOSType } from "../logic";
 
 type State = {
   openSteps: string[];
@@ -15,6 +19,8 @@ type State = {
   selectedProfile: ProfileId | null;
   customApplicationIds: ApplicationId[];
   selectedApplicationIds: ApplicationId[];
+  currentOS: OperatingSystem | null;
+  currentPackageManager: PackageManager | null;
 };
 
 type Actions = {
@@ -23,6 +29,8 @@ type Actions = {
   addApplication: (application: Application) => void;
   selectProfile: (profileId: ProfileId) => void;
   toggleApplication: (applicationId: ApplicationId) => void;
+  setCurrentOS: () => void; // New action to set current OS
+  setCurrentPackageManager: (pm: PackageManager) => void; // New action to set package manager
   getSelectedProfile: () => Profile | null;
   getSelectedApplications: () => Application[];
 };
@@ -37,6 +45,8 @@ export const useStore = create<State & Actions>()(
     selectedProfile: null,
     customApplicationIds: [],
     selectedApplicationIds: [],
+    currentOS: null,
+    currentPackageManager: null,
     setOpenSteps: (steps: string[]) =>
       set((state) => {
         state.openSteps = steps;
@@ -67,15 +77,21 @@ export const useStore = create<State & Actions>()(
       set((state) => {
         const index = state.selectedApplicationIds.indexOf(applicationId);
         if (index > -1) {
-          // Remove application
           state.selectedApplicationIds.splice(index, 1);
         } else {
-          // Add application
           state.selectedApplicationIds.push(applicationId);
-          if (!state.selectedProfile) {
-            state.selectedProfile = "custom";
-          }
+          if (!state.selectedProfile) state.selectedProfile = "custom";
         }
+      }),
+    setCurrentOS: async () => {
+      const os = await detectOSType();
+      set((state) => {
+        state.currentOS = os;
+      });
+    },
+    setCurrentPackageManager: (pm: PackageManager) =>
+      set((state) => {
+        state.currentPackageManager = pm;
       }),
     getSelectedProfile: () => {
       const state = get();

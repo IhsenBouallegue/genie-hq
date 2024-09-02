@@ -61,18 +61,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=Microsoft.VisualStudioCode --source winget",
+        packageId: "Microsoft.VisualStudioCode",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask visual-studio-code",
+        packageId: "visual-studio-code",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install code",
+        packageId: "code",
       },
     ],
   },
@@ -85,17 +84,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Jupyter.Jupyter --source winget",
+        packageId: "Jupyter.Jupyter",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install jupyter",
+        packageId: "jupyter",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install jupyter-notebook",
+        packageId: "jupyter-notebook",
       },
     ],
   },
@@ -108,12 +107,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Adobe.Photoshop --source winget",
+        packageId: "Adobe.Photoshop",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask adobe-photoshop",
+        packageId: "adobe-photoshop",
       },
     ],
   },
@@ -126,21 +125,26 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=Arduino.ArduinoIDE --source winget",
+        packageId: "ArduinoSA.IDE.stable",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask arduino",
+        packageId: "arduino",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install arduino",
+        packageId: "arduino",
+      },
+      {
+        os: OperatingSystem.Windows,
+        packageManager: PackageManager.Scoop,
+        packageId: "extras/arduino",
       },
     ],
   },
+
   {
     id: "5",
     title: "Slack",
@@ -150,18 +154,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=SlackTechnologies.Slack --source winget",
+        packageId: "SlackTechnologies.Slack",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask slack",
+        packageId: "slack",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install slack --classic",
+        packageId: "slack-desktop",
       },
     ],
   },
@@ -174,17 +177,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Git.Git --source winget",
+        packageId: "Git.Git",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install git",
+        packageId: "git",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install git",
+        packageId: "git",
       },
     ],
   },
@@ -197,12 +200,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Tableau.Tableau --source winget",
+        packageId: "Tableau.Tableau",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask tableau",
+        packageId: "tableau",
       },
     ],
   },
@@ -215,7 +218,7 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask sketch",
+        packageId: "sketch",
       },
     ],
   },
@@ -228,17 +231,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Python.Python.3 --source winget",
+        packageId: "Python.Python.3",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install python",
+        packageId: "python",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install python3",
+        packageId: "python3",
       },
     ],
   },
@@ -251,17 +254,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Oracle.JavaJDK --source winget",
+        packageId: "Oracle.JavaJDK",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install openjdk",
+        packageId: "openjdk",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install default-jdk",
+        packageId: "default-jdk",
       },
     ],
   },
@@ -274,18 +277,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=Microsoft.VisualStudioCommunity --source winget",
+        packageId: "Microsoft.VisualStudioCommunity",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install gcc",
+        packageId: "gcc",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install g++",
+        packageId: "g++",
       },
     ],
   },
@@ -298,13 +300,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=JetBrains.PyCharm.Community --source winget",
+        packageId: "JetBrains.PyCharm.Community",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask pycharm-ce",
+        packageId: "pycharm-ce",
       },
     ],
   },
@@ -317,13 +318,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=JetBrains.IntelliJIDEA.Community --source winget",
+        packageId: "JetBrains.IntelliJIDEA.Community",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask intellij-idea-ce",
+        packageId: "intellij-idea-ce",
       },
     ],
   },
@@ -336,13 +336,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=EclipseFoundation.EclipseIDE --source winget",
+        packageId: "EclipseFoundation.EclipseIDE",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask eclipse-java",
+        packageId: "eclipse-java",
       },
     ],
   },
@@ -355,7 +354,7 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Microsoft.PowerBI --source winget",
+        packageId: "Microsoft.PowerBI",
       },
     ],
   },
@@ -368,12 +367,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask figma",
+        packageId: "figma",
       },
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Figma.Figma --source winget",
+        packageId: "Figma.Figma",
       },
     ],
   },
@@ -386,17 +385,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Google.Chrome --source winget",
+        packageId: "Google.Chrome",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask google-chrome",
+        packageId: "google-chrome",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install google-chrome-stable",
+        packageId: "google-chrome-stable",
       },
     ],
   },
@@ -409,17 +408,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Mozilla.Firefox --source winget",
+        packageId: "Mozilla.Firefox",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask firefox",
+        packageId: "firefox",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install firefox",
+        packageId: "firefox",
       },
     ],
   },
@@ -432,7 +431,7 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask safari",
+        packageId: "safari",
       },
     ],
   },
@@ -445,17 +444,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Opera.Opera --source winget",
+        packageId: "Opera.Opera",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask opera",
+        packageId: "opera",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install opera",
+        packageId: "opera-stable",
       },
     ],
   },
@@ -468,12 +467,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Microsoft.Edge --source winget",
+        packageId: "Microsoft.Edge",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask microsoft-edge",
+        packageId: "microsoft-edge",
       },
     ],
   },
@@ -486,18 +485,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=BraveSoftware.BraveBrowser --source winget",
+        packageId: "BraveSoftware.BraveBrowser",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask brave-browser",
+        packageId: "brave-browser",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install brave-browser",
+        packageId: "brave-browser",
       },
     ],
   },
@@ -510,18 +508,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=VivaldiTechnologies.Vivaldi --source winget",
+        packageId: "VivaldiTechnologies.Vivaldi",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask vivaldi",
+        packageId: "vivaldi",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install vivaldi-stable",
+        packageId: "vivaldi-stable",
       },
     ],
   },
@@ -534,18 +531,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=TheTorProject.TorBrowser --source winget",
+        packageId: "TheTorProject.TorBrowser",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask tor-browser",
+        packageId: "tor-browser",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install torbrowser-launcher",
+        packageId: "torbrowser-launcher",
       },
     ],
   },
@@ -558,17 +554,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Postman.Postman --source winget",
+        packageId: "Postman.Postman",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask postman",
+        packageId: "postman",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install postman",
+        packageId: "postman",
       },
     ],
   },
@@ -581,13 +577,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=MongoDB.MongoDBCompass --source winget",
+        packageId: "MongoDB.MongoDBCompass",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask mongodb-compass",
+        packageId: "mongodb-compass",
       },
     ],
   },
@@ -600,17 +595,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Anaconda.Anaconda --source winget",
+        packageId: "Anaconda.Anaconda",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask anaconda",
+        packageId: "anaconda",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install anaconda", // Assuming there's a custom PPA, as Anaconda isn't directly in default APT repositories
+        packageId: "anaconda", // Note: Anaconda is typically installed via an installer script, not APT
       },
     ],
   },
@@ -623,17 +618,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Zoom.Zoom --source winget",
+        packageId: "Zoom.Zoom",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask zoom",
+        packageId: "zoom",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install zoom-client",
+        packageId: "zoom-client",
       },
     ],
   },
@@ -646,12 +641,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Notion.Notion --source winget",
+        packageId: "Notion.Notion",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask notion",
+        packageId: "notion",
       },
     ],
   },
@@ -664,30 +659,30 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Adobe.Illustrator --source winget",
+        packageId: "Adobe.Illustrator",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask adobe-illustrator",
+        packageId: "adobe-illustrator",
       },
     ],
   },
   {
     id: "31",
-    title: "Adobe Premiere",
+    title: "Adobe Premiere Pro",
     icon: SiAdobepremierepro,
     category: Category.Design,
     installationMethods: [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Adobe.PremierePro --source winget",
+        packageId: "Adobe.PremierePro",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask adobe-premiere-pro",
+        packageId: "adobe-premiere-pro",
       },
     ],
   },
@@ -700,17 +695,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Spotify.Spotify --source winget",
+        packageId: "Spotify.Spotify",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask spotify",
+        packageId: "spotify",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install spotify",
+        packageId: "spotify-client",
       },
     ],
   },
@@ -723,17 +718,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=VideoLAN.VLC --source winget",
+        packageId: "VideoLAN.VLC",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask vlc",
+        packageId: "vlc",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install vlc",
+        packageId: "vlc",
       },
     ],
   },
@@ -746,17 +741,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Discord.Discord --source winget",
+        packageId: "Discord.Discord",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask discord",
+        packageId: "discord",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install discord",
+        packageId: "discord",
       },
     ],
   },
@@ -769,12 +764,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Evernote.Evernote --source winget",
+        packageId: "Evernote.Evernote",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask evernote",
+        packageId: "evernote",
       },
     ],
   },
@@ -787,18 +782,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=Mozilla.Thunderbird --source winget",
+        packageId: "Mozilla.Thunderbird",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask thunderbird",
+        packageId: "thunderbird",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install thunderbird",
+        packageId: "thunderbird",
       },
     ],
   },
@@ -811,17 +805,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Skype.Skype --source winget",
+        packageId: "Skype.Skype",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask skype",
+        packageId: "skype",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install skype --classic",
+        packageId: "skypeforlinux",
       },
     ],
   },
@@ -834,17 +828,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Krita.Krita --source winget",
+        packageId: "Krita.Krita",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask krita",
+        packageId: "krita",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install krita",
+        packageId: "krita",
       },
     ],
   },
@@ -857,18 +851,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=BlenderFoundation.Blender --source winget",
+        packageId: "BlenderFoundation.Blender",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask blender",
+        packageId: "blender",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install blender",
+        packageId: "blender",
       },
     ],
   },
@@ -881,12 +874,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=Apache.OpenOffice --source winget",
+        packageId: "Apache.OpenOffice",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask apache-openoffice",
+        packageId: "openoffice",
       },
     ],
   },
@@ -899,18 +892,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand:
-          "winget install --id=TheDocumentFoundation.LibreOffice --source winget",
+        packageId: "TheDocumentFoundation.LibreOffice",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask libreoffice",
+        packageId: "libreoffice",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo apt install libreoffice",
+        packageId: "libreoffice",
       },
     ],
   },
@@ -923,17 +915,17 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=DBeaver.DBeaver --source winget",
+        packageId: "DBeaver.DBeaver",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask dbeaver-community",
+        packageId: "dbeaver-community",
       },
       {
         os: OperatingSystem.Ubuntu,
         packageManager: PackageManager.APT,
-        installCommand: "sudo snap install dbeaver-ce",
+        packageId: "dbeaver-ce",
       },
     ],
   },
@@ -946,12 +938,12 @@ export const applications: Application[] = [
       {
         os: OperatingSystem.Windows,
         packageManager: PackageManager.Winget,
-        installCommand: "winget install --id=TheArcBrowser.Arc --source winget",
+        packageId: "TheArcBrowser.Arc",
       },
       {
         os: OperatingSystem.MacOS,
         packageManager: PackageManager.Homebrew,
-        installCommand: "brew install --cask arc-browser",
+        packageId: "arc-browser",
       },
     ],
   },

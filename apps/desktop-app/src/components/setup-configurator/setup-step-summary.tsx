@@ -1,15 +1,20 @@
 "use client";
 
+import { handleSequentialInstallations } from "@/lib/logic";
 import { useStore } from "@/lib/store/useStore";
+import { Button } from "@geniehq/ui/components/button";
 import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
 import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
-import { ShieldCheckIcon, UserXIcon, XIcon } from "lucide-react";
+import { ShieldCheckIcon, UserXIcon } from "lucide-react";
 import { useState } from "react";
 
 export default function SetupStepSummary() {
   const selectedProfile = useStore((state) => state.getSelectedProfile());
+  const currentPackageManager = useStore(
+    (state) => state.currentPackageManager,
+  );
   const selectedApplications = useStore((state) =>
     state.getSelectedApplications(),
   );
@@ -72,6 +77,18 @@ export default function SetupStepSummary() {
                 />
               </div>
             </div>
+            {currentPackageManager && (
+              <Button
+                onClick={() => {
+                  handleSequentialInstallations(
+                    selectedApplications,
+                    currentPackageManager,
+                  );
+                }}
+              >
+                Install
+              </Button>
+            )}
           </>
         )}
       </div>
