@@ -16,15 +16,12 @@ export default function SetupStepPackageManager() {
       setCurrentPackageManager: state.setCurrentPackageManager,
       currentPackageManager: state.currentPackageManager,
     }));
-
-  let packageManagers: PackageManagerInfo[] = [];
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    if (!currentOS) return;
-    packageManagers = Object.values(PackageManagerDetails).filter((pm) =>
-      pm.supportedOS.includes(currentOS),
-    );
-  }, []);
+  if (!currentOS) {
+    return null;
+  }
+  const packageManagers = Object.values(PackageManagerDetails).filter((pm) =>
+    pm.supportedOS.includes(currentOS),
+  );
 
   return (
     <StepContainer>
