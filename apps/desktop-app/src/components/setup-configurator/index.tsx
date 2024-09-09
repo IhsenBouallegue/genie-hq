@@ -24,8 +24,8 @@ export default function SetupConfiguratorAccordion() {
   }, []);
 
   return (
-    <section className="flex justify-center items-center p-6 w-full max-w-6xl flex-col">
-      <MotionCard className="shadow-lg w-full">
+    <section className="flex justify-center items-center w-full flex-col">
+      <MotionCard className="w-full bg-transparent">
         <CardContent className="p-8">
           <h3 className="font-semibold text-primary">Setup Configurator</h3>
           <p className="mt-3 text-3xl font-extrabold sm:text-4xl">

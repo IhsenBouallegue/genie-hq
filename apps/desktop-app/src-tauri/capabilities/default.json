@@ -33,13 +33,8 @@
         },
         {
           "name": "scoop",
-          "cmd": "scoop",
-          "args": [
-            "install",
-            {
-              "validator": "\\S+"
-            }
-          ],
+          "cmd": "C:/Users/IhsenB/scoop/shims/scoop",
+          "args": true,
           "sidecar": false
         },
         {

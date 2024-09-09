@@ -32,12 +32,16 @@ async function executeCommand(command: string[]): Promise<string> {
   if (command[0] === "" || command.length === 0 || command[0] === undefined) {
     throw new Error("Command is empty");
   }
-  const cmd = Command.create(command[0], command.slice(1));
+
+  const cmd = Command.create("scoop", "git");
 
   try {
     const result = await cmd.execute();
     return result.stdout; // assuming stdout is the desired output
   } catch (err) {
+    console.log(cmd.stdout);
+    console.log(cmd.stderr);
+
     throw new Error(`Command failed: ${err}`);
   }
 }

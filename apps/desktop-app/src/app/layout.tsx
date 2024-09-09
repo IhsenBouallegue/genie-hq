@@ -1,10 +1,10 @@
 "use client";
 
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@geniehq/ui/globals.css";
+import { AppShell } from "@/components/app-shell";
 import { ThemeProvider } from "@/components/theme-provider";
+import "@geniehq/ui/globals.css";
 import { cn } from "@geniehq/ui/lib/utils";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          <AppShell>{children}</AppShell>
         </ThemeProvider>
       </body>
     </html>
