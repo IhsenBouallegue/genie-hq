@@ -5,6 +5,7 @@ import {
 } from "@geniehq/ui/lib/store/types";
 import { platform } from "@tauri-apps/plugin-os";
 import { Command } from "@tauri-apps/plugin-shell";
+
 export async function handleSequentialInstallations(
   applications: Application[],
   packageManager: PackageManager,
@@ -33,15 +34,21 @@ async function executeCommand(command: string[]): Promise<string> {
     throw new Error("Command is empty");
   }
 
-  const cmd = Command.create("scoop", "git");
+  const osType = await detectOSType();
+  let cmd: Command<string>;
+
+  if (osType === OperatingSystem.Windows) {
+    // Use PowerShell for Windows
+    cmd = Command.create("powershell", ["-Command", command.join(" ")]);
+  } else {
+    // Use sh for Linux-based systems (macOS and Ubuntu)
+    cmd = Command.create("sh", ["-c", command.join(" ")]);
+  }
 
   try {
     const result = await cmd.execute();
     return result.stdout; // assuming stdout is the desired output
   } catch (err) {
-    console.log(cmd.stdout);
-    console.log(cmd.stderr);
-
     throw new Error(`Command failed: ${err}`);
   }
 }
