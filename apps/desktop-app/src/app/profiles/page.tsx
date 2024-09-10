@@ -1,3 +1,9 @@
+import Group from "@/components/group";
+
 export default function Profiles() {
-  return <div>Profiles</div>;
+  return (
+    <div>
+      <Group label="Profiles">Something</Group>
+    </div>
+  );
 }

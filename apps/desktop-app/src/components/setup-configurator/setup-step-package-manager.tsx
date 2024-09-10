@@ -1,13 +1,8 @@
 import { useStore } from "@/lib/store/useStore";
-import {
-  PackageManagerDetails,
-  type PackageManagerInfo,
-} from "@geniehq/ui/lib/store/types";
-import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
+import { PackageManagerDetails } from "@geniehq/ui/lib/store/types";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
-import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
 import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
-import { useEffect } from "react";
+import Group from "../group";
 
 export default function SetupStepPackageManager() {
   const { currentOS, setCurrentPackageManager, currentPackageManager } =
@@ -24,8 +19,7 @@ export default function SetupStepPackageManager() {
   );
 
   return (
-    <StepContainer>
-      <StepTitle>Select Your Package Manager</StepTitle>
+    <Group label="Select Your Package Manager">
       <StepDescription>
         Choose the package manager you wish to use for installation based on
         your operating system: {currentOS}
@@ -42,6 +36,6 @@ export default function SetupStepPackageManager() {
           />
         ))}
       </div>
-    </StepContainer>
+    </Group>
   );
 }

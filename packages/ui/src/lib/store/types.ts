@@ -1,5 +1,11 @@
 import type { IconType } from "@icons-pack/react-simple-icons";
-import { AppWindow, AppWindowMac, AppleIcon, CoffeeIcon } from "lucide-react";
+import {
+  AppWindow,
+  AppWindowMac,
+  AppleIcon,
+  CoffeeIcon,
+  IceCreamBowlIcon,
+} from "lucide-react";
 
 export type ApplicationId = string;
 export type ProfileId = string;
@@ -72,7 +78,7 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
       name: PackageManager.Scoop,
       description: "A command-line installer for Windows.",
       supportedOS: [OperatingSystem.Windows],
-      icon: AppleIcon,
+      icon: IceCreamBowlIcon,
     },
     [PackageManager.Winget]: {
       name: PackageManager.Winget,

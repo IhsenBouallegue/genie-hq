@@ -5,29 +5,49 @@ import {
 } from "@geniehq/ui/lib/store/types";
 import { platform } from "@tauri-apps/plugin-os";
 import { Command } from "@tauri-apps/plugin-shell";
+import { useInstallationStore } from "./store/useInstallationStore";
 
 export async function handleSequentialInstallations(
   applications: Application[],
   packageManager: PackageManager,
 ): Promise<void> {
+  const installStore = useInstallationStore.getState(); // Access the installation store
+  const appIds = applications.map((app) => app.id);
+
   for (const application of applications) {
     try {
       const command = await getInstallationCommand(application, packageManager);
-      const output = await executeCommand(command);
+
+      // If in development mode, simulate installation
+      const output =
+        process.env.NODE_ENV === "development"
+          ? await fakeExecuteCommand(command)
+          : await executeCommand(command);
+
       console.log(`Installation successful for ${application.title}:`, output);
-      alert(`Installation successful for ${application.title}`);
+
+      // Mark as completed
+      installStore.markAppAsCompleted(application.id);
     } catch (error) {
       if (error instanceof Error) {
         console.error(`Installation failed for ${application.title}:`, error);
-        alert(`Installation failed for ${application.title}: ${error.message}`);
+        // Mark as failed
+        installStore.markAppAsFailed(application.id, error.message);
       } else {
         console.error("Installation failed due to an unknown error:", error);
-        alert("Installation failed due to an unknown error.");
+        installStore.markAppAsFailed(application.id, "Unknown error");
       }
     }
+
+    // Update the progress in the UI
+    installStore.updateProgress();
   }
+
+  // Finish the installation process
+  installStore.finishInstallation();
 }
 
+// Real command execution
 async function executeCommand(command: string[]): Promise<string> {
   console.log(`Executing command: ${command.join(" ")}`);
   if (command[0] === "" || command.length === 0 || command[0] === undefined) {
@@ -51,6 +71,22 @@ async function executeCommand(command: string[]): Promise<string> {
   } catch (err) {
     throw new Error(`Command failed: ${err}`);
   }
+}
+
+// Fake command execution for development
+async function fakeExecuteCommand(command: string[]): Promise<string> {
+  console.log(`Simulating execution of command: ${command.join(" ")}`);
+  return new Promise((resolve, reject) => {
+    // Simulate a delay (e.g., 1 second)
+    setTimeout(() => {
+      // Random success or failure
+      if (Math.random() > 0.2) {
+        resolve("Simulated installation successful");
+      } else {
+        reject(new Error("Simulated installation failed"));
+      }
+    }, 2000);
+  });
 }
 
 async function getInstallationCommand(
