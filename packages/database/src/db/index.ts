@@ -1,9 +1,7 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-const client = postgres(
-  "postgresql://postgres.vrguglpfvwdntzctmums:4n4Ws-r_6FSe-g$@aws-0-eu-central-1.pooler.supabase.com:6543/postgres",
-);
+const client = postgres(process.env.DATABASE_URL || "");
 export const db = drizzle(client);
 
 export const SCOOPSEARCH_URL = process.env.SCOOPSEARCH_URL;
