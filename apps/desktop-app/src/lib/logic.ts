@@ -12,7 +12,6 @@ export async function handleSequentialInstallations(
   packageManager: PackageManager,
 ): Promise<void> {
   const installStore = useInstallationStore.getState(); // Access the installation store
-  const appIds = applications.map((app) => app.id);
 
   for (const application of applications) {
     try {
@@ -48,7 +47,7 @@ export async function handleSequentialInstallations(
 }
 
 // Real command execution
-async function executeCommand(command: string[]): Promise<string> {
+export async function executeCommand(command: string[]): Promise<string> {
   console.log(`Executing command: ${command.join(" ")}`);
   if (command[0] === "" || command.length === 0 || command[0] === undefined) {
     throw new Error("Command is empty");

@@ -7,7 +7,7 @@ import { PlusIcon } from "lucide-react";
 import Group from "../group";
 export default function SetupStepApplications() {
   const selectedPackageManager = useStore(
-    (state) => state.currentPackageManager,
+    (state) => state.currentPackageManagerInfo,
   );
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);
@@ -43,7 +43,7 @@ export default function SetupStepApplications() {
                 .filter((application) =>
                   application.installationMethods
                     .map((method) => method.packageManager)
-                    .includes(selectedPackageManager),
+                    .includes(selectedPackageManager.name),
                 )
                 .filter((application) => application.category === category)
                 .sort((a, b) => a.title.localeCompare(b.title))

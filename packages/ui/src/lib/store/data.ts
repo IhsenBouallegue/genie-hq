@@ -1,48 +1,5 @@
-import {
-  SiAdobeillustrator,
-  SiAdobephotoshop,
-  SiAdobepremierepro,
-  SiAnaconda,
-  SiApacheopenoffice,
-  SiArc,
-  SiArduino,
-  SiBlender,
-  SiBrave,
-  SiCplusplus,
-  SiDbeaver,
-  SiDiscord,
-  SiEclipseide,
-  SiEvernote,
-  SiFigma,
-  SiFirefox,
-  SiGit,
-  SiGooglechrome,
-  SiIntellijidea,
-  SiJavascript,
-  SiJupyter,
-  SiKrita,
-  SiLibreoffice,
-  SiMicrosoftedge,
-  SiMongodb,
-  SiNotion,
-  SiOpera,
-  SiPostman,
-  SiPowerbi,
-  SiPycharm,
-  SiPython,
-  SiSafari,
-  SiSketch,
-  SiSkype,
-  SiSlack,
-  SiSpotify,
-  SiTableau,
-  SiThunderbird,
-  SiTorbrowser,
-  SiVisualstudiocode,
-  SiVivaldi,
-  SiVlcmediaplayer,
-  SiZoom,
-} from "@icons-pack/react-simple-icons";
+// data.ts
+
 import {
   type Application,
   Category,
@@ -50,12 +7,14 @@ import {
   PackageManager,
   type Profile,
 } from "../store/types";
+import { IconId } from "./icons"; // Import IconId
 
+// Step 1: Define the application data
 export const applications: Application[] = [
   {
     id: "1",
     title: "Visual Studio Code",
-    icon: SiVisualstudiocode,
+    icon: IconId.VisualStudioCode,
     category: Category.Code,
     installationMethods: [
       {
@@ -78,7 +37,7 @@ export const applications: Application[] = [
   {
     id: "2",
     title: "Jupyter Notebook",
-    icon: SiJupyter,
+    icon: IconId.JupyterNotebook,
     category: Category.Data,
     installationMethods: [
       {
@@ -101,7 +60,7 @@ export const applications: Application[] = [
   {
     id: "3",
     title: "Adobe Photoshop",
-    icon: SiAdobephotoshop,
+    icon: IconId.AdobePhotoshop,
     category: Category.Design,
     installationMethods: [
       {
@@ -119,7 +78,7 @@ export const applications: Application[] = [
   {
     id: "4",
     title: "Arduino IDE",
-    icon: SiArduino,
+    icon: IconId.ArduinoIDE,
     category: Category.Code,
     installationMethods: [
       {
@@ -144,11 +103,10 @@ export const applications: Application[] = [
       },
     ],
   },
-
   {
     id: "5",
     title: "Slack",
-    icon: SiSlack,
+    icon: IconId.Slack,
     category: Category.Communication,
     installationMethods: [
       {
@@ -171,7 +129,7 @@ export const applications: Application[] = [
   {
     id: "6",
     title: "Git",
-    icon: SiGit,
+    icon: IconId.Git,
     category: Category.Code,
     installationMethods: [
       {
@@ -194,7 +152,7 @@ export const applications: Application[] = [
   {
     id: "7",
     title: "Tableau",
-    icon: SiTableau,
+    icon: IconId.Tableau,
     category: Category.Data,
     installationMethods: [
       {
@@ -212,7 +170,7 @@ export const applications: Application[] = [
   {
     id: "8",
     title: "Sketch",
-    icon: SiSketch,
+    icon: IconId.Sketch,
     category: Category.Design,
     installationMethods: [
       {
@@ -225,7 +183,7 @@ export const applications: Application[] = [
   {
     id: "9",
     title: "Python (latest)",
-    icon: SiPython,
+    icon: IconId.Python,
     category: Category.Code,
     installationMethods: [
       {
@@ -248,7 +206,7 @@ export const applications: Application[] = [
   {
     id: "10",
     title: "Java (JDK) (latest)",
-    icon: SiJavascript,
+    icon: IconId.Java,
     category: Category.Code,
     installationMethods: [
       {
@@ -271,7 +229,7 @@ export const applications: Application[] = [
   {
     id: "11",
     title: "C++ (latest)",
-    icon: SiCplusplus,
+    icon: IconId.CPlusPlus,
     category: Category.Code,
     installationMethods: [
       {
@@ -294,7 +252,7 @@ export const applications: Application[] = [
   {
     id: "12",
     title: "PyCharm",
-    icon: SiPycharm,
+    icon: IconId.PyCharm,
     category: Category.Code,
     installationMethods: [
       {
@@ -312,7 +270,7 @@ export const applications: Application[] = [
   {
     id: "13",
     title: "IntelliJ IDEA",
-    icon: SiIntellijidea,
+    icon: IconId.IntelliJIDEA,
     category: Category.Code,
     installationMethods: [
       {
@@ -330,7 +288,7 @@ export const applications: Application[] = [
   {
     id: "14",
     title: "Eclipse",
-    icon: SiEclipseide,
+    icon: IconId.Eclipse,
     category: Category.Code,
     installationMethods: [
       {
@@ -348,7 +306,7 @@ export const applications: Application[] = [
   {
     id: "15",
     title: "Power BI",
-    icon: SiPowerbi,
+    icon: IconId.PowerBI,
     category: Category.Data,
     installationMethods: [
       {
@@ -361,7 +319,7 @@ export const applications: Application[] = [
   {
     id: "16",
     title: "Figma",
-    icon: SiFigma,
+    icon: IconId.Figma,
     category: Category.Design,
     installationMethods: [
       {
@@ -379,7 +337,7 @@ export const applications: Application[] = [
   {
     id: "17",
     title: "Google Chrome",
-    icon: SiGooglechrome,
+    icon: IconId.GoogleChrome,
     category: Category.Browser,
     installationMethods: [
       {
@@ -402,7 +360,7 @@ export const applications: Application[] = [
   {
     id: "18",
     title: "Firefox",
-    icon: SiFirefox,
+    icon: IconId.Firefox,
     category: Category.Browser,
     installationMethods: [
       {
@@ -425,7 +383,7 @@ export const applications: Application[] = [
   {
     id: "19",
     title: "Safari",
-    icon: SiSafari,
+    icon: IconId.Safari,
     category: Category.Browser,
     installationMethods: [
       {
@@ -438,7 +396,7 @@ export const applications: Application[] = [
   {
     id: "20",
     title: "Opera",
-    icon: SiOpera,
+    icon: IconId.Opera,
     category: Category.Browser,
     installationMethods: [
       {
@@ -461,7 +419,7 @@ export const applications: Application[] = [
   {
     id: "21",
     title: "Microsoft Edge",
-    icon: SiMicrosoftedge,
+    icon: IconId.MicrosoftEdge,
     category: Category.Browser,
     installationMethods: [
       {
@@ -479,7 +437,7 @@ export const applications: Application[] = [
   {
     id: "22",
     title: "Brave",
-    icon: SiBrave,
+    icon: IconId.Brave,
     category: Category.Browser,
     installationMethods: [
       {
@@ -502,7 +460,7 @@ export const applications: Application[] = [
   {
     id: "23",
     title: "Vivaldi",
-    icon: SiVivaldi,
+    icon: IconId.Vivaldi,
     category: Category.Browser,
     installationMethods: [
       {
@@ -525,7 +483,7 @@ export const applications: Application[] = [
   {
     id: "24",
     title: "Tor Browser",
-    icon: SiTorbrowser,
+    icon: IconId.TorBrowser,
     category: Category.Browser,
     installationMethods: [
       {
@@ -548,7 +506,7 @@ export const applications: Application[] = [
   {
     id: "25",
     title: "Postman",
-    icon: SiPostman,
+    icon: IconId.Postman,
     category: Category.Code,
     installationMethods: [
       {
@@ -571,7 +529,7 @@ export const applications: Application[] = [
   {
     id: "26",
     title: "MongoDB Compass",
-    icon: SiMongodb,
+    icon: IconId.MongoDBCompass,
     category: Category.Data,
     installationMethods: [
       {
@@ -589,7 +547,7 @@ export const applications: Application[] = [
   {
     id: "27",
     title: "Anaconda",
-    icon: SiAnaconda,
+    icon: IconId.Anaconda,
     category: Category.Data,
     installationMethods: [
       {
@@ -612,7 +570,7 @@ export const applications: Application[] = [
   {
     id: "28",
     title: "Zoom",
-    icon: SiZoom,
+    icon: IconId.Zoom,
     category: Category.Communication,
     installationMethods: [
       {
@@ -635,7 +593,7 @@ export const applications: Application[] = [
   {
     id: "29",
     title: "Notion",
-    icon: SiNotion,
+    icon: IconId.Notion,
     category: Category.Communication,
     installationMethods: [
       {
@@ -653,7 +611,7 @@ export const applications: Application[] = [
   {
     id: "30",
     title: "Adobe Illustrator",
-    icon: SiAdobeillustrator,
+    icon: IconId.AdobeIllustrator,
     category: Category.Design,
     installationMethods: [
       {
@@ -671,7 +629,7 @@ export const applications: Application[] = [
   {
     id: "31",
     title: "Adobe Premiere Pro",
-    icon: SiAdobepremierepro,
+    icon: IconId.AdobePremierePro,
     category: Category.Design,
     installationMethods: [
       {
@@ -689,7 +647,7 @@ export const applications: Application[] = [
   {
     id: "32",
     title: "Spotify",
-    icon: SiSpotify,
+    icon: IconId.Spotify,
     category: Category.Miscellaneous,
     installationMethods: [
       {
@@ -712,7 +670,7 @@ export const applications: Application[] = [
   {
     id: "33",
     title: "VLC Media Player",
-    icon: SiVlcmediaplayer,
+    icon: IconId.VLCMediaPlayer,
     category: Category.Miscellaneous,
     installationMethods: [
       {
@@ -735,7 +693,7 @@ export const applications: Application[] = [
   {
     id: "34",
     title: "Discord",
-    icon: SiDiscord,
+    icon: IconId.Discord,
     category: Category.Miscellaneous,
     installationMethods: [
       {
@@ -758,7 +716,7 @@ export const applications: Application[] = [
   {
     id: "35",
     title: "Evernote",
-    icon: SiEvernote,
+    icon: IconId.Evernote,
     category: Category.Miscellaneous,
     installationMethods: [
       {
@@ -776,7 +734,7 @@ export const applications: Application[] = [
   {
     id: "36",
     title: "Thunderbird",
-    icon: SiThunderbird,
+    icon: IconId.Thunderbird,
     category: Category.Communication,
     installationMethods: [
       {
@@ -799,7 +757,7 @@ export const applications: Application[] = [
   {
     id: "37",
     title: "Skype",
-    icon: SiSkype,
+    icon: IconId.Skype,
     category: Category.Communication,
     installationMethods: [
       {
@@ -822,7 +780,7 @@ export const applications: Application[] = [
   {
     id: "38",
     title: "Krita",
-    icon: SiKrita,
+    icon: IconId.Krita,
     category: Category.Design,
     installationMethods: [
       {
@@ -845,7 +803,7 @@ export const applications: Application[] = [
   {
     id: "39",
     title: "Blender",
-    icon: SiBlender,
+    icon: IconId.Blender,
     category: Category.Design,
     installationMethods: [
       {
@@ -868,7 +826,7 @@ export const applications: Application[] = [
   {
     id: "40",
     title: "OpenOffice",
-    icon: SiApacheopenoffice,
+    icon: IconId.OpenOffice,
     category: Category.Miscellaneous,
     installationMethods: [
       {
@@ -886,7 +844,7 @@ export const applications: Application[] = [
   {
     id: "41",
     title: "LibreOffice",
-    icon: SiLibreoffice,
+    icon: IconId.LibreOffice,
     category: Category.Miscellaneous,
     installationMethods: [
       {
@@ -909,7 +867,7 @@ export const applications: Application[] = [
   {
     id: "42",
     title: "DBeaver",
-    icon: SiDbeaver,
+    icon: IconId.DBeaver,
     category: Category.Data,
     installationMethods: [
       {
@@ -932,7 +890,7 @@ export const applications: Application[] = [
   {
     id: "43",
     title: "Arc",
-    icon: SiArc,
+    icon: IconId.Arc,
     category: Category.Browser,
     installationMethods: [
       {

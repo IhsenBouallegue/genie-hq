@@ -1,11 +1,22 @@
 "use client";
 
+import { populatePackageManagerDetails } from "@/lib/pm-logic";
+import { useStore } from "@/lib/store/useStore";
+import { useEffect } from "react";
 import Header from "./header";
 import Sidebar from "./sidebar";
 
 export function AppShell({
   children,
 }: Readonly<{ children: React.ReactNode | React.ReactNode[] }>) {
+  const setCurrentOS = useStore((state) => state.setCurrentOS);
+  const initializePackageManagers = useStore(
+    (state) => state.initializePackageManagers,
+  );
+  useEffect(() => {
+    setCurrentOS();
+    initializePackageManagers();
+  }, [setCurrentOS, initializePackageManagers]);
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">

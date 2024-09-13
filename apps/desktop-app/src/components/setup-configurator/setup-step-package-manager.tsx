@@ -9,7 +9,7 @@ export default function SetupStepPackageManager() {
     useStore((state) => ({
       currentOS: state.currentOS,
       setCurrentPackageManager: state.setCurrentPackageManager,
-      currentPackageManager: state.currentPackageManager,
+      currentPackageManager: state.currentPackageManagerInfo,
     }));
   if (!currentOS) {
     return null;
@@ -31,7 +31,7 @@ export default function SetupStepPackageManager() {
             id={pm.name}
             title={pm.name}
             icon={pm.icon}
-            isSelected={currentPackageManager === pm.name}
+            isSelected={currentPackageManager?.name === pm.name}
             onToggle={() => setCurrentPackageManager(pm.name)}
           />
         ))}
