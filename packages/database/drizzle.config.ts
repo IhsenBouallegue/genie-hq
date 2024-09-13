@@ -5,6 +5,6 @@ export default defineConfig({
   out: "./supabase/migrations",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL ? process.env.DATABASE_URL : "",
+    url: "postgresql://postgres.vrguglpfvwdntzctmums:4n4Ws-r_6FSe-g$@aws-0-eu-central-1.pooler.supabase.com:6543/postgres",
   },
 });

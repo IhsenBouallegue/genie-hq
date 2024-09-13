@@ -1,0 +1,1 @@
+ALTER TABLE "installation_methods" RENAME COLUMN "command" TO "package_id";

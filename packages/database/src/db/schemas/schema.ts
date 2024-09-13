@@ -39,7 +39,7 @@ export const installationMethodsTable = pgTable("installation_methods", {
   packageManagerId: integer("package_manager_id")
     .notNull()
     .references(() => packageManagersTable.id, { onDelete: "cascade" }),
-  command: text("command"), // New column for storing the complete installation command
+  packageId: text("package_id"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
