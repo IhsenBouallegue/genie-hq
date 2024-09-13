@@ -1,10 +1,9 @@
 import { useStore } from "@/lib/store/useStore";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
-import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
-import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
 
 import ProfileCard from "@geniehq/ui/setup-configurator/profile-card";
+import Group from "../group";
 
 export default function SetupStepProfile() {
   const profiles = useStore((state) => Object.values(state.profiles));
@@ -12,8 +11,7 @@ export default function SetupStepProfile() {
   const currentProfileId = useStore((state) => state.selectedProfile);
 
   return (
-    <StepContainer>
-      <StepTitle>Who are you?</StepTitle>
+    <Group label="Who are you?">
       <StepDescription>
         Based on this profile we will help you select apps you might need.
       </StepDescription>
@@ -29,12 +27,15 @@ export default function SetupStepProfile() {
         >
           {profiles.map((profile, index) => (
             <div key={profile.id} data-id={`card-${index}`}>
-              <ProfileCard {...profile} onSelect={selectProfile} currentProfileId={currentProfileId}/>
+              <ProfileCard
+                {...profile}
+                onSelect={selectProfile}
+                currentProfileId={currentProfileId}
+              />
             </div>
           ))}
         </AnimatedBackground>
       </div>
-    </StepContainer>
+    </Group>
   );
 }
-

@@ -1,0 +1,79 @@
+import { TagWithTooltip } from "@/components/tag-with-tooltip";
+import { Badge } from "@geniehq/ui/components/badge";
+import { Button } from "@geniehq/ui/components/button";
+import type { PackageManagerInfo } from "@geniehq/ui/lib/store/types";
+import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
+import {
+  CheckCircle,
+  Download,
+  Package,
+  RefreshCw,
+  XCircle,
+} from "lucide-react";
+
+export default function PackageManagerFullCard({
+  pm,
+}: { pm: PackageManagerInfo }) {
+  return (
+    <Selectable
+      key={pm.name}
+      id={pm.name}
+      enableHover={pm.isSupported}
+      className={`${pm.isSupported ? "" : "opacity-50 cursor-not-allowed"} `}
+    >
+      <div className="flex justify-between items-start mb-2">
+        <div className="flex items-center gap-2">
+          <Package className="w-6 h-6 text-primary" />
+          <h2 className="text-xl font-semibold">{pm.name}</h2>
+        </div>
+        <div className="ml-auto">
+          {pm.isSupported &&
+            (pm.status === "available" ? (
+              <Button size="sm" variant="outline">
+                <Download className="w-4 h-4 mr-1" />
+                Install
+              </Button>
+            ) : pm.status === "update-available" ? (
+              <Button size="sm" variant="outline">
+                <RefreshCw className="w-4 h-4 mr-1" />
+                Update
+              </Button>
+            ) : null)}
+        </div>
+      </div>
+      <p className="text-sm text-muted-foreground mb-2 flex-grow">
+        {pm.description}
+      </p>
+      <div className="flex flex-wrap gap-2 mt-2">
+        {pm.status === "installed" && (
+          <Badge variant="default" className="bg-green-500">
+            <CheckCircle className="w-3 h-3 mr-1" />
+            Installed
+          </Badge>
+        )}
+        {pm.status === "available" && (
+          <Badge variant="outline">
+            <Download className="w-3 h-3 mr-1" />
+            Available
+          </Badge>
+        )}
+        {pm.status === "update-available" && (
+          <Badge variant="default" className="bg-yellow-500">
+            <RefreshCw className="w-3 h-3 mr-1" />
+            Update Available
+          </Badge>
+        )}
+        {pm.tags.map((tag) => (
+          <TagWithTooltip key={tag.type} type={tag.type} value={tag.value} />
+        ))}
+        {pm.version && <TagWithTooltip type="version" value={pm.version} />}
+        {!pm.isSupported && (
+          <Badge variant="destructive">
+            <XCircle className="w-3 h-3 mr-1" />
+            Not Supported
+          </Badge>
+        )}
+      </div>
+    </Selectable>
+  );
+}

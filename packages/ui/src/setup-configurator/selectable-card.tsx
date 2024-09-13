@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { cn } from "#lib/utils";
 
@@ -40,6 +42,40 @@ export default function SelectableCard({
         </div>
       </div>
       <p className="text-sm text-wrap text-center">{title}</p>
+    </button>
+  );
+}
+
+export function Selectable({
+  id,
+  isSelected = false,
+  enableHover = true,
+  enableBorder = true,
+  className,
+  children,
+  ...rest
+}: {
+  id: string;
+  isSelected?: boolean;
+  enableHover?: boolean;
+  enableBorder?: boolean;
+  className?: string;
+  children: React.ReactElement | React.ReactElement[];
+} & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      className={cn(
+        "flex flex-col flex-1 gap-2 rounded-lg p-3 cursor-pointer transition-colors duration-300 ease-in-out",
+        isSelected ? "bg-primary/40" : "bg-transparent",
+        enableBorder && "border",
+        enableHover &&
+          (isSelected ? "hover:bg-primary/60" : "hover:bg-slate-400/20"),
+        className,
+      )}
+      {...rest}
+      type="button"
+    >
+      {children}
     </button>
   );
 }

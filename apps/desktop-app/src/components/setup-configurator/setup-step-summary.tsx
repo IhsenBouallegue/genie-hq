@@ -1,14 +1,14 @@
 "use client";
 
 import { handleSequentialInstallations } from "@/lib/logic";
+import { useInstallationStore } from "@/lib/store/useInstallationStore";
 import { useStore } from "@/lib/store/useStore";
 import { Button } from "@geniehq/ui/components/button";
-import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
-import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
 import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
 import { ShieldCheckIcon, UserXIcon } from "lucide-react";
 import { useState } from "react";
+import Group from "../group";
 
 export default function SetupStepSummary() {
   const selectedProfile = useStore((state) => state.getSelectedProfile());
@@ -18,7 +18,8 @@ export default function SetupStepSummary() {
   const selectedApplications = useStore((state) =>
     state.getSelectedApplications(),
   );
-
+  const { installationQueue, isLoading, startInstallation, queueApps } =
+    useInstallationStore((state) => state);
   const isNothingSelected =
     !selectedProfile || selectedApplications.length === 0;
 
@@ -26,8 +27,7 @@ export default function SetupStepSummary() {
   const [useAdminRights, setUseAdminRights] = useState<boolean | null>(null);
 
   return (
-    <StepContainer>
-      <StepTitle>Is this all you need?</StepTitle>
+    <Group label="Is this all you need?">
       <StepDescription>
         These apps will be installed by GenieHQ. If you need anything else, you
         can go back and adjust your selection.
@@ -78,20 +78,37 @@ export default function SetupStepSummary() {
               </div>
             </div>
             {currentPackageManager && (
-              <Button
-                onClick={() => {
-                  handleSequentialInstallations(
-                    selectedApplications,
-                    currentPackageManager,
-                  );
-                }}
-              >
-                Install
-              </Button>
+              <>
+                <div className="flex space-x-4">
+                  <Button
+                    onClick={() => {
+                      queueApps(selectedApplications.map((app) => app.id));
+                    }}
+                    className="w-full"
+                  >
+                    Queue Apps for Installation
+                  </Button>
+                  {installationQueue.length > 0 && (
+                    <Button
+                      onClick={() => {
+                        startInstallation(installationQueue);
+                        handleSequentialInstallations(
+                          selectedApplications,
+                          currentPackageManager,
+                        );
+                      }}
+                      className="w-full"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Installing..." : "Start Installation"}
+                    </Button>
+                  )}
+                </div>
+              </>
             )}
           </>
         )}
       </div>
-    </StepContainer>
+    </Group>
   );
 }

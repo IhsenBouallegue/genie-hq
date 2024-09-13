@@ -2,13 +2,12 @@ import { useStore } from "@/lib/store/useStore";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import { Category } from "@geniehq/ui/lib/store/types";
 import ApplicationCard from "@geniehq/ui/setup-configurator/application-card";
-import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
-import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
 import { PlusIcon } from "lucide-react";
+import Group from "../group";
 export default function SetupStepApplications() {
   const selectedPackageManager = useStore(
-    (state) => state.currentPackageManager,
+    (state) => state.currentPackageManagerInfo,
   );
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);
@@ -20,8 +19,7 @@ export default function SetupStepApplications() {
     return null;
   }
   return (
-    <StepContainer>
-      <StepTitle>What do you like to install?</StepTitle>
+    <Group label="What do you like to install?">
       <StepDescription>
         Choose the applications you want to install on your system. Or refine
         the selection from a profile.
@@ -45,7 +43,7 @@ export default function SetupStepApplications() {
                 .filter((application) =>
                   application.installationMethods
                     .map((method) => method.packageManager)
-                    .includes(selectedPackageManager),
+                    .includes(selectedPackageManager.name),
                 )
                 .filter((application) => application.category === category)
                 .sort((a, b) => a.title.localeCompare(b.title))
@@ -70,6 +68,6 @@ export default function SetupStepApplications() {
           </div>
         </div>
       ))}
-    </StepContainer>
+    </Group>
   );
 }

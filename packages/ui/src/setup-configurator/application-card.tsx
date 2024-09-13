@@ -1,3 +1,4 @@
+import { iconLookup } from "#lib/store/icons";
 import type { Application, ApplicationId } from "#lib/store/types";
 import SelectableCard from "./selectable-card";
 
@@ -13,12 +14,12 @@ export default function ApplicationCard({
   selectedApplicationIds: ApplicationId[];
 }) {
   const isSelected = selectedApplicationIds.includes(id);
-
+  const Icon = iconLookup[icon];
   return (
     <SelectableCard
       id={id}
       title={title}
-      icon={icon}
+      icon={Icon}
       isSelected={isSelected}
       onToggle={onToggle}
       enableHover={false}
