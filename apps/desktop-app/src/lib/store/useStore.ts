@@ -20,12 +20,12 @@ import {
 import { immer } from "zustand/middleware/immer";
 import { detectOSType } from "../logic";
 import { getPackageManagerStatus, getPackageManagerVersion } from "../pm-logic";
+import type { PackageManager } from "./../../../../../packages/ui/src/lib/store/types";
 
 const privateStore = new Store("./store.bin");
 
 const getStorage = (store: Store): StateStorage => ({
   getItem: async (name: string): Promise<string | null> => {
-    console.log("getItem", { name });
     const value = (await store.get(name)) || null;
     console.log("getItem", { name, value });
 
@@ -71,7 +71,6 @@ type Actions = {
 export const useStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      openSteps: ["profile-step"],
       profiles: Object.fromEntries(
         profiles.map((profile) => [profile.id, profile]),
       ),
@@ -83,15 +82,15 @@ export const useStore = create<State & Actions>()(
       selectedApplicationIds: [],
       currentOS: null,
       currentPackageManager: null,
-      currentPackageManagerInfo: null, // Initialize with null
-      packageManagers: PackageManagerDetails, // Initialize package managers as an empty object
+      currentPackageManagerInfo: null,
+      packageManagers: PackageManagerDetails,
       _hasHydrated: false,
+
       setHasHydrated: (state) => {
         set({
           _hasHydrated: state,
         });
       },
-
       addProfile: (profile: Profile) =>
         set((state) => {
           state.profiles[profile.id] = profile;
@@ -140,26 +139,19 @@ export const useStore = create<State & Actions>()(
       },
 
       initializePackageManagers: async () => {
-        set(async (state) => {
-          for (const pm of Object.keys(
-            PackageManagerDetails,
-          ) as PackageManager[]) {
-            const packageManagerInfo = state.packageManagers[pm]; // Access the state object directly
+        // const currentOs = get().currentOS;
 
-            // Dynamically fetch the version and status
-            const version = await getPackageManagerVersion(pm);
-            const status = await getPackageManagerStatus(pm);
-            const currentOs = state.currentOS;
-            const isSupported = currentOs
-              ? isSupportedPackageManager(pm, currentOs)
-              : false;
+        // const version = await getPackageManagerVersion(packageManager);
+        // const status = await getPackageManagerStatus(packageManager);
+        // const isSupported = currentOs
+        // ? isSupportedPackageManager(packageManager, currentOs)
+        // : false;
 
-            // Mutate the package manager info within the immer function
-            packageManagerInfo.version = version;
-            packageManagerInfo.status = status;
-            packageManagerInfo.isSupported = isSupported;
-          }
-        });
+        get().packageManagers.Scoop.version = "1.0.0";
+        get().packageManagers.Scoop.status = "available";
+        get().packageManagers.Scoop.isSupported = true;
+
+        // state.packageManagers[packageManager].isSupported = isSupported;
       },
 
       setCurrentPackageManager: async (pm: PackageManager) => {
@@ -189,7 +181,7 @@ export const useStore = create<State & Actions>()(
       },
     })),
     {
-      name: "storage-genie", // name of item in the storage (must be unique)
+      name: "storage-genie",
       storage: createJSONStorage(() => getStorage(privateStore)),
 
       onRehydrateStorage: (state) => {

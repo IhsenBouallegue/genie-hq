@@ -9,7 +9,7 @@ export default function ApplicationCard({
   onToggle,
   selectedApplicationIds,
   ...rest
-}: Application & {
+}: Pick<Application, "icon" | "title" | "id"> & {
   onToggle: (id: string) => void;
   selectedApplicationIds: ApplicationId[];
 }) {

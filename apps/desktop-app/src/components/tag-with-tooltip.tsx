@@ -1,4 +1,7 @@
+"use client";
+
 import { Badge } from "@geniehq/ui/components/badge";
+import { Button } from "@geniehq/ui/components/button";
 import {
   Tooltip,
   TooltipContent,
@@ -40,7 +43,7 @@ export function TagWithTooltip({ type, value }: TagProps) {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Badge
             variant={type === "version" ? "outline" : "secondary"}
             className="flex items-center gap-1"

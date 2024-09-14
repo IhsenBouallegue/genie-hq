@@ -12,8 +12,8 @@ import Group from "../group";
 
 export default function SetupStepSummary() {
   const selectedProfile = useStore((state) => state.getSelectedProfile());
-  const currentPackageManager = useStore(
-    (state) => state.currentPackageManager,
+  const currentPackageManagerInfo = useStore(
+    (state) => state.currentPackageManagerInfo,
   );
   const selectedApplications = useStore((state) =>
     state.getSelectedApplications(),
@@ -77,7 +77,7 @@ export default function SetupStepSummary() {
                 />
               </div>
             </div>
-            {currentPackageManager && (
+            {currentPackageManagerInfo && (
               <>
                 <div className="flex space-x-4">
                   <Button
@@ -94,7 +94,7 @@ export default function SetupStepSummary() {
                         startInstallation(installationQueue);
                         handleSequentialInstallations(
                           selectedApplications,
-                          currentPackageManager,
+                          currentPackageManagerInfo.name,
                         );
                       }}
                       className="w-full"

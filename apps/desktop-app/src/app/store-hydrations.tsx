@@ -1,6 +1,7 @@
+"use client";
+
 import { useStore } from "@/lib/store/useStore";
 import dynamic from "next/dynamic";
-import { Suspense, useEffect, useState } from "react";
 
 // Dynamically import the loading component
 const Loading = dynamic(() => import("./loading"));

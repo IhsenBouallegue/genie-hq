@@ -50,7 +50,9 @@ export default function SetupStepApplications() {
                 .map((application, index) => (
                   <div key={application.id} data-id={`card-${index}`}>
                     <ApplicationCard
-                      {...application}
+                      id={application.id}
+                      title={application.title}
+                      icon={application.icon}
                       onToggle={toggleApplication}
                       selectedApplicationIds={selectedApplicationIds}
                     />

@@ -32,10 +32,12 @@ export async function getPackageManagerVersion(
     }
 
     const result = await executeCommand(command);
+
     // Return the first line of the version output
     return result.split("\n")[0];
   } catch (error) {
-    console.error(`Failed to get version for ${packageManager}:`, error);
+    // console.log(`Failed to get version for ${packageManager}:`, error);
+    console.log(`Failed to get version for ${packageManager}:`);
     return undefined;
   }
 }

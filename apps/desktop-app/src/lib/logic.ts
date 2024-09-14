@@ -58,7 +58,11 @@ export async function executeCommand(command: string[]): Promise<string> {
 
   if (osType === OperatingSystem.Windows) {
     // Use PowerShell for Windows
-    cmd = Command.create("powershell", ["-Command", command.join(" ")]);
+    cmd = Command.create("powershell", [
+      "-NoProfile",
+      "-Command",
+      command.join(" "),
+    ]);
   } else {
     // Use sh for Linux-based systems (macOS and Ubuntu)
     cmd = Command.create("sh", ["-c", command.join(" ")]);
@@ -66,7 +70,13 @@ export async function executeCommand(command: string[]): Promise<string> {
 
   try {
     const result = await cmd.execute();
-    return result.stdout; // assuming stdout is the desired output
+    if (result.code !== 0) {
+      throw new Error(`Command failed with exit code ${result.code}`);
+    }
+    if (result.stderr) {
+      throw new Error(`${result.stderr}`);
+    }
+    return result.stdout;
   } catch (err) {
     throw new Error(`Command failed: ${err}`);
   }
