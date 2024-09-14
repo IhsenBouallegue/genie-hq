@@ -20,7 +20,6 @@ import {
 import { immer } from "zustand/middleware/immer";
 import { detectOSType } from "../logic";
 import { getPackageManagerStatus, getPackageManagerVersion } from "../pm-logic";
-import type { PackageManager } from "./../../../../../packages/ui/src/lib/store/types";
 
 const privateStore = new Store("./store.bin");
 
@@ -185,7 +184,13 @@ export const useStore = create<State & Actions>()(
       storage: createJSONStorage(() => getStorage(privateStore)),
 
       onRehydrateStorage: (state) => {
-        return () => state.setHasHydrated(true);
+        return () => {
+          if (typeof window !== "undefined") {
+            state?.setCurrentOS();
+            state?.initializePackageManagers();
+            state?.setHasHydrated(true);
+          }
+        };
       },
     },
   ),
