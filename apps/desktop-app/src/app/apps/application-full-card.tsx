@@ -2,7 +2,7 @@ import {
   isAppSupportedByOS,
   isAppSupportedByPackageManagers,
 } from "@/lib/app-logic";
-import { getSupportedPackageManager } from "@/lib/pm-logic";
+import { getSupportedPackageManagers } from "@/lib/pm-logic";
 import { useStore } from "@/lib/store/useStore";
 import { Badge } from "@geniehq/ui/components/badge";
 import type {
@@ -25,7 +25,7 @@ export default function ApplicationFullCard({ app }: { app: Application }) {
   useEffect(() => {
     if (currentOS === null) return;
     setIsSupportedByOS(isAppSupportedByOS(app, currentOS));
-    const supportedPMs = getSupportedPackageManager(
+    const supportedPMs = getSupportedPackageManagers(
       Object.values(packageManagers),
     );
     setIsSupportedByPackageManagers(

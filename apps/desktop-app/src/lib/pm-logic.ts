@@ -170,7 +170,7 @@ export async function getPackageManagerInfo(
   }
 }
 
-export function getSupportedPackageManager(
+export function getSupportedPackageManagers(
   packageManagers: PackageManagerInfo[],
 ) {
   return packageManagers.filter((pm) => pm.status !== "unsupported");
