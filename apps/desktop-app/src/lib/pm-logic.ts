@@ -1,6 +1,7 @@
 import {
   PackageManager,
   PackageManagerDetails,
+  type PackageManagerInfo,
   isSupportedPackageManager,
 } from "@geniehq/ui/lib/store/types";
 import { Command } from "@tauri-apps/plugin-shell";
@@ -167,4 +168,10 @@ export async function getPackageManagerInfo(
     }
     return { version: undefined, status: "unsupported" };
   }
+}
+
+export function getSupportedPackageManager(
+  packageManagers: PackageManagerInfo[],
+) {
+  return packageManagers.filter((pm) => pm.status !== "unsupported");
 }
