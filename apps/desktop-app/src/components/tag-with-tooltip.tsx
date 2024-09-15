@@ -1,59 +1,47 @@
 "use client";
 
 import { Badge } from "@geniehq/ui/components/badge";
-import { Button } from "@geniehq/ui/components/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@geniehq/ui/components/tooltip";
-import { Book, Code, Globe, Shield, Terminal } from "lucide-react";
-import React from "react";
-
-type TagProps = {
-  type: "cli" | "gui" | "cross-platform" | "official" | "community" | "version";
-  value: string;
-};
+import type { PackageManagerInfo } from "@geniehq/ui/lib/store/types";
+import { Book, Globe, Shield } from "lucide-react";
 
 const tagInfo = {
-  cli: { icon: Terminal, description: "Command Line Interface" },
-  gui: { icon: Code, description: "Graphical User Interface" },
-  "cross-platform": {
+  "Cross Platform": {
     icon: Globe,
     description: "Works on multiple operating systems",
   },
-  official: {
+  Official: {
     icon: Shield,
     description: "Officially supported by the OS or a major organization",
   },
-  community: {
+  Community: {
     icon: Book,
     description: "Developed and maintained by the community",
   },
-  version: {
-    icon: null,
-    description: "Current version of the package manager",
-  },
 };
 
-export function TagWithTooltip({ type, value }: TagProps) {
-  const { icon: Icon, description } = tagInfo[type];
+export function TagWithTooltip({
+  type,
+  value,
+}: PackageManagerInfo["tags"][number]) {
+  const { icon: Icon } = tagInfo[type];
 
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Badge
-            variant={type === "version" ? "outline" : "secondary"}
-            className="flex items-center gap-1"
-          >
+          <Badge className="flex items-center gap-1" variant="secondary">
             {Icon && <Icon className="w-3 h-3" />}
-            {value}
+            {type}
           </Badge>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{description}</p>
+          <p>{value}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

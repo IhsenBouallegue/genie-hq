@@ -1,8 +1,10 @@
 import type { IconType } from "@icons-pack/react-simple-icons";
 import {
   AppWindow,
+  AppWindowIcon,
   AppWindowMac,
   AppleIcon,
+  BoxIcon,
   CoffeeIcon,
   IceCreamBowlIcon,
 } from "lucide-react";
@@ -50,7 +52,6 @@ export enum OperatingSystem {
   Debian = "Debian",
 }
 
-// Define the enum for package manager names
 export enum PackageManager {
   Homebrew = "Homebrew",
   Scoop = "Scoop",
@@ -59,22 +60,20 @@ export enum PackageManager {
   DNF = "DNF",
 }
 
-// Define a type for package manager details
 export type PackageManagerInfo = {
   name: PackageManager;
   description: string;
   supportedOS: OperatingSystem[];
   icon: IconType;
   tags: Array<{
-    type: "cli" | "gui" | "cross-platform" | "official" | "community";
+    type: "Cross Platform" | "Official" | "Community";
+    icon: string; // Lucide icon name
     value: string;
   }>;
-  status?: "installed" | "available" | "update-available"; // Optional now
-  isSupported?: boolean;
-  version?: string; // Optional now
+  status?: "installed" | "available" | "update-available" | "unsupported";
+  version?: string;
 };
 
-// Updated PackageManagerDetails with version and status omitted
 export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
   {
     [PackageManager.Homebrew]: {
@@ -82,38 +81,78 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
       description: "The missing package manager for macOS (or Linux).",
       supportedOS: [OperatingSystem.MacOS],
       icon: CoffeeIcon,
-      tags: [{ type: "cli", value: "Command-line Interface" }],
+      tags: [
+        {
+          type: "Official",
+          icon: "check-circle",
+          value: "Official macOS package manager",
+        },
+        {
+          type: "Cross Platform",
+          icon: "globe",
+          value: "macOS and Linux support",
+        },
+      ],
     },
     [PackageManager.Scoop]: {
       name: PackageManager.Scoop,
       description: "A command-line installer for Windows.",
       supportedOS: [OperatingSystem.Windows],
       icon: IceCreamBowlIcon,
-      tags: [{ type: "cli", value: "Command-line Interface" }],
+      tags: [
+        {
+          type: "Community",
+          icon: "users",
+          value: "Community-driven Windows package manager",
+        },
+      ],
     },
     [PackageManager.Winget]: {
       name: PackageManager.Winget,
       description:
         "Windows Package Manager for installing applications on Windows.",
       supportedOS: [OperatingSystem.Windows],
-      icon: AppWindow,
-      tags: [{ type: "cli", value: "Command-line Interface" }],
+      icon: AppWindowIcon,
+      tags: [
+        {
+          type: "Official",
+          icon: "check-circle",
+          value: "Official Windows package manager",
+        },
+      ],
     },
     [PackageManager.APT]: {
       name: PackageManager.APT,
       description:
         "Advanced Package Tool, used for managing packages on Debian and its derivatives.",
       supportedOS: [OperatingSystem.Ubuntu, OperatingSystem.Debian],
-      icon: AppWindowMac,
-      tags: [{ type: "cli", value: "Command-line Interface" }],
+      icon: BoxIcon,
+      tags: [
+        {
+          type: "Official",
+          icon: "check-circle",
+          value: "Official Debian-based package manager",
+        },
+        {
+          type: "Cross Platform",
+          icon: "globe",
+          value: "Supports Ubuntu and Debian",
+        },
+      ],
     },
     [PackageManager.DNF]: {
       name: PackageManager.DNF,
       description:
         "Fedora Package Manager, the next-generation version of Yum.",
       supportedOS: [OperatingSystem.Fedora],
-      icon: AppWindowMac,
-      tags: [{ type: "cli", value: "Command-line Interface" }],
+      icon: BoxIcon,
+      tags: [
+        {
+          type: "Official",
+          icon: "check-circle",
+          value: "Official Fedora package manager",
+        },
+      ],
     },
   };
 export function supportedPackageManagerForOS(

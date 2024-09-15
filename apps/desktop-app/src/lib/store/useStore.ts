@@ -8,7 +8,6 @@ import {
   type PackageManagerInfo,
   type Profile,
   type ProfileId,
-  isSupportedPackageManager,
 } from "@geniehq/ui/lib/store/types";
 import { Store } from "@tauri-apps/plugin-store";
 import { create } from "zustand";
@@ -19,9 +18,9 @@ import {
 } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { detectOSType } from "../logic";
-import { getPackageManagerStatus, getPackageManagerVersion } from "../pm-logic";
+import { getPackageManagerInfo } from "../pm-logic";
 
-const privateStore = new Store("./store.bin");
+export const privateStore = new Store("./store.bin");
 
 const getStorage = (store: Store): StateStorage => ({
   getItem: async (name: string): Promise<string | null> => {
@@ -138,19 +137,17 @@ export const useStore = create<State & Actions>()(
       },
 
       initializePackageManagers: async () => {
-        // const currentOs = get().currentOS;
-
-        // const version = await getPackageManagerVersion(packageManager);
-        // const status = await getPackageManagerStatus(packageManager);
-        // const isSupported = currentOs
-        // ? isSupportedPackageManager(packageManager, currentOs)
-        // : false;
-
-        get().packageManagers.Scoop.version = "1.0.0";
-        get().packageManagers.Scoop.status = "available";
-        get().packageManagers.Scoop.isSupported = true;
-
-        // state.packageManagers[packageManager].isSupported = isSupported;
+        const pmList = Object.keys(PackageManagerDetails) as PackageManager[];
+        for (const pm of pmList) {
+          const { version, status } = await getPackageManagerInfo(pm);
+          set((state) => {
+            state.packageManagers[pm] = {
+              ...state.packageManagers[pm],
+              version: version,
+              status: status,
+            };
+          });
+        }
       },
 
       setCurrentPackageManager: async (pm: PackageManager) => {
@@ -162,14 +159,13 @@ export const useStore = create<State & Actions>()(
         };
 
         // Dynamically fetch version and status
-        const version = await getPackageManagerVersion(pm);
-        const status = await getPackageManagerStatus(pm);
+        const { version, status } = await getPackageManagerInfo(pm);
 
         // Update the info
         packageManagerInfo = {
           ...packageManagerInfo,
-          version: version || "Unknown",
-          status: status || "available",
+          version: version,
+          status: status,
         };
 
         // Update both the current package manager info and the whole packageManagers object
@@ -186,9 +182,9 @@ export const useStore = create<State & Actions>()(
       onRehydrateStorage: (state) => {
         return () => {
           if (typeof window !== "undefined") {
-            state?.setCurrentOS();
-            state?.initializePackageManagers();
-            state?.setHasHydrated(true);
+            state.setCurrentOS();
+            state.initializePackageManagers();
+            state.setHasHydrated(true);
           }
         };
       },

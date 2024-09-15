@@ -14,39 +14,45 @@ import {
 export default function PackageManagerFullCard({
   pm,
 }: { pm: PackageManagerInfo }) {
+  const isSupported = pm.status !== "unsupported";
   return (
     <Selectable
       key={pm.name}
       id={pm.name}
-      enableHover={pm.isSupported}
-      className={`${pm.isSupported ? "" : "opacity-50 cursor-not-allowed"} `}
+      enableHover={isSupported}
+      className={`${isSupported ? "" : "opacity-50 cursor-not-allowed"} `}
     >
-      <div className="flex justify-between items-start mb-2">
+      <div className="flex justify-between items-start mb-2 w-full">
         <div className="flex items-center gap-2">
           <Package className="w-6 h-6 text-primary" />
           <h2 className="text-xl font-semibold">{pm.name}</h2>
         </div>
-        <div className="ml-auto">
-          {pm.isSupported &&
+        <div>
+          {isSupported &&
             (pm.status === "available" ? (
-              <Button size="sm" variant="outline">
+              <Button
+                size="sm"
+                variant="ghost"
+                disabled
+                title="Not supported yet"
+              >
                 <Download className="w-4 h-4 mr-1" />
                 Install
               </Button>
             ) : pm.status === "update-available" ? (
-              <Button size="sm" variant="outline">
+              <Button size="sm" variant="ghost">
                 <RefreshCw className="w-4 h-4 mr-1" />
                 Update
               </Button>
             ) : null)}
         </div>
       </div>
-      <p className="text-sm text-muted-foreground mb-2 flex-grow">
+      <p className="text-sm text-muted-foreground mb-2 text-left flex-grow">
         {pm.description}
       </p>
       <div className="flex flex-wrap gap-2 mt-2">
         {pm.status === "installed" && (
-          <Badge variant="default" className="bg-green-500">
+          <Badge variant="green">
             <CheckCircle className="w-3 h-3 mr-1" />
             Installed
           </Badge>
@@ -58,16 +64,21 @@ export default function PackageManagerFullCard({
           </Badge>
         )}
         {pm.status === "update-available" && (
-          <Badge variant="default" className="bg-yellow-500">
+          <Badge variant="yellow">
             <RefreshCw className="w-3 h-3 mr-1" />
             Update Available
           </Badge>
         )}
         {pm.tags.map((tag) => (
-          <TagWithTooltip key={tag.type} type={tag.type} value={tag.value} />
+          <TagWithTooltip
+            key={tag.type}
+            type={tag.type}
+            value={tag.value}
+            icon={tag.icon}
+          />
         ))}
-        {pm.version && <TagWithTooltip type="version" value={pm.version} />}
-        {!pm.isSupported && (
+        {pm.version && <Badge>v{pm.version}</Badge>}
+        {!isSupported && (
           <Badge variant="destructive">
             <XCircle className="w-3 h-3 mr-1" />
             Not Supported

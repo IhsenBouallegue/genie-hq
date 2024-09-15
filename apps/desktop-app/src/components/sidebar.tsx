@@ -1,3 +1,4 @@
+import { privateStore } from "@/lib/store/useStore";
 import { Badge } from "@geniehq/ui/components/badge";
 import { Button } from "@geniehq/ui/components/button";
 import {
@@ -74,6 +75,19 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="mt-auto p-4">
+        <Button
+          onClick={() => {
+            privateStore
+              .clear()
+              .then(() => alert("Store Cleared"))
+              .finally(() => window.location.reload());
+          }}
+          variant="destructive"
+          size="sm"
+          className="w-full"
+        >
+          Clear Store
+        </Button>
         <Card x-chunk="dashboard-02-chunk-0">
           <CardHeader className="p-2 pt-0 md:p-4">
             <span className="text-xs text-muted">Coming soon</span>

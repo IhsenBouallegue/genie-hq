@@ -1,20 +1,21 @@
 "use client";
 
+import { useStore } from "@/lib/store/useStore";
 import { Button } from "@geniehq/ui/components/button";
 import { Input } from "@geniehq/ui/components/input";
-import { PackageManagerDetails } from "@geniehq/ui/lib/store/types";
 import { Search, SortAsc, SortDesc, XCircle } from "lucide-react";
 import { useState } from "react";
 import PackageManagerFullCard from "./package-manager-full-card";
 
 export default function Page() {
+  const packageManagersDetails = useStore((state) => state.packageManagers);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedPackageManagers, setSelectedPackageManagers] = useState<
     string[]
   >([]);
 
-  const filteredAndSortedPackageManagers = Object.values(PackageManagerDetails)
+  const filteredAndSortedPackageManagers = Object.values(packageManagersDetails)
     .filter((pm) => pm.name.toLowerCase().includes(searchTerm.toLowerCase()))
     .sort((a, b) => {
       if (sortOrder === "asc") {

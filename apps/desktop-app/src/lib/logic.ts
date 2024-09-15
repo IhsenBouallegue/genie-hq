@@ -48,38 +48,23 @@ export async function handleSequentialInstallations(
 
 // Real command execution
 export async function executeCommand(command: string[]): Promise<string> {
-  console.log(`Executing command: ${command.join(" ")}`);
-  if (command[0] === "" || command.length === 0 || command[0] === undefined) {
-    throw new Error("Command is empty");
-  }
-
   const osType = await detectOSType();
   let cmd: Command<string>;
 
   if (osType === OperatingSystem.Windows) {
     // Use PowerShell for Windows
-    cmd = Command.create("powershell", [
-      "-NoProfile",
-      "-Command",
-      command.join(" "),
-    ]);
+    cmd = Command.create("cmd", ["/C", command.join(" ")]);
   } else {
     // Use sh for Linux-based systems (macOS and Ubuntu)
     cmd = Command.create("sh", ["-c", command.join(" ")]);
   }
-
-  try {
-    const result = await cmd.execute();
-    if (result.code !== 0) {
-      throw new Error(`Command failed with exit code ${result.code}`);
-    }
-    if (result.stderr) {
-      throw new Error(`${result.stderr}`);
-    }
-    return result.stdout;
-  } catch (err) {
-    throw new Error(`Command failed: ${err}`);
+  const result = await cmd.execute();
+  if (result.code !== 0 && result.stderr) {
+    throw new Error(
+      `Command failed with code ${result.code}: ${result.stderr}`,
+    );
   }
+  return result.stdout;
 }
 
 // Fake command execution for development
