@@ -1,5 +1,5 @@
 {
-  "productName": "desktop-app",
+  "productName": "GenieHQ",
   "version": "0.1.0",
   "identifier": "com.geniehq.app",
   "build": {
@@ -12,8 +12,8 @@
     "windows": [
       {
         "title": "GenieHQ",
-        "width": 800,
-        "height": 600
+        "width": 1280,
+        "height": 720
       }
     ],
     "security": {
