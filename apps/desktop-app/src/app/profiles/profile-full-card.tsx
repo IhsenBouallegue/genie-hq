@@ -1,4 +1,3 @@
-import { TagWithTooltip } from "@/components/tag-with-tooltip";
 import { getSupportedPackageManagers } from "@/lib/pm-logic";
 import { isProfileSupported } from "@/lib/profile-logic";
 import { useGenieStore } from "@/providers/genie-store-provider";
@@ -25,14 +24,21 @@ export default function ProfileFullCard({
     const supportedPackageManagers = getSupportedPackageManagers(
       Object.values(packageManagers),
     ).map((pm) => pm.name);
-    setIsSupported(isProfileSupported(profile, applications, currentOS, supportedPackageManagers));
+    setIsSupported(
+      isProfileSupported(
+        profile,
+        applications,
+        currentOS,
+        supportedPackageManagers,
+      ),
+    );
   }, [applications, currentOS, packageManagers, profile]);
   return (
     <Selectable
       key={profile.id}
       id={profile.id}
       enableHover={isSupported}
-      className={`${isSupported ? "" : "opacity-60 cursor-default saturate-50 blur-[0.8px] pointer-events-none"} `}
+      className={`${isSupported ? "" : "opacity-60 cursor-default saturate-50 blur-[0.8px] pointer-events-none select-none"} `}
     >
       <div className="flex justify-between items-start mb-2 w-full">
         <div className="flex items-center gap-2">

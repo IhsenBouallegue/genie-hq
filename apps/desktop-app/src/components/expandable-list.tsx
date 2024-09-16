@@ -1,0 +1,139 @@
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
+
+type Option = {
+  id: string;
+  // Other properties
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  [key: string]: any;
+};
+
+type Props = {
+  title: string;
+  description: string;
+  options: Option[];
+  renderOption: (option: Option) => React.ReactNode;
+};
+
+const MotionChevron = motion(ChevronDown);
+
+export default function ExpandableListSelector({
+  title,
+  description,
+  options = [],
+  renderOption,
+}: Props) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const optionsRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (options && options.length > 0 && !selectedOption && options[0]) {
+      setSelectedOption(options[0]);
+    }
+  }, [options, selectedOption]);
+
+  const handleScroll = () => {
+    if (optionsRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = optionsRef.current;
+      // Update scroll indicators if needed
+    }
+  };
+
+  return (
+    <motion.div
+      className="w-full max-w-full border-2 rounded-lg overflow-hidden mb-4"
+      initial={false}
+      animate={controls}
+      onMouseEnter={() => {
+        setIsExpanded(true);
+        controls.start({
+          height: "auto",
+          transition: { duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] },
+        });
+      }}
+      onMouseLeave={() => {
+        setIsExpanded(false);
+        controls.start({
+          height: "80px",
+          transition: { duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
+        });
+      }}
+    >
+      <motion.div
+        className="p-6 flex justify-between items-center"
+        animate={{
+          borderBottom: isExpanded
+            ? "1px solid var(--border)"
+            : "1px solid transparent",
+        }}
+        transition={{ duration: 1 }}
+      >
+        <motion.h2
+          className="text-2xl font-semibold text-primary origin-left"
+          animate={{
+            scale: isExpanded ? 0.9 : 1,
+          }}
+          transition={{ duration: 1, ease: [0.04, 0.62, 0.23, 0.98] }}
+        >
+          {title}
+        </motion.h2>
+        <div className="flex items-center">
+          {!isExpanded && selectedOption && (
+            <motion.span
+              className="mr-3 text-lg"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 1 }}
+            >
+              {selectedOption.label}
+            </motion.span>
+          )}
+          <MotionChevron
+            size={24}
+            className="text-primary"
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] }}
+          />
+        </div>
+      </motion.div>
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            className="flex flex-1 bg-slate-800"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            <div className="w-40 pr-6">
+              <p className="text-muted-foreground">{description}</p>
+            </div>
+            {/* Updated Container */}
+            <div className="relative flex-1">
+              <div className="absolute inset-0 overflow-x-auto">
+                <div
+                  className="flex space-x-4 pb-4 relative"
+                  ref={optionsRef}
+                  onScroll={handleScroll}
+                >
+                  {options.map((option) => (
+                    <div key={option.id} className="flex-shrink-0">
+                      {renderOption(option)}
+                    </div>
+                  ))}
+                  {/* Optional gradient overlay */}
+                  <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}

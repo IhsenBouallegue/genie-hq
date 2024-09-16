@@ -8,7 +8,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@geniehq/ui/components/card";
-import { ArchiveIcon, LayoutDashboardIcon, PackageOpenIcon, Users2Icon } from "lucide-react";
+import { cn } from "@geniehq/ui/lib/utils";
+import {
+  ArchiveIcon,
+  DownloadIcon,
+  Laptop,
+  LaptopIcon,
+  LayoutDashboardIcon,
+  PackageOpenIcon,
+  RefreshCcw,
+  RefreshCcwDotIcon,
+  RefreshCcwIcon,
+  ScrollIcon,
+  Settings2,
+  SettingsIcon,
+  Subscript,
+  Users2Icon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,6 +34,7 @@ export default function Sidebar() {
 
   const navigation = [
     { name: "Dashboard", icon: LayoutDashboardIcon, href: "/" },
+    { name: "Installer", icon: DownloadIcon, href: "/installer" },
     {
       name: "Package Managers",
       icon: ArchiveIcon,
@@ -25,6 +42,14 @@ export default function Sidebar() {
     },
     { name: "Apps", icon: PackageOpenIcon, href: "/apps", badge: 6 },
     { name: "Profiles", icon: Users2Icon, href: "/profiles" },
+    { name: "Devices", icon: LaptopIcon, href: "/devices", disabled: true },
+    { name: "Scripts", icon: ScrollIcon, href: "/scripts", disabled: true },
+    {
+      name: "Settings",
+      icon: SettingsIcon,
+      href: "/settings",
+      disabled: true,
+    },
   ];
 
   const getNavLinkClass = (path: string) =>
@@ -53,7 +78,11 @@ export default function Sidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={getNavLinkClass(item.href)}
+              className={cn(
+                getNavLinkClass(item.href),
+                item.disabled &&
+                  "opacity-60 cursor-default pointer-events-none saturate-90",
+              )}
               onClick={() => setActivePage(item.href)}
             >
               <item.icon className="h-4 w-4" />
@@ -63,6 +92,11 @@ export default function Sidebar() {
                   {item.badge}
                 </Badge>
               )}
+              {item.disabled && (
+                <Badge variant="secondary" className="ml-auto">
+                  Coming Soon
+                </Badge>
+              )}
             </Link>
           ))}
         </nav>
@@ -70,19 +104,22 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="mt-auto p-4">
-        <Button
-          onClick={() => {
-            privateStore
-              .clear()
-              .then(() => alert("Store Cleared"))
-              .finally(() => window.location.reload());
-          }}
-          variant="destructive"
-          size="sm"
-          className="w-full"
-        >
-          Clear Store
-        </Button>
+        {process.env.NODE_ENV === "development" && (
+          <Button
+            onClick={() => {
+              privateStore
+                .clear()
+                .then(() => alert("Store Cleared"))
+                .finally(() => window.location.reload());
+            }}
+            variant="destructive"
+            size="sm"
+            className="mb-2 opacity-30"
+          >
+            <RefreshCcwIcon className="w-4 h-4 mr-1" />
+            Clear Store
+          </Button>
+        )}
         <Card className="opacity-70 cursor-default select-none pointer-events-none">
           <CardHeader className="p-2 pt-0 md:p-4">
             <Badge variant="secondary" className="max-w-fit opacity-40 mb-2">

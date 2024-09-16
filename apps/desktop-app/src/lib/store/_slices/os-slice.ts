@@ -1,6 +1,6 @@
+import type { GenieStore } from "@/lib/store/genie-store-type";
 import type { OperatingSystem } from "@geniehq/ui/lib/store/types";
 import type { StateCreator } from "zustand/vanilla";
-import type { GenieStore } from "../store-slices";
 
 export interface OSSlice {
   currentOS: OperatingSystem;
@@ -8,6 +8,7 @@ export interface OSSlice {
 
 export const createOSSlice: (
   initialOS: OperatingSystem,
-) => StateCreator<GenieStore, [["zustand/immer", never]], [], OSSlice> = (initialOS) => () => ({
-  currentOS: initialOS,
-});
+) => StateCreator<GenieStore, [["zustand/immer", never]], [], OSSlice> =
+  (initialOS) => () => ({
+    currentOS: initialOS,
+  });
