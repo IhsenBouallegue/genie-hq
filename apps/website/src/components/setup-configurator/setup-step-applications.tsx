@@ -11,8 +11,8 @@ export default function SetupStepApplications() {
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);
   const toggleApplication = useStore((state) => state.toggleApplication);
-  const selectedApplicationIds = useStore((state) =>
-    state.selectedApplicationIds,
+  const selectedApplicationIds = useStore(
+    (state) => state.selectedApplicationIds,
   );
   return (
     <StepContainer>
@@ -41,7 +41,13 @@ export default function SetupStepApplications() {
                 .sort((a, b) => a.title.localeCompare(b.title))
                 .map((application, index) => (
                   <div key={application.id} data-id={`card-${index}`}>
-                    <ApplicationCard {...application} onToggle={toggleApplication} selectedApplicationIds={selectedApplicationIds} />
+                    <ApplicationCard
+                      id={application.id}
+                      title={application.title}
+                      icon={application.icon}
+                      onToggle={toggleApplication}
+                      selectedApplicationIds={selectedApplicationIds}
+                    />
                   </div>
                 ))}
             </AnimatedBackground>

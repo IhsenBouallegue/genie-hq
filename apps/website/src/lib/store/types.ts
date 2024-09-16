@@ -13,7 +13,7 @@ export interface Profile {
 export interface Application {
   id: ApplicationId;
   title: string;
-  icon: IconType;
+  icon: string;
   category: Category;
 }
 

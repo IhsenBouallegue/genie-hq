@@ -1,7 +1,9 @@
+import { applications } from "@geniehq/ui/lib/store/data";
+import type { Application } from "@geniehq/ui/lib/store/types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { applications, profiles } from "./data";
-import type { Application, ApplicationId, Profile, ProfileId } from "./types";
+import { profiles } from "./data";
+import type { ApplicationId, Profile, ProfileId } from "./types";
 
 type State = {
   openSteps: string[];
