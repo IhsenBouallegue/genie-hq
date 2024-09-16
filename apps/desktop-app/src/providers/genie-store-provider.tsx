@@ -8,19 +8,14 @@ import { useStore } from "zustand";
 
 export type GenieStoreApi = ReturnType<typeof createGenieStore>;
 
-export const GenieStoreContext = createContext<GenieStoreApi | undefined>(
-  undefined,
-);
+export const GenieStoreContext = createContext<GenieStoreApi | undefined>(undefined);
 
 interface GenieStoreProviderProps {
   children: ReactNode;
   os: OperatingSystem; // The OS is required here
 }
 
-export const GenieStoreProvider = ({
-  children,
-  os,
-}: GenieStoreProviderProps) => {
+export const GenieStoreProvider = ({ children, os }: GenieStoreProviderProps) => {
   const storeRef = useRef<ReturnType<typeof createGenieStore>>();
 
   if (!storeRef.current) {
@@ -28,9 +23,7 @@ export const GenieStoreProvider = ({
   }
 
   return (
-    <GenieStoreContext.Provider value={storeRef.current}>
-      {children}
-    </GenieStoreContext.Provider>
+    <GenieStoreContext.Provider value={storeRef.current}>{children}</GenieStoreContext.Provider>
   );
 };
 

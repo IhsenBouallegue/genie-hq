@@ -5,12 +5,11 @@ import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
 import Group from "../group";
 
 export default function SetupStepPackageManager() {
-  const { currentOS, setCurrentPackageManager, currentPackageManager } =
-    useGenieStore((state) => ({
-      currentOS: state.currentOS,
-      setCurrentPackageManager: state.setCurrentPackageManager,
-      currentPackageManager: state.currentPackageManagerInfo,
-    }));
+  const { currentOS, setCurrentPackageManager, currentPackageManager } = useGenieStore((state) => ({
+    currentOS: state.currentOS,
+    setCurrentPackageManager: state.setCurrentPackageManager,
+    currentPackageManager: state.currentPackageManagerInfo,
+  }));
   if (!currentOS) {
     return null;
   }
@@ -21,8 +20,8 @@ export default function SetupStepPackageManager() {
   return (
     <Group label="Select Your Package Manager">
       <StepDescription>
-        Choose the package manager you wish to use for installation based on
-        your operating system: {currentOS}
+        Choose the package manager you wish to use for installation based on your operating system:{" "}
+        {currentOS}
       </StepDescription>
       <div className="flex flex-wrap justify-center gap-4">
         {packageManagers.map((pm) => (

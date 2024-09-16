@@ -27,11 +27,7 @@ export default function FeatureAccountSync() {
         </div>
       </div>
 
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div1Ref}
-        toRef={div5Ref}
-      />
+      <AnimatedBeam containerRef={containerRef} fromRef={div1Ref} toRef={div5Ref} />
       <AnimatedBeam
         delay={2}
         containerRef={containerRef}

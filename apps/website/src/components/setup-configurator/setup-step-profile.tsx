@@ -29,7 +29,11 @@ export default function SetupStepProfile() {
         >
           {profiles.map((profile, index) => (
             <div key={profile.id} data-id={`card-${index}`}>
-              <ProfileCard {...profile} onSelect={selectProfile} currentProfileId={currentProfileId}/>
+              <ProfileCard
+                {...profile}
+                onSelect={selectProfile}
+                currentProfileId={currentProfileId}
+              />
             </div>
           ))}
         </AnimatedBackground>
@@ -37,4 +41,3 @@ export default function SetupStepProfile() {
     </StepContainer>
   );
 }
-

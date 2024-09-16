@@ -38,10 +38,7 @@ export function NoiseSvg() {
           stitchTiles="stitch"
         />
         {/* Convert noise to grayscale using feColorMatrix */}
-        <feColorMatrix
-          type="saturate"
-          values="0" /* 0 saturation to make the noise grayscale */
-        />
+        <feColorMatrix type="saturate" values="0" /* 0 saturation to make the noise grayscale */ />
       </filter>
       <rect width="100%" height="100%" filter="url(#noise)" />
     </svg>

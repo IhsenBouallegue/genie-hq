@@ -5,8 +5,7 @@ export const startConfetti = () => {
   const animationEnd = Date.now() + duration;
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-  const randomInRange = (min: number, max: number) =>
-    Math.random() * (max - min) + min;
+  const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
   const interval = window.setInterval(() => {
     const timeLeft = animationEnd - Date.now();

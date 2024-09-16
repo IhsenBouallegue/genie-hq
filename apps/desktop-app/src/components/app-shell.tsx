@@ -14,9 +14,7 @@ export function AppShell({
       <div>
         <Header />
         <div className="h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-60px)] overflow-y-scroll">
-          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-            {children}
-          </main>
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">{children}</main>
         </div>
       </div>
     </div>

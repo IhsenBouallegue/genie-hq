@@ -29,8 +29,7 @@ export default function SelectableCard({
         "h-32 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer transition-colors duration-300 ease-in-out",
         isSelected ? "bg-primary/40" : "bg-transparent",
         enableBorder && "border",
-        enableHover &&
-          (isSelected ? "hover:bg-primary/60" : "hover:bg-slate-400/20"),
+        enableHover && (isSelected ? "hover:bg-primary/60" : "hover:bg-slate-400/20"),
       )}
       onClick={() => onToggle?.(id)}
       type="button"
@@ -68,8 +67,7 @@ export function Selectable({
         "flex flex-col flex-1 gap-2 rounded-lg p-3 cursor-pointer transition-colors duration-300 ease-in-out",
         isSelected ? "bg-primary/40" : "bg-transparent",
         enableBorder && "border",
-        enableHover &&
-          (isSelected ? "hover:bg-primary/60" : "hover:bg-slate-400/20"),
+        enableHover && (isSelected ? "hover:bg-primary/60" : "hover:bg-slate-400/20"),
         className,
       )}
       {...rest}

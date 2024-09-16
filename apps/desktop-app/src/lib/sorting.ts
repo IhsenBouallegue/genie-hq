@@ -9,9 +9,7 @@ interface SortConfig<T> {
 
 // Utility hook for sorting lists based on multiple properties or computed values
 export function useSort<T>(items: T[], initialSortConfigs?: SortConfig<T>[]) {
-  const [sortConfigs, setSortConfigs] = useState<SortConfig<T>[]>(
-    initialSortConfigs || [],
-  );
+  const [sortConfigs, setSortConfigs] = useState<SortConfig<T>[]>(initialSortConfigs || []);
 
   const sortedItems = useMemo(() => {
     if (!items || sortConfigs.length === 0) return items;
@@ -54,9 +52,7 @@ export function useSort<T>(items: T[], initialSortConfigs?: SortConfig<T>[]) {
     direction?: SortDirection,
   ) => {
     setSortConfigs((prevConfigs) => {
-      const existingConfigIndex = prevConfigs.findIndex(
-        (config) => config.key === key,
-      );
+      const existingConfigIndex = prevConfigs.findIndex((config) => config.key === key);
 
       // If the property is already in the sorting configurations, update the direction
       if (existingConfigIndex !== -1) {
@@ -65,9 +61,7 @@ export function useSort<T>(items: T[], initialSortConfigs?: SortConfig<T>[]) {
           key,
           direction:
             direction ||
-            (updatedConfigs[existingConfigIndex]?.direction === "asc"
-              ? "desc"
-              : "asc"),
+            (updatedConfigs[existingConfigIndex]?.direction === "asc" ? "desc" : "asc"),
         };
         return updatedConfigs;
       }

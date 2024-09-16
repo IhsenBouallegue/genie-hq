@@ -15,13 +15,9 @@ interface PlaidVerifyIdentityEmailProps {
   validationCode?: string;
 }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "";
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
-export const PlaidVerifyIdentityEmail = ({
-  validationCode,
-}: PlaidVerifyIdentityEmailProps) => (
+export const PlaidVerifyIdentityEmail = ({ validationCode }: PlaidVerifyIdentityEmailProps) => (
   <Html>
     <Head />
     <Body style={main}>
@@ -34,9 +30,7 @@ export const PlaidVerifyIdentityEmail = ({
           style={logo}
         />
         <Text style={tertiary}>Verify Your Identity</Text>
-        <Heading style={secondary}>
-          Enter the following code to finish linking Venmo.
-        </Heading>
+        <Heading style={secondary}>Enter the following code to finish linking Venmo.</Heading>
         <Section style={codeContainer}>
           <Text style={code}>{validationCode}</Text>
         </Section>

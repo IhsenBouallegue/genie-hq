@@ -13,9 +13,7 @@ import PackageManagerFullCard from "./package-manager-full-card";
 
 const isSupported = (pm: PackageManagerInfo) => pm.status !== "unsupported";
 export default function Page() {
-  const packageManagersDetails = useGenieStore(
-    (state) => state.packageManagers,
-  );
+  const packageManagersDetails = useGenieStore((state) => state.packageManagers);
   const [searchTerm, setSearchTerm] = useState("");
 
   // Use the generalized useSort hook with default sorting by name
@@ -50,8 +48,7 @@ export default function Page() {
 
         <Button variant="outline" onClick={() => updateSort(isSupported)}>
           Sort by Support{" "}
-          {sortConfigs.find((config) => config.key === isSupported)
-            ?.direction === "asc" ? (
+          {sortConfigs.find((config) => config.key === isSupported)?.direction === "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />
@@ -60,8 +57,7 @@ export default function Page() {
         {/* Buttons to toggle sorting by different criteria */}
         <Button variant="outline" onClick={() => updateSort("name")}>
           Sort by Name{" "}
-          {sortConfigs.find((config) => config.key === "name")?.direction ===
-          "asc" ? (
+          {sortConfigs.find((config) => config.key === "name")?.direction === "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />

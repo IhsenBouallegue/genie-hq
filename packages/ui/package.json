@@ -41,13 +41,7 @@
     "zustand": "^4.5.4"
   },
   "imports": {
-    "#*": [
-      "./src/*",
-      "./src/*.ts",
-      "./src/*.tsx",
-      "./src/*/index.ts",
-      "./src/*/index.tsx"
-    ]
+    "#*": ["./src/*", "./src/*.ts", "./src/*.tsx", "./src/*/index.ts", "./src/*/index.tsx"]
   },
   "exports": {
     "./globals.css": "./src/globals.css",
@@ -55,9 +49,6 @@
     "./tailwind.config": "./tailwind.config.ts",
     "./lib/*": "./src/lib/*.ts",
     "./components/*": ["./src/components/*.tsx", "./src/components/*.ts"],
-    "./setup-configurator/*": [
-      "./src/setup-configurator/*.tsx",
-      "./src/setup-configurator/*.ts"
-    ]
+    "./setup-configurator/*": ["./src/setup-configurator/*.tsx", "./src/setup-configurator/*.ts"]
   }
 }

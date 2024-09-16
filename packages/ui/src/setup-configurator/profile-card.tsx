@@ -1,10 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import type { Profile } from "#lib/store/types";
 import { cn } from "#lib/utils";
-import Image from "next/image";
 
-export default function ProfileCard({ id, title, image, onSelect, currentProfileId }: Profile & { onSelect: (id: string) => void; currentProfileId: string | null }) {
+export default function ProfileCard({
+  id,
+  title,
+  image,
+  onSelect,
+  currentProfileId,
+}: Profile & { onSelect: (id: string) => void; currentProfileId: string | null }) {
   const isSelected = currentProfileId === id;
 
   const handleClick = () => {

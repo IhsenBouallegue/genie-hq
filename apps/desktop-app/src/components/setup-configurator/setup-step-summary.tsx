@@ -16,16 +16,12 @@ export default function SetupStepSummary() {
   const updateProgress = useGenieStore((state) => state.updateProgress);
   const finishInstallation = useGenieStore((state) => state.finishInstallation);
   const selectedProfile = useGenieStore((state) => state.getSelectedProfile());
-  const currentPackageManagerInfo = useGenieStore(
-    (state) => state.currentPackageManagerInfo,
+  const currentPackageManagerInfo = useGenieStore((state) => state.currentPackageManagerInfo);
+  const selectedApplications = useGenieStore((state) => state.getSelectedApplications());
+  const { installationQueue, isLoading, startInstallation, queueApps } = useInstallationStore(
+    (state) => state,
   );
-  const selectedApplications = useGenieStore((state) =>
-    state.getSelectedApplications(),
-  );
-  const { installationQueue, isLoading, startInstallation, queueApps } =
-    useInstallationStore((state) => state);
-  const isNothingSelected =
-    !selectedProfile || selectedApplications.length === 0;
+  const isNothingSelected = !selectedProfile || selectedApplications.length === 0;
 
   // State to manage the installation method
   const [useAdminRights, setUseAdminRights] = useState<boolean | null>(null);
@@ -33,8 +29,8 @@ export default function SetupStepSummary() {
   return (
     <Group label="Is this all you need?">
       <StepDescription>
-        These apps will be installed by GenieHQ. If you need anything else, you
-        can go back and adjust your selection.
+        These apps will be installed by GenieHQ. If you need anything else, you can go back and
+        adjust your selection.
       </StepDescription>
       <div className="flex flex-col gap-6">
         {isNothingSelected ? (
@@ -49,9 +45,7 @@ export default function SetupStepSummary() {
             )}
             {selectedApplications.length > 0 && (
               <div>
-                <h4 className="text-md font-semibold">
-                  Selected Applications:
-                </h4>
+                <h4 className="text-md font-semibold">Selected Applications:</h4>
                 <ul className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3 pl-5 list-disc">
                   {selectedApplications.map((app) => (
                     <li key={app.id}>{app.title}</li>
@@ -61,9 +55,7 @@ export default function SetupStepSummary() {
             )}
 
             <div>
-              <h4 className="text-md font-semibold">
-                Choose Installation Method:
-              </h4>
+              <h4 className="text-md font-semibold">Choose Installation Method:</h4>
               <div className="flex flex-wrap gap-2 mt-4">
                 <SelectableCard
                   id="admin-rights"

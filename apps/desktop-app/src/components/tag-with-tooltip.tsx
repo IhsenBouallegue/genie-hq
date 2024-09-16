@@ -25,10 +25,7 @@ const tagInfo = {
   },
 };
 
-export function TagWithTooltip({
-  type,
-  value,
-}: PackageManagerInfo["tags"][number]) {
+export function TagWithTooltip({ type, value }: PackageManagerInfo["tags"][number]) {
   const { icon: Icon } = tagInfo[type];
 
   return (

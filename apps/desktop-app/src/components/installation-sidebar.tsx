@@ -1,11 +1,7 @@
 import { useState } from "react";
 
 import { useGenieStore } from "@/providers/genie-store-provider";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@geniehq/ui/components/alert";
+import { Alert, AlertDescription, AlertTitle } from "@geniehq/ui/components/alert";
 import { Button } from "@geniehq/ui/components/button";
 import {
   Card,
@@ -120,11 +116,7 @@ export default function InstallationSidebar() {
             <ul className="space-y-2">
               <AnimatePresence>
                 {completedApps.map((app) => (
-                  <motion.li
-                    key={app}
-                    className="flex items-center text-green-600"
-                    {...fadeInOut}
-                  >
+                  <motion.li key={app} className="flex items-center text-green-600" {...fadeInOut}>
                     <PackageIcon className="mr-2 h-4 w-4" />
                     {app}
                   </motion.li>
@@ -151,11 +143,7 @@ export default function InstallationSidebar() {
               <ul className="space-y-2 mb-4">
                 <AnimatePresence>
                   {Object.entries(failedApps).map(([app, error]) => (
-                    <motion.li
-                      key={app}
-                      className="flex items-center text-red-600"
-                      {...fadeInOut}
-                    >
+                    <motion.li key={app} className="flex items-center text-red-600" {...fadeInOut}>
                       <PackageIcon className="mr-2 h-4 w-4" />
                       {app}: {error}
                     </motion.li>
@@ -191,15 +179,11 @@ export default function InstallationSidebar() {
               <p className="text-sm text-muted-foreground">Total Apps</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-green-600">
-                {completedApps.length}
-              </p>
+              <p className="text-2xl font-bold text-green-600">{completedApps.length}</p>
               <p className="text-sm text-muted-foreground">Completed</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-red-600">
-                {Object.keys(failedApps).length}
-              </p>
+              <p className="text-2xl font-bold text-red-600">{Object.keys(failedApps).length}</p>
               <p className="text-sm text-muted-foreground">Failed</p>
             </div>
           </div>

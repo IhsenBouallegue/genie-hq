@@ -1,33 +1,24 @@
-import {
-  isAppSupportedByOS,
-  isAppSupportedByPackageManagers,
-} from "@/lib/app-logic";
+import { isAppSupportedByOS, isAppSupportedByPackageManagers } from "@/lib/app-logic";
 import { getSupportedPackageManagers } from "@/lib/pm-logic";
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Badge } from "@geniehq/ui/components/badge";
-import type {
-  Application,
-  PackageManagerInfo,
-} from "@geniehq/ui/lib/store/types";
+import type { Application, PackageManagerInfo } from "@geniehq/ui/lib/store/types";
 import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
 import { AppWindowIcon, Download, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function ApplicationFullCard({ app }: { app: Application }) {
   const [isSupportedByOS, setIsSupportedByOS] = useState(false);
-  const [isSupportedByPackageManagers, setIsSupportedByPackageManagers] =
-    useState(false);
-  const [supportedPackageManagers, setSupportedPackageManagers] = useState<
-    PackageManagerInfo[]
-  >([]);
+  const [isSupportedByPackageManagers, setIsSupportedByPackageManagers] = useState(false);
+  const [supportedPackageManagers, setSupportedPackageManagers] = useState<PackageManagerInfo[]>(
+    [],
+  );
   const currentOS = useGenieStore((state) => state.currentOS);
   const packageManagers = useGenieStore((state) => state.packageManagers);
   useEffect(() => {
     if (currentOS === null) return;
     setIsSupportedByOS(isAppSupportedByOS(app, currentOS));
-    const supportedPMs = getSupportedPackageManagers(
-      Object.values(packageManagers),
-    );
+    const supportedPMs = getSupportedPackageManagers(Object.values(packageManagers));
     setIsSupportedByPackageManagers(
       isAppSupportedByPackageManagers(
         app,
@@ -90,9 +81,7 @@ export default function ApplicationFullCard({ app }: { app: Application }) {
             <Badge
               key={pm}
               variant={
-                supportedPackageManagers.map((pm) => pm.name).includes(pm)
-                  ? "secondary"
-                  : "outline"
+                supportedPackageManagers.map((pm) => pm.name).includes(pm) ? "secondary" : "outline"
               }
             >
               {pm}

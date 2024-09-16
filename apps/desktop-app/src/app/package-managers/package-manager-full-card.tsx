@@ -3,17 +3,9 @@ import { Badge } from "@geniehq/ui/components/badge";
 import { Button } from "@geniehq/ui/components/button";
 import type { PackageManagerInfo } from "@geniehq/ui/lib/store/types";
 import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
-import {
-  CheckCircle,
-  Download,
-  Package,
-  RefreshCw,
-  XCircle,
-} from "lucide-react";
+import { CheckCircle, Download, Package, RefreshCw, XCircle } from "lucide-react";
 
-export default function PackageManagerFullCard({
-  pm,
-}: { pm: PackageManagerInfo }) {
+export default function PackageManagerFullCard({ pm }: { pm: PackageManagerInfo }) {
   const isSupported = pm.status !== "unsupported";
   return (
     <Selectable
@@ -30,12 +22,7 @@ export default function PackageManagerFullCard({
         <div>
           {isSupported &&
             (pm.status === "available" ? (
-              <Button
-                size="sm"
-                variant="ghost"
-                disabled
-                title="Not supported yet"
-              >
+              <Button size="sm" variant="ghost" disabled title="Not supported yet">
                 <Download className="w-4 h-4 mr-1" />
                 Install
               </Button>
@@ -47,9 +34,7 @@ export default function PackageManagerFullCard({
             ) : null)}
         </div>
       </div>
-      <p className="text-sm text-muted-foreground mb-2 text-left flex-grow">
-        {pm.description}
-      </p>
+      <p className="text-sm text-muted-foreground mb-2 text-left flex-grow">{pm.description}</p>
       <div className="flex flex-wrap gap-2 mt-2">
         {pm.status === "installed" && (
           <Badge variant="green">
@@ -70,12 +55,7 @@ export default function PackageManagerFullCard({
           </Badge>
         )}
         {pm.tags.map((tag) => (
-          <TagWithTooltip
-            key={tag.type}
-            type={tag.type}
-            value={tag.value}
-            icon={tag.icon}
-          />
+          <TagWithTooltip key={tag.type} type={tag.type} value={tag.value} icon={tag.icon} />
         ))}
         {pm.version && <Badge>v{pm.version}</Badge>}
         {!isSupported && (

@@ -5,13 +5,8 @@ import type {
   PackageManagerInfo,
 } from "@geniehq/ui/lib/store/types";
 
-export function isAppSupportedByOS(
-  application: Application,
-  currentOs: OperatingSystem,
-): boolean {
-  return application.installationMethods
-    .map((im) => im.os)
-    .some((os) => os === currentOs);
+export function isAppSupportedByOS(application: Application, currentOs: OperatingSystem): boolean {
+  return application.installationMethods.map((im) => im.os).some((os) => os === currentOs);
 }
 
 export function isAppSupportedByPackageManagers(
@@ -20,9 +15,7 @@ export function isAppSupportedByPackageManagers(
 ): boolean {
   return application.installationMethods
     .map((im) => im.packageManager)
-    .some((packageManager) =>
-      installedPackageManagers.includes(packageManager),
-    );
+    .some((packageManager) => installedPackageManagers.includes(packageManager));
 }
 export function isAppSupported(
   application: Application,
@@ -34,9 +27,7 @@ export function isAppSupported(
     isAppSupportedByPackageManagers(application, installedPackageManagers)
   );
 }
-export function allPackageManagersForApllication(
-  application: Application,
-): PackageManager[] {
+export function allPackageManagersForApllication(application: Application): PackageManager[] {
   return application.installationMethods.map((im) => im.packageManager);
 }
 

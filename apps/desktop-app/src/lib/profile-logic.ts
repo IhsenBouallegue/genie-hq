@@ -15,10 +15,7 @@ export function isProfileSupported(
 ) {
   for (const applicationId of profile.relevantApplications) {
     const application = allApplications[applicationId];
-    if (
-      !application ||
-      !isAppSupported(application, currentOs, installedPackageManagers)
-    ) {
+    if (!application || !isAppSupported(application, currentOs, installedPackageManagers)) {
       return false;
     }
   }

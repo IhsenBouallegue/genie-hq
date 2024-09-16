@@ -15,19 +15,12 @@ export default function Page() {
   const profiles = useGenieStore((state) => state.profiles);
   const applications = useGenieStore((state) => state.applications);
   const currentOS = useGenieStore((state) => state.currentOS);
-  const supportedPackageManagers = useGenieStore(
-    (state) => state.supportedPackageManagers,
-  );
+  const supportedPackageManagers = useGenieStore((state) => state.supportedPackageManagers);
 
   const [searchTerm, setSearchTerm] = useState("");
   const isSupported = useMemo(
     () => (profile: Profile) =>
-      isProfileSupported(
-        profile,
-        applications,
-        currentOS,
-        supportedPackageManagers(),
-      ),
+      isProfileSupported(profile, applications, currentOS, supportedPackageManagers()),
     [applications, currentOS, supportedPackageManagers],
   );
   // Use the generalized useSort hook with default sorting by title
@@ -35,9 +28,7 @@ export default function Page() {
     sortedItems: sortedProfiles,
     sortConfigs,
     updateSort,
-  } = useSort(Object.values(profiles), [
-    { key: isSupported, direction: "desc" },
-  ]);
+  } = useSort(Object.values(profiles), [{ key: isSupported, direction: "desc" }]);
 
   // Filter the profiles based on the search term
   const filteredProfiles = sortedProfiles.filter((profile) =>
@@ -62,8 +53,7 @@ export default function Page() {
 
         <Button variant="outline" onClick={() => updateSort(isSupported)}>
           Sort by Support{" "}
-          {sortConfigs.find((config) => config.key === isSupported)
-            ?.direction === "asc" ? (
+          {sortConfigs.find((config) => config.key === isSupported)?.direction === "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />
@@ -72,8 +62,7 @@ export default function Page() {
 
         <Button variant="outline" onClick={() => updateSort("title")}>
           Sort by Name{" "}
-          {sortConfigs.find((config) => config.key === "title")?.direction ===
-          "asc" ? (
+          {sortConfigs.find((config) => config.key === "title")?.direction === "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />

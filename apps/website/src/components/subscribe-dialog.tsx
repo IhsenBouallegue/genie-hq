@@ -22,8 +22,7 @@ export function SubscribeDialog({
         <DialogHeader>
           <DialogTitle>Be the first to the party!</DialogTitle>
           <DialogDescription>
-            We are still working hard on GenieHQ. But we will let you know as
-            soon as we are ready.
+            We are still working hard on GenieHQ. But we will let you know as soon as we are ready.
           </DialogDescription>
         </DialogHeader>
         <EmailForm origin="setup-tool" />

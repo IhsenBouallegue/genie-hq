@@ -38,9 +38,8 @@ export default function Hero() {
             Setup your new devices easily using GenieHQ
           </h1>
           <p className="text-lg md:text-xl">
-            Skip the hassle of manual app installations. Let GenieHQ handle the
-            setup for you, ensuring a smooth and stress-free experience with
-            your new devices.
+            Skip the hassle of manual app installations. Let GenieHQ handle the setup for you,
+            ensuring a smooth and stress-free experience with your new devices.
           </p>
           <div className="flex gap-4">
             <Button variant="outline" className="text-primary" asChild>
@@ -49,16 +48,13 @@ export default function Hero() {
           </div>
         </div>
         <div className="w-full max-w-lg">
-          <MotionShineBorder
-            className="p-0"
-            color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-          >
+          <MotionShineBorder className="p-0" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
             <Card className="border-0 py-2 px-4">
               <CardHeader>
                 <CardTitle className="text-3xl">Get Early Access</CardTitle>
                 <CardDescription className="pt-2">
-                  Sign up to be notified when our app installer launches. We
-                  won't email you about anything else.
+                  Sign up to be notified when our app installer launches. We won't email you about
+                  anything else.
                 </CardDescription>
               </CardHeader>
               <CardContent>

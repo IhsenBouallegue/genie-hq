@@ -81,8 +81,7 @@ const items = [
   },
   {
     title: "Cross-Platform Compatibility",
-    description:
-      "Windows, macOS, and Linux, doesn't matter. We got you covered.",
+    description: "Windows, macOS, and Linux, doesn't matter. We got you covered.",
     header: (
       <div className="h-full flex items-center justify-center gap-8 rounded-lg border p-6 md:shadow-xl">
         <Circle>

@@ -31,15 +31,9 @@ export async function POST(req: Request) {
     });
 
     if (error) {
-      return NextResponse.json(
-        { error: "Failed to subscribe" },
-        { status: 500 },
-      );
+      return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
     }
-    return NextResponse.json(
-      { message: "Successfully subscribed" },
-      { status: 200 },
-    );
+    return NextResponse.json({ message: "Successfully subscribed" }, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.errors }, { status: 400 });

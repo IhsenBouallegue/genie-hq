@@ -1,8 +1,4 @@
-import {
-  type Application,
-  OperatingSystem,
-  PackageManager,
-} from "@geniehq/ui/lib/store/types";
+import { type Application, OperatingSystem, PackageManager } from "@geniehq/ui/lib/store/types";
 import { platform } from "@tauri-apps/plugin-os";
 import { Command } from "@tauri-apps/plugin-shell";
 
@@ -58,9 +54,7 @@ export async function executeCommand(command: string[]): Promise<string> {
   }
   const result = await cmd.execute();
   if (result.code !== 0 && result.stderr) {
-    throw new Error(
-      `Command failed with code ${result.code}: ${result.stderr}`,
-    );
+    throw new Error(`Command failed with code ${result.code}: ${result.stderr}`);
   }
   return result.stdout;
 }
@@ -90,24 +84,16 @@ async function getInstallationCommand(
     (method) => method.os === osType,
   );
   const preferredInstallationMethod = availableInstallationMethod.find(
-    (installationMethod) =>
-      installationMethod.packageManager === packageManager,
+    (installationMethod) => installationMethod.packageManager === packageManager,
   );
 
   if (!preferredInstallationMethod) {
-    throw new Error(
-      `No installation method found for ${application.title} on this OS`,
-    );
+    throw new Error(`No installation method found for ${application.title} on this OS`);
   }
 
   switch (preferredInstallationMethod.packageManager) {
     case PackageManager.Homebrew:
-      return [
-        "brew",
-        "install",
-        "--cask",
-        preferredInstallationMethod.packageId,
-      ];
+      return ["brew", "install", "--cask", preferredInstallationMethod.packageId];
     case PackageManager.Scoop:
       return ["scoop", "install", preferredInstallationMethod.packageId];
     case PackageManager.Winget:
@@ -122,17 +108,9 @@ async function getInstallationCommand(
         "winget",
       ];
     case PackageManager.APT:
-      return [
-        "sudo",
-        "apt-get",
-        "install",
-        "-y",
-        preferredInstallationMethod.packageId,
-      ];
+      return ["sudo", "apt-get", "install", "-y", preferredInstallationMethod.packageId];
     default:
-      throw new Error(
-        `Unsupported package manager: ${preferredInstallationMethod.packageManager}`,
-      );
+      throw new Error(`Unsupported package manager: ${preferredInstallationMethod.packageManager}`);
   }
 }
 

@@ -22,9 +22,7 @@ type InstallationActions = {
   processQueue: () => void; // New action to process the queue
 };
 
-export const useInstallationStore = create<
-  InstallationState & InstallationActions
->()(
+export const useInstallationStore = create<InstallationState & InstallationActions>()(
   immer((set, get) => ({
     installingApps: [],
     completedApps: [],
@@ -48,9 +46,7 @@ export const useInstallationStore = create<
     markAppAsCompleted: (appId: ApplicationId) => {
       set((state) => {
         state.completedApps.push(appId);
-        state.installingApps = state.installingApps.filter(
-          (id) => id !== appId,
-        );
+        state.installingApps = state.installingApps.filter((id) => id !== appId);
         state.progress = (state.completedApps.length / state.totalApps) * 100;
       });
     },
@@ -59,12 +55,9 @@ export const useInstallationStore = create<
     markAppAsFailed: (appId: ApplicationId, error: string) => {
       set((state) => {
         state.failedApps[appId] = error;
-        state.installingApps = state.installingApps.filter(
-          (id) => id !== appId,
-        );
+        state.installingApps = state.installingApps.filter((id) => id !== appId);
         state.progress =
-          ((state.completedApps.length + Object.keys(state.failedApps).length) /
-            state.totalApps) *
+          ((state.completedApps.length + Object.keys(state.failedApps).length) / state.totalApps) *
           100;
       });
     },
@@ -72,8 +65,7 @@ export const useInstallationStore = create<
     // Update the progress based on completed and failed apps
     updateProgress: () => {
       set((state) => {
-        const totalProcessed =
-          state.completedApps.length + Object.keys(state.failedApps).length;
+        const totalProcessed = state.completedApps.length + Object.keys(state.failedApps).length;
         state.progress = (totalProcessed / state.totalApps) * 100;
       });
     },

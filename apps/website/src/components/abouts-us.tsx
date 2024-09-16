@@ -1,6 +1,6 @@
-import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Avatar, AvatarImage } from "@geniehq/ui/components/avatar";
 import { buttonVariants } from "@geniehq/ui/components/button";
+import { AvatarFallback } from "@radix-ui/react-avatar";
 import { MailIcon } from "lucide-react";
 import Heading from "./heading";
 
@@ -11,10 +11,9 @@ function AboutUs() {
 
       <h3 className="text-2xl font-semibold text-primary mt-8">Our mission</h3>
       <p className="leading-7 mt-6">
-        We're two passionate software engineers based in Germany who believe in
-        making life easier by saving time wherever we can. GenieHQ started from
-        our own frustrations with the tedious process of installing and
-        configuring applications on new devices.
+        We're two passionate software engineers based in Germany who believe in making life easier
+        by saving time wherever we can. GenieHQ started from our own frustrations with the tedious
+        process of installing and configuring applications on new devices.
       </p>
 
       <h3 className="text-2xl font-semibold text-primary mt-8">Who are we?</h3>
@@ -28,16 +27,13 @@ function AboutUs() {
             <div className="text-center">
               <div className="font-medium">Ihsen</div>
               <div className="text-sm text-muted-foreground">Genie Boss</div>
-              <a
-                className={buttonVariants({ variant: "link" })}
-                href="mailto:ihen@geniehq.xyz"
-              >
+              <a className={buttonVariants({ variant: "link" })} href="mailto:ihen@geniehq.xyz">
                 <MailIcon className="size-4 mr-2" />
                 ihsen@geniehq.xyz
               </a>
               <Quote>
-                I like to solve problems. But I also like to create them,
-                especially at 3 am when I can barely read the code 🤷‍♂
+                I like to solve problems. But I also like to create them, especially at 3 am when I
+                can barely read the code 🤷‍♂
               </Quote>
             </div>
           </div>
@@ -49,10 +45,7 @@ function AboutUs() {
             <div className="text-center">
               <div className="font-medium text-lg">Enrico</div>
               <div className="text-sm text-muted-foreground">Chief Genie</div>
-              <a
-                className={buttonVariants({ variant: "link" })}
-                href="mailto:enrico@geniehq.xyz"
-              >
+              <a className={buttonVariants({ variant: "link" })} href="mailto:enrico@geniehq.xyz">
                 <MailIcon className="size-4 mr-2" />
                 enrico@geniehq.xyz
               </a>
@@ -64,10 +57,9 @@ function AboutUs() {
 
       <h3 className="text-2xl font-semibold text-primary  mt-8">Our vision</h3>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        Our app simplifies this by automatically setting up your device with
-        essential applications, whether you're on Windows, macOS, or Linux. We
-        aim to give you more time to focus on what you love by making the setup
-        process quick, easy, and hassle-free.
+        Our app simplifies this by automatically setting up your device with essential applications,
+        whether you're on Windows, macOS, or Linux. We aim to give you more time to focus on what
+        you love by making the setup process quick, easy, and hassle-free.
       </p>
     </section>
   );

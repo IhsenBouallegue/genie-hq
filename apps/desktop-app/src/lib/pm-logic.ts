@@ -25,9 +25,7 @@ export async function getPackageManagerStatus(
   }
 }
 // Simulate checking for updates
-async function checkForUpdates(
-  packageManager: PackageManager,
-): Promise<boolean> {
+async function checkForUpdates(packageManager: PackageManager): Promise<boolean> {
   // Add logic here to determine if updates are available for the package manager
   // For now, we simulate this with a random outcome
   return Math.random() > 0.5;
@@ -101,18 +99,14 @@ function parseDnfVersion(output: string): string {
   throw new Error("Failed to parse DNF version from output.");
 }
 
-export async function getPackageManagerInfo(
-  packageManager: PackageManager,
-): Promise<{
+export async function getPackageManagerInfo(packageManager: PackageManager): Promise<{
   version: string | undefined;
   status: "installed" | "available" | "update-available" | "unsupported";
 }> {
   try {
     const os = await detectOSType();
     if (!isSupportedPackageManager(packageManager, os)) {
-      console.log(
-        `Package manager ${packageManager} is not supported on ${os}.`,
-      );
+      console.log(`Package manager ${packageManager} is not supported on ${os}.`);
       return { version: undefined, status: "unsupported" };
     }
 
@@ -157,10 +151,7 @@ export async function getPackageManagerInfo(
   } catch (error) {
     console.error(`Failed to get information for ${packageManager}:`, error);
     if (error instanceof Error) {
-      if (
-        error.message.includes("command not found") ||
-        error.message.includes("not recognized")
-      ) {
+      if (error.message.includes("command not found") || error.message.includes("not recognized")) {
         return { version: undefined, status: "unsupported" };
       }
 
@@ -170,8 +161,6 @@ export async function getPackageManagerInfo(
   }
 }
 
-export function getSupportedPackageManagers(
-  packageManagers: PackageManagerInfo[],
-) {
+export function getSupportedPackageManagers(packageManagers: PackageManagerInfo[]) {
   return packageManagers.filter((pm) => pm.status !== "unsupported");
 }

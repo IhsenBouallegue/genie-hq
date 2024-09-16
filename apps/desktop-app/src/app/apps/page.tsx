@@ -23,9 +23,7 @@ export default function Page() {
     sortedItems: sortedApplications,
     sortConfigs,
     updateSort,
-  } = useSort(Object.values(applicationsDetails), [
-    { key: isSupported, direction: "desc" },
-  ]);
+  } = useSort(Object.values(applicationsDetails), [{ key: isSupported, direction: "desc" }]);
 
   // Filter the applications based on the search term
   const filteredApplications = sortedApplications.filter((app) =>
@@ -50,8 +48,7 @@ export default function Page() {
 
         <Button variant="outline" onClick={() => updateSort(isSupported)}>
           Sort by Support{" "}
-          {sortConfigs.find((config) => config.key === isSupported)
-            ?.direction === "asc" ? (
+          {sortConfigs.find((config) => config.key === isSupported)?.direction === "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />
@@ -60,8 +57,7 @@ export default function Page() {
 
         <Button variant="outline" onClick={() => updateSort("title")}>
           Sort by Name{" "}
-          {sortConfigs.find((config) => config.key === "title")?.direction ===
-          "asc" ? (
+          {sortConfigs.find((config) => config.key === "title")?.direction === "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />

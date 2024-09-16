@@ -12,9 +12,7 @@ import AnimatedSubscribeButton from "./magicui/animated-subscribe-button";
 
 export function EmailForm({ origin }: { origin: "hero" | "setup-tool" }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<
-    "default" | "loading" | "success" | "failed"
-  >("default");
+  const [status, setStatus] = useState<"default" | "loading" | "success" | "failed">("default");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     track("subscribed", { email, origin });
@@ -66,22 +64,13 @@ export function EmailForm({ origin }: { origin: "hero" | "setup-tool" }) {
               <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </span>
           }
-          successText={
-            <span className="group inline-flex items-center">Subscribed</span>
-          }
-          loadingText={
-            <span className="group inline-flex items-center">Loading...</span>
-          }
-          failedText={
-            <span className="group inline-flex items-center">Failed</span>
-          }
+          successText={<span className="group inline-flex items-center">Subscribed</span>}
+          loadingText={<span className="group inline-flex items-center">Loading...</span>}
+          failedText={<span className="group inline-flex items-center">Failed</span>}
         />
         <p className="text-sm text-muted-foreground">
           By subscribing, you agree to our{" "}
-          <Link
-            className={cn(buttonVariants({ variant: "link" }), "px-0")}
-            href="/privacy-policy"
-          >
+          <Link className={cn(buttonVariants({ variant: "link" }), "px-0")} href="/privacy-policy">
             Privacy Policy
           </Link>
           .

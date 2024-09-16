@@ -11,11 +11,7 @@ import {
 } from "@geniehq/ui/lib/store/types";
 import { Store } from "@tauri-apps/plugin-store";
 import { create } from "zustand";
-import {
-  type StateStorage,
-  createJSONStorage,
-  persist,
-} from "zustand/middleware";
+import { type StateStorage, createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { detectOSType } from "../logic";
 import { getPackageManagerInfo } from "../pm-logic";
@@ -69,12 +65,8 @@ type Actions = {
 export const useStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      profiles: Object.fromEntries(
-        profiles.map((profile) => [profile.id, profile]),
-      ),
-      applications: Object.fromEntries(
-        applications.map((app) => [app.id, app]),
-      ),
+      profiles: Object.fromEntries(profiles.map((profile) => [profile.id, profile])),
+      applications: Object.fromEntries(applications.map((app) => [app.id, app])),
       selectedProfile: null,
       customApplicationIds: [],
       selectedApplicationIds: [],
@@ -125,9 +117,7 @@ export const useStore = create<State & Actions>()(
 
       getSelectedProfile: () => {
         const state = get();
-        return state.selectedProfile
-          ? state.profiles[state.selectedProfile] || null
-          : null;
+        return state.selectedProfile ? state.profiles[state.selectedProfile] || null : null;
       },
       getSelectedApplications: () => {
         const state = get();

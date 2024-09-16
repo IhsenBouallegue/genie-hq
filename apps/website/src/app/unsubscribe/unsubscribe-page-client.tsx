@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 
 const UnsubscribePageClient = ({ email }: { email: string | null }) => {
-  const [status, setStatus] = useState<"loading" | "success" | "failed">(
-    "loading",
-  );
+  const [status, setStatus] = useState<"loading" | "success" | "failed">("loading");
 
   useEffect(() => {
     if (!email) {
@@ -40,9 +38,7 @@ const UnsubscribePageClient = ({ email }: { email: string | null }) => {
     <div className="flex justify-center items-center h-screen">
       {status === "loading" && <p>Unsubscribing...</p>}
       {status === "success" && <p>You have been successfully unsubscribed.</p>}
-      {status === "failed" && (
-        <p>Failed to unsubscribe. Please try again later.</p>
-      )}
+      {status === "failed" && <p>Failed to unsubscribe. Please try again later.</p>}
     </div>
   );
 };

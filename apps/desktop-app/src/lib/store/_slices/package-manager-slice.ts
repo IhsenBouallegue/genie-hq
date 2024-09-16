@@ -1,7 +1,4 @@
-import {
-  getPackageManagerInfo,
-  getSupportedPackageManagers,
-} from "@/lib/pm-logic";
+import { getPackageManagerInfo, getSupportedPackageManagers } from "@/lib/pm-logic";
 import type { GenieStore } from "@/lib/store/genie-store-type";
 import {
   type PackageManager,
@@ -62,7 +59,5 @@ export const createPackageManagerSlice: StateCreator<
     });
   },
   supportedPackageManagers: () =>
-    getSupportedPackageManagers(Object.values(get().packageManagers)).map(
-      (pm) => pm.name,
-    ),
+    getSupportedPackageManagers(Object.values(get().packageManagers)).map((pm) => pm.name),
 });

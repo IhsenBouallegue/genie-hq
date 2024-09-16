@@ -8,12 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@geniehq/ui/components/card";
-import {
-  ArchiveIcon,
-  LayoutDashboardIcon,
-  PackageOpenIcon,
-  Users2Icon,
-} from "lucide-react";
+import { ArchiveIcon, LayoutDashboardIcon, PackageOpenIcon, Users2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";

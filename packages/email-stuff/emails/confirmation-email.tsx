@@ -16,9 +16,7 @@ type SubscriptionConfirmationEmailProps = {
   email: string;
 };
 
-const SubscriptionConfirmationEmail = ({
-  email,
-}: SubscriptionConfirmationEmailProps) => {
+const SubscriptionConfirmationEmail = ({ email }: SubscriptionConfirmationEmailProps) => {
   const previewText = "Subscription Confirmed! Welcome to GenieHQ! 🎉";
 
   return (
@@ -31,14 +29,11 @@ const SubscriptionConfirmationEmail = ({
             <Heading className="text-white text-2xl font-bold text-center mb-4">
               Subscription Confirmed! 🎉
             </Heading>
+            <Text className="text-white text-lg leading-6 mb-4">Hello there 👋,</Text>
             <Text className="text-white text-lg leading-6 mb-4">
-              Hello there 👋,
-            </Text>
-            <Text className="text-white text-lg leading-6 mb-4">
-              Thank you for subscribing to GenieHQ's launch updates. We're
-              thrilled to have you with us. You'll receive updates and
-              information as we get closer to our <em>launch 🚀</em> date. Stay
-              tuned!
+              Thank you for subscribing to GenieHQ's launch updates. We're thrilled to have you with
+              us. You'll receive updates and information as we get closer to our <em>launch 🚀</em>{" "}
+              date. Stay tuned!
             </Text>
             <Text className="text-white text-lg leading-6 mb-4">
               If you have any questions, feel free to reach out to us at{" "}

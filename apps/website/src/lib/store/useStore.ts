@@ -27,9 +27,7 @@ type Actions = {
 export const useStore = create<State & Actions>()(
   immer((set, get) => ({
     openSteps: ["profile-step"],
-    profiles: Object.fromEntries(
-      profiles.map((profile) => [profile.id, profile]),
-    ),
+    profiles: Object.fromEntries(profiles.map((profile) => [profile.id, profile])),
     applications: Object.fromEntries(applications.map((app) => [app.id, app])),
     selectedProfile: null,
     customApplicationIds: [],
@@ -53,11 +51,7 @@ export const useStore = create<State & Actions>()(
           state.selectedProfile = profileId;
           state.selectedApplicationIds = profile.relevantApplications;
           state.customApplicationIds = [];
-          state.openSteps = [
-            "profile-step",
-            "applications-step",
-            "summary-step",
-          ];
+          state.openSteps = ["profile-step", "applications-step", "summary-step"];
         }
       }),
     toggleApplication: (applicationId: string) =>
@@ -76,9 +70,7 @@ export const useStore = create<State & Actions>()(
       }),
     getSelectedProfile: () => {
       const state = get();
-      return state.selectedProfile
-        ? state.profiles[state.selectedProfile] || null
-        : null;
+      return state.selectedProfile ? state.profiles[state.selectedProfile] || null : null;
     },
     getSelectedApplications: () => {
       const state = get();

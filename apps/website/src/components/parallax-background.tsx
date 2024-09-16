@@ -67,9 +67,7 @@ export default function ParallaxBackground() {
 
   return (
     <div
-      className={cn(
-        "absolute h-[100vh] w-full -z-10 overflow-x-clip overflow-y-visible md:w-full",
-      )}
+      className={cn("absolute h-[100vh] w-full -z-10 overflow-x-clip overflow-y-visible md:w-full")}
       ref={container}
     >
       {parallaxImages.map((image, index) => (
@@ -88,12 +86,7 @@ export default function ParallaxBackground() {
             image.depth === 5 && "blur-[2.5px]",
           )}
         >
-          <Image
-            src={image.iconSrc}
-            alt=" "
-            className="w-full h-full object-cover"
-            fill
-          />
+          <Image src={image.iconSrc} alt=" " className="w-full h-full object-cover" fill />
         </motion.div>
       ))}
     </div>

@@ -55,16 +55,14 @@ export const createInstallationSlice: StateCreator<
       state.failedApps[appId] = error;
       state.installingApps = state.installingApps.filter((id) => id !== appId);
       state.progress =
-        ((state.completedApps.length + Object.keys(state.failedApps).length) /
-          state.totalApps) *
+        ((state.completedApps.length + Object.keys(state.failedApps).length) / state.totalApps) *
         100;
     });
   },
 
   updateProgress: () => {
     set((state) => {
-      const totalProcessed =
-        state.completedApps.length + Object.keys(state.failedApps).length;
+      const totalProcessed = state.completedApps.length + Object.keys(state.failedApps).length;
       state.progress = (totalProcessed / state.totalApps) * 100;
     });
   },

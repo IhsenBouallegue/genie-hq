@@ -1,10 +1,6 @@
 import type { GenieStore } from "@/lib/store/genie-store-type";
 import { profiles } from "@geniehq/ui/lib/store/data";
-import type {
-  ApplicationId,
-  Profile,
-  ProfileId,
-} from "@geniehq/ui/lib/store/types";
+import type { ApplicationId, Profile, ProfileId } from "@geniehq/ui/lib/store/types";
 import type { StateCreator } from "zustand";
 
 export interface ProfilesSlice {
@@ -24,9 +20,7 @@ export const createProfilesSlice: StateCreator<
   [],
   ProfilesSlice
 > = (set, get) => ({
-  profiles: Object.fromEntries(
-    profiles.map((profile) => [profile.id, profile]),
-  ),
+  profiles: Object.fromEntries(profiles.map((profile) => [profile.id, profile])),
   selectedProfile: null,
   customApplicationIds: [],
   selectedApplicationIds: [],
@@ -59,8 +53,6 @@ export const createProfilesSlice: StateCreator<
 
   getSelectedProfile: () => {
     const state = get();
-    return state.selectedProfile
-      ? state.profiles[state.selectedProfile] || null
-      : null;
+    return state.selectedProfile ? state.profiles[state.selectedProfile] || null : null;
   },
 });

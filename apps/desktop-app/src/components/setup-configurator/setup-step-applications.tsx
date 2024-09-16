@@ -6,31 +6,23 @@ import StepDescription from "@geniehq/ui/setup-configurator/base/step-descriptio
 import { PlusIcon } from "lucide-react";
 import Group from "../group";
 export default function SetupStepApplications() {
-  const selectedPackageManager = useGenieStore(
-    (state) => state.currentPackageManagerInfo,
-  );
-  const applications = useGenieStore((state) =>
-    Object.values(state.applications),
-  );
+  const selectedPackageManager = useGenieStore((state) => state.currentPackageManagerInfo);
+  const applications = useGenieStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);
   const toggleApplication = useGenieStore((state) => state.toggleApplication);
-  const selectedApplicationIds = useGenieStore(
-    (state) => state.selectedApplicationIds,
-  );
+  const selectedApplicationIds = useGenieStore((state) => state.selectedApplicationIds);
   if (!selectedPackageManager) {
     return null;
   }
   return (
     <Group label="What do you like to install?">
       <StepDescription>
-        Choose the applications you want to install on your system. Or refine
-        the selection from a profile.
+        Choose the applications you want to install on your system. Or refine the selection from a
+        profile.
       </StepDescription>
       {categories.map((category) => (
         <div key={category} className="w-full">
-          <h3 className="text-lg font-bold mb-2 text-muted-foreground">
-            {category}
-          </h3>
+          <h3 className="text-lg font-bold mb-2 text-muted-foreground">{category}</h3>
           <div className="flex flex-wrap gap-3">
             <AnimatedBackground
               className="rounded-lg bg-zinc-100 dark:bg-slate-400/15"

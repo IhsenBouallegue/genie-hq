@@ -9,16 +9,11 @@ import Image from "next/image";
 
 function Faq() {
   return (
-    <section
-      id="faq"
-      className="flex flex-col justify-center items-center p-6 max-w-6xl"
-    >
+    <section id="faq" className="flex flex-col justify-center items-center p-6 max-w-6xl">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <MotionCard className="shadow-lg md:w-[600px] md:max-w-fit">
           <CardContent className="p-8">
-            <h3 className="font-semibold text-primary">
-              Frequently asked questions
-            </h3>
+            <h3 className="font-semibold text-primary">Frequently asked questions</h3>
             <p className="mt-3 text-3xl font-extrabold sm:text-4xl">
               All information you need to know
             </p>
@@ -28,10 +23,9 @@ function Faq() {
                   What is GenieHQ and how does it work?
                 </AccordionTrigger>
                 <AccordionContent>
-                  GenieHQ is an app installer designed to simplify setting up
-                  your device. With just a few clicks, you can install essential
-                  programs and applications tailored to your needs through
-                  ready-made profiles.
+                  GenieHQ is an app installer designed to simplify setting up your device. With just
+                  a few clicks, you can install essential programs and applications tailored to your
+                  needs through ready-made profiles.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
@@ -39,10 +33,9 @@ function Faq() {
                   Who is GenieHQ for?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Initially, GenieHQ is geared towards tech-savvy developers and
-                  professionals who need a quick and efficient way to set up
-                  their devices. We aim to broaden our audience over time to
-                  include casual users.
+                  Initially, GenieHQ is geared towards tech-savvy developers and professionals who
+                  need a quick and efficient way to set up their devices. We aim to broaden our
+                  audience over time to include casual users.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
@@ -50,9 +43,8 @@ function Faq() {
                   Is GenieHQ compatible with my operating system?
                 </AccordionTrigger>
                 <AccordionContent>
-                  GenieHQ currently supports Windows. We plan to add support for
-                  macOS and Linux in the future. There are no plans to support
-                  mobile devices at this time.
+                  GenieHQ currently supports Windows. We plan to add support for macOS and Linux in
+                  the future. There are no plans to support mobile devices at this time.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
@@ -60,10 +52,9 @@ function Faq() {
                   How does GenieHQ personalize app installations?
                 </AccordionTrigger>
                 <AccordionContent>
-                  GenieHQ offers personalized configurations based on your role.
-                  It learns about your preferences and suggests the apps you
-                  might need, or you can create a custom list tailored to your
-                  specific requirements.
+                  GenieHQ offers personalized configurations based on your role. It learns about
+                  your preferences and suggests the apps you might need, or you can create a custom
+                  list tailored to your specific requirements.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">
@@ -71,10 +62,9 @@ function Faq() {
                   How easy is it to set up my device with GenieHQ?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Setting up your device with GenieHQ is incredibly easy. With
-                  just a few clicks, you can install all the essential programs
-                  and applications tailored to your needs, saving you time and
-                  effort.
+                  Setting up your device with GenieHQ is incredibly easy. With just a few clicks,
+                  you can install all the essential programs and applications tailored to your
+                  needs, saving you time and effort.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-6">
@@ -82,9 +72,8 @@ function Faq() {
                   Will GenieHQ support other operating systems in the future?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes, we plan to support macOS and Linux in the future to
-                  ensure that users across different platforms can benefit from
-                  the ease of use that GenieHQ offers.
+                  Yes, we plan to support macOS and Linux in the future to ensure that users across
+                  different platforms can benefit from the ease of use that GenieHQ offers.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-7">
@@ -92,9 +81,8 @@ function Faq() {
                   Can GenieHQ recommend apps based on my input?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Absolutely. GenieHQ includes a feature where it learns about
-                  you and suggests apps that you may need, enhancing your
-                  overall experience and productivity.
+                  Absolutely. GenieHQ includes a feature where it learns about you and suggests apps
+                  that you may need, enhancing your overall experience and productivity.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem className="border-b-0" value="item-8">
@@ -102,8 +90,8 @@ function Faq() {
                   Will it be free?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes, GenieHQ will be free to use. We aim to provide a
-                  user-friendly experience without any additional costs.
+                  Yes, GenieHQ will be free to use. We aim to provide a user-friendly experience
+                  without any additional costs.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
