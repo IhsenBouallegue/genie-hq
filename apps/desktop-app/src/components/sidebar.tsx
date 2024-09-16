@@ -88,9 +88,11 @@ export default function Sidebar() {
         >
           Clear Store
         </Button>
-        <Card x-chunk="dashboard-02-chunk-0">
+        <Card className="opacity-70 cursor-default select-none pointer-events-none">
           <CardHeader className="p-2 pt-0 md:p-4">
-            <span className="text-xs text-muted">Coming soon</span>
+            <Badge variant="secondary" className="max-w-fit opacity-40 mb-2">
+              Coming Soon
+            </Badge>
             <CardTitle>Upgrade to Pro</CardTitle>
             <CardDescription>
               Unlock all features and get unlimited access to our support team.

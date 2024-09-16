@@ -41,7 +41,7 @@ export default function ApplicationFullCard({ app }: { app: Application }) {
       key={app.id}
       id={app.id}
       enableHover={isSupportedByOS}
-      className={`${isSupportedByOS ? "" : "opacity-60 cursor-default saturate-50 blur-[0.8px]"} `}
+      className={`${isSupportedByOS ? "" : "opacity-60 cursor-default saturate-50 blur-[0.8px] pointer-events-none"} `}
     >
       <div className="flex justify-between items-start mb-2 w-full">
         <div className="flex items-center gap-2">

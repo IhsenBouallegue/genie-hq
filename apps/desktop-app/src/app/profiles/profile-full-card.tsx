@@ -40,7 +40,9 @@ export default function ProfileFullCard({
       id={profile.id}
       enableHover={isSupported}
       className={`${
-        isSupported ? "" : "opacity-60 cursor-default saturate-50 blur-[0.8px]"
+        isSupported
+          ? ""
+          : "opacity-60 cursor-default saturate-50 blur-[0.8px] pointer-events-none"
       } `}
     >
       <div className="flex justify-between items-start mb-2 w-full">
