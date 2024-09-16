@@ -1,36 +1,36 @@
 "use client";
 
-import { useGenieStore } from "@/providers/genie-store-provider";
+import { useSort } from "@/lib/sorting"; // The generalized sorting hook
+import { useGenieStore } from "@/providers/genie-store-provider"; // Access Genie Store
 import { Button } from "@geniehq/ui/components/button";
 import { Input } from "@geniehq/ui/components/input";
+import type { PackageManagerInfo } from "@geniehq/ui/lib/store/types";
 import { Search, SortAsc, SortDesc, XCircle } from "lucide-react";
 import { useState } from "react";
 import PackageManagerFullCard from "./package-manager-full-card";
 
+// Function to compute isSupported based on status
+
+const isSupported = (pm: PackageManagerInfo) => pm.status !== "unsupported";
 export default function Page() {
   const packageManagersDetails = useGenieStore(
     (state) => state.packageManagers,
   );
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [selectedPackageManagers, setSelectedPackageManagers] = useState<
-    string[]
-  >([]);
 
-  const filteredAndSortedPackageManagers = Object.values(packageManagersDetails)
-    .filter((pm) => pm.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    .sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a.name.localeCompare(b.name);
-      }
-      return b.name.localeCompare(a.name);
-    });
+  // Use the generalized useSort hook with default sorting by name
+  const {
+    sortedItems: sortedPackageManagers,
+    sortConfigs,
+    updateSort,
+  } = useSort<PackageManagerInfo>(Object.values(packageManagersDetails), [
+    { key: isSupported, direction: "desc" },
+  ]);
 
-  const togglePackageManager = (id: string) => {
-    setSelectedPackageManagers((prev) =>
-      prev.includes(id) ? prev.filter((pmId) => pmId !== id) : [...prev, id],
-    );
-  };
+  // Filter the package managers based on the search term
+  const filteredPackageManagers = sortedPackageManagers.filter((pm) =>
+    pm.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <div className="container mx-auto p-4 space-y-6">
@@ -47,15 +47,21 @@ export default function Page() {
             className="pl-8"
           />
         </div>
-        <Button
-          variant="outline"
-          onClick={() =>
-            setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
-          }
-          className="w-full sm:w-auto"
-        >
-          Sort{" "}
-          {sortOrder === "asc" ? (
+
+        <Button variant="outline" onClick={() => updateSort(isSupported)}>
+          Sort by Support{" "}
+          {sortConfigs.find((config) => config.key === isSupported)
+            ?.direction === "asc" ? (
+            <SortAsc className="ml-2" />
+          ) : (
+            <SortDesc className="ml-2" />
+          )}
+        </Button>
+        {/* Buttons to toggle sorting by different criteria */}
+        <Button variant="outline" onClick={() => updateSort("name")}>
+          Sort by Name{" "}
+          {sortConfigs.find((config) => config.key === "name")?.direction ===
+          "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />
@@ -63,13 +69,14 @@ export default function Page() {
         </Button>
       </div>
 
+      {/* Display sorted and filtered package managers */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredAndSortedPackageManagers.map((pm) => (
+        {filteredPackageManagers.map((pm) => (
           <PackageManagerFullCard key={pm.name} pm={pm} />
         ))}
       </div>
 
-      {filteredAndSortedPackageManagers.length === 0 && (
+      {filteredPackageManagers.length === 0 && (
         <div className="text-center py-8">
           <XCircle className="w-12 h-12 mx-auto text-muted-foreground" />
           <p className="mt-2 text-lg font-medium">No package managers found</p>

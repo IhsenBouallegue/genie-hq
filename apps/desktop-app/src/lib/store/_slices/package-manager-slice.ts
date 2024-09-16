@@ -1,17 +1,21 @@
 import {
+  getPackageManagerInfo,
+  getSupportedPackageManagers,
+} from "@/lib/pm-logic";
+import type { GenieStore } from "@/lib/store/genie-store-type";
+import {
   type PackageManager,
   PackageManagerDetails,
   type PackageManagerInfo,
 } from "@geniehq/ui/lib/store/types";
 import type { StateCreator } from "zustand";
-import { getPackageManagerInfo } from "../../pm-logic";
-import type { GenieStore } from "../store-slices";
 
 export interface PackageManagerSlice {
   currentPackageManagerInfo: PackageManagerInfo | null;
   packageManagers: Record<PackageManager, PackageManagerInfo>;
   initializePackageManagers: () => Promise<void>;
   setCurrentPackageManager: (pm: PackageManager) => Promise<void>;
+  supportedPackageManagers: () => PackageManager[];
 }
 
 export const createPackageManagerSlice: StateCreator<
@@ -57,4 +61,8 @@ export const createPackageManagerSlice: StateCreator<
       state.packageManagers[pm] = packageManagerInfo;
     });
   },
+  supportedPackageManagers: () =>
+    getSupportedPackageManagers(Object.values(get().packageManagers)).map(
+      (pm) => pm.name,
+    ),
 });

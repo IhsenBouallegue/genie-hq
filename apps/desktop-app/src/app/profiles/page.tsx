@@ -1,29 +1,48 @@
 "use client";
 
+import { getSupportedPackageManagers } from "@/lib/pm-logic";
+import { isProfileSupported } from "@/lib/profile-logic";
+import { useSort } from "@/lib/sorting"; // Import the sorting hook
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Button } from "@geniehq/ui/components/button";
 import { Input } from "@geniehq/ui/components/input";
+import type { Profile } from "@geniehq/ui/lib/store/types";
 import { Search, SortAsc, SortDesc, XCircle } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ProfileFullCard from "./profile-full-card";
 
 export default function Page() {
   const profiles = useGenieStore((state) => state.profiles);
+  const applications = useGenieStore((state) => state.applications);
+  const currentOS = useGenieStore((state) => state.currentOS);
+  const supportedPackageManagers = useGenieStore(
+    (state) => state.supportedPackageManagers,
+  );
+
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const isSupported = useMemo(
+    () => (profile: Profile) =>
+      isProfileSupported(
+        profile,
+        applications,
+        currentOS,
+        supportedPackageManagers(),
+      ),
+    [applications, currentOS, supportedPackageManagers],
+  );
+  // Use the generalized useSort hook with default sorting by title
+  const {
+    sortedItems: sortedProfiles,
+    sortConfigs,
+    updateSort,
+  } = useSort(Object.values(profiles), [
+    { key: isSupported, direction: "desc" },
+  ]);
 
-  const profilesArray = Object.values(profiles);
-
-  const filteredAndSortedProfiles = profilesArray
-    .filter((profile) =>
-      profile.title.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-    .sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a.title.localeCompare(b.title);
-      }
-      return b.title.localeCompare(a.title);
-    });
+  // Filter the profiles based on the search term
+  const filteredProfiles = sortedProfiles.filter((profile) =>
+    profile.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <div className="container mx-auto p-4 space-y-6">
@@ -40,15 +59,21 @@ export default function Page() {
             className="pl-8"
           />
         </div>
-        <Button
-          variant="outline"
-          onClick={() =>
-            setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
-          }
-          className="w-full sm:w-auto"
-        >
-          Sort{" "}
-          {sortOrder === "asc" ? (
+
+        <Button variant="outline" onClick={() => updateSort(isSupported)}>
+          Sort by Support{" "}
+          {sortConfigs.find((config) => config.key === isSupported)
+            ?.direction === "asc" ? (
+            <SortAsc className="ml-2" />
+          ) : (
+            <SortDesc className="ml-2" />
+          )}
+        </Button>
+
+        <Button variant="outline" onClick={() => updateSort("title")}>
+          Sort by Name{" "}
+          {sortConfigs.find((config) => config.key === "title")?.direction ===
+          "asc" ? (
             <SortAsc className="ml-2" />
           ) : (
             <SortDesc className="ml-2" />
@@ -57,12 +82,12 @@ export default function Page() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredAndSortedProfiles.map((profile) => (
+        {filteredProfiles.map((profile) => (
           <ProfileFullCard key={profile.id} profile={profile} />
         ))}
       </div>
 
-      {filteredAndSortedProfiles.length === 0 && (
+      {filteredProfiles.length === 0 && (
         <div className="text-center py-8">
           <XCircle className="w-12 h-12 mx-auto text-muted-foreground" />
           <p className="mt-2 text-lg font-medium">No profiles found</p>

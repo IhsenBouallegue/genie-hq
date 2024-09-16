@@ -10,7 +10,7 @@ import type {
   PackageManagerInfo,
 } from "@geniehq/ui/lib/store/types";
 import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
-import { AppWindowIcon, Download, RefreshCw, XCircle } from "lucide-react";
+import { AppWindowIcon, Download, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function ApplicationFullCard({ app }: { app: Application }) {
