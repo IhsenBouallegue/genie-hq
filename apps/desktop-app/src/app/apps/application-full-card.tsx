@@ -3,7 +3,7 @@ import {
   isAppSupportedByPackageManagers,
 } from "@/lib/app-logic";
 import { getSupportedPackageManagers } from "@/lib/pm-logic";
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import { Badge } from "@geniehq/ui/components/badge";
 import type {
   Application,
@@ -20,8 +20,8 @@ export default function ApplicationFullCard({ app }: { app: Application }) {
   const [supportedPackageManagers, setSupportedPackageManagers] = useState<
     PackageManagerInfo[]
   >([]);
-  const currentOS = useStore((state) => state.currentOS);
-  const packageManagers = useStore((state) => state.packageManagers);
+  const currentOS = useGenieStore((state) => state.currentOS);
+  const packageManagers = useGenieStore((state) => state.packageManagers);
   useEffect(() => {
     if (currentOS === null) return;
     setIsSupportedByOS(isAppSupportedByOS(app, currentOS));

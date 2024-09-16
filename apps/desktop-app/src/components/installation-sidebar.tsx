@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useInstallationStore } from "@/lib/store/useInstallationStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import {
   Alert,
   AlertDescription,
@@ -39,7 +39,21 @@ export default function InstallationSidebar() {
     updateProgress,
     finishInstallation,
     installationQueue,
-  } = useInstallationStore();
+  } = useGenieStore((state) => ({
+    installingApps: state.installingApps,
+    completedApps: state.completedApps,
+    failedApps: state.failedApps,
+    totalApps: state.totalApps,
+    progress: state.progress,
+    isLoading: state.isLoading,
+    queueApps: state.queueApps,
+    processQueue: state.processQueue,
+    markAppAsCompleted: state.markAppAsCompleted,
+    markAppAsFailed: state.markAppAsFailed,
+    updateProgress: state.updateProgress,
+    finishInstallation: state.finishInstallation,
+    installationQueue: state.installationQueue,
+  }));
 
   const [error, setError] = useState<string | null>(null);
 

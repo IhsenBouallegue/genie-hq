@@ -1,4 +1,4 @@
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 
@@ -6,9 +6,9 @@ import ProfileCard from "@geniehq/ui/setup-configurator/profile-card";
 import Group from "../group";
 
 export default function SetupStepProfile() {
-  const profiles = useStore((state) => Object.values(state.profiles));
-  const selectProfile = useStore((state) => state.selectProfile);
-  const currentProfileId = useStore((state) => state.selectedProfile);
+  const profiles = useGenieStore((state) => Object.values(state.profiles));
+  const selectProfile = useGenieStore((state) => state.selectProfile);
+  const currentProfileId = useGenieStore((state) => state.selectedProfile);
 
   return (
     <Group label="Who are you?">

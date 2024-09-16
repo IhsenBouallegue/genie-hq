@@ -5,19 +5,19 @@ import {
 } from "@geniehq/ui/lib/store/types";
 import { platform } from "@tauri-apps/plugin-os";
 import { Command } from "@tauri-apps/plugin-shell";
-import { useInstallationStore } from "./store/useInstallationStore";
 
 export async function handleSequentialInstallations(
   applications: Application[],
   packageManager: PackageManager,
+  markAppAsCompleted: (id: string) => void,
+  markAppAsFailed: (id: string, message: string) => void,
+  updateProgress: () => void,
+  finishInstallation: () => void,
 ): Promise<void> {
-  const installStore = useInstallationStore.getState(); // Access the installation store
-
   for (const application of applications) {
     try {
       const command = await getInstallationCommand(application, packageManager);
 
-      // If in development mode, simulate installation
       const output =
         process.env.NODE_ENV === "development"
           ? await fakeExecuteCommand(command)
@@ -26,24 +26,22 @@ export async function handleSequentialInstallations(
       console.log(`Installation successful for ${application.title}:`, output);
 
       // Mark as completed
-      installStore.markAppAsCompleted(application.id);
+      markAppAsCompleted(application.id);
     } catch (error) {
       if (error instanceof Error) {
         console.error(`Installation failed for ${application.title}:`, error);
         // Mark as failed
-        installStore.markAppAsFailed(application.id, error.message);
+        markAppAsFailed(application.id, error.message);
       } else {
         console.error("Installation failed due to an unknown error:", error);
-        installStore.markAppAsFailed(application.id, "Unknown error");
+        markAppAsFailed(application.id, "Unknown error");
       }
     }
 
-    // Update the progress in the UI
-    installStore.updateProgress();
+    updateProgress();
   }
 
-  // Finish the installation process
-  installStore.finishInstallation();
+  finishInstallation();
 }
 
 // Real command execution

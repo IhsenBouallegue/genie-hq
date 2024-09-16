@@ -1,7 +1,7 @@
 import { TagWithTooltip } from "@/components/tag-with-tooltip";
 import { getSupportedPackageManagers } from "@/lib/pm-logic";
 import { isProfileSupported } from "@/lib/profile-logic";
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import { Badge } from "@geniehq/ui/components/badge";
 import { Button } from "@geniehq/ui/components/button";
 import type { Profile } from "@geniehq/ui/lib/store/types";
@@ -16,9 +16,9 @@ export default function ProfileFullCard({
   profile: Profile;
 }) {
   const [isSupported, setIsSupported] = useState(false);
-  const applications = useStore((state) => state.applications);
-  const currentOS = useStore((state) => state.currentOS);
-  const packageManagers = useStore((state) => state.packageManagers);
+  const applications = useGenieStore((state) => state.applications);
+  const currentOS = useGenieStore((state) => state.currentOS);
+  const packageManagers = useGenieStore((state) => state.packageManagers);
 
   useEffect(() => {
     if (currentOS === null) return;

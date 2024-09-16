@@ -1,4 +1,4 @@
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import { PackageManagerDetails } from "@geniehq/ui/lib/store/types";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
@@ -6,7 +6,7 @@ import Group from "../group";
 
 export default function SetupStepPackageManager() {
   const { currentOS, setCurrentPackageManager, currentPackageManager } =
-    useStore((state) => ({
+    useGenieStore((state) => ({
       currentOS: state.currentOS,
       setCurrentPackageManager: state.setCurrentPackageManager,
       currentPackageManager: state.currentPackageManagerInfo,

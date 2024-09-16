@@ -1,4 +1,4 @@
-import { privateStore } from "@/lib/store/useStore";
+import { privateStore } from "@/lib/store/tauri-storage";
 import { Badge } from "@geniehq/ui/components/badge";
 import { Button } from "@geniehq/ui/components/button";
 import {

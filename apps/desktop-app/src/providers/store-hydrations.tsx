@@ -1,13 +1,13 @@
 "use client";
 
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import dynamic from "next/dynamic";
 
 // Dynamically import the loading component
-const Loading = dynamic(() => import("./loading"));
+const Loading = dynamic(() => import("../app/loading"));
 
 export function HydrationBoundary({ children }: { children: React.ReactNode }) {
-  const hasHydrated = useStore((state) => state._hasHydrated);
+  const hasHydrated = useGenieStore((state) => state._hasHydrated);
 
   if (!hasHydrated) {
     return <Loading />;

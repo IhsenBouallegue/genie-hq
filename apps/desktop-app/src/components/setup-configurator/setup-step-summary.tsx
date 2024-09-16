@@ -1,21 +1,25 @@
 "use client";
 
+import Group from "@/components/group";
 import { handleSequentialInstallations } from "@/lib/logic";
 import { useInstallationStore } from "@/lib/store/useInstallationStore";
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import { Button } from "@geniehq/ui/components/button";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
 import { ShieldCheckIcon, UserXIcon } from "lucide-react";
 import { useState } from "react";
-import Group from "../group";
 
 export default function SetupStepSummary() {
-  const selectedProfile = useStore((state) => state.getSelectedProfile());
-  const currentPackageManagerInfo = useStore(
+  const markAppAsCompleted = useGenieStore((state) => state.markAppAsCompleted);
+  const markAppAsFailed = useGenieStore((state) => state.markAppAsFailed);
+  const updateProgress = useGenieStore((state) => state.updateProgress);
+  const finishInstallation = useGenieStore((state) => state.finishInstallation);
+  const selectedProfile = useGenieStore((state) => state.getSelectedProfile());
+  const currentPackageManagerInfo = useGenieStore(
     (state) => state.currentPackageManagerInfo,
   );
-  const selectedApplications = useStore((state) =>
+  const selectedApplications = useGenieStore((state) =>
     state.getSelectedApplications(),
   );
   const { installationQueue, isLoading, startInstallation, queueApps } =
@@ -95,6 +99,10 @@ export default function SetupStepSummary() {
                         handleSequentialInstallations(
                           selectedApplications,
                           currentPackageManagerInfo.name,
+                          markAppAsCompleted,
+                          markAppAsFailed,
+                          updateProgress,
+                          finishInstallation,
                         );
                       }}
                       className="w-full"

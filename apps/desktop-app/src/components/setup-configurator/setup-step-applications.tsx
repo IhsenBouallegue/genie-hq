@@ -1,4 +1,4 @@
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import { Category } from "@geniehq/ui/lib/store/types";
 import ApplicationCard from "@geniehq/ui/setup-configurator/application-card";
@@ -6,13 +6,15 @@ import StepDescription from "@geniehq/ui/setup-configurator/base/step-descriptio
 import { PlusIcon } from "lucide-react";
 import Group from "../group";
 export default function SetupStepApplications() {
-  const selectedPackageManager = useStore(
+  const selectedPackageManager = useGenieStore(
     (state) => state.currentPackageManagerInfo,
   );
-  const applications = useStore((state) => Object.values(state.applications));
+  const applications = useGenieStore((state) =>
+    Object.values(state.applications),
+  );
   const categories = Object.values(Category);
-  const toggleApplication = useStore((state) => state.toggleApplication);
-  const selectedApplicationIds = useStore(
+  const toggleApplication = useGenieStore((state) => state.toggleApplication);
+  const selectedApplicationIds = useGenieStore(
     (state) => state.selectedApplicationIds,
   );
   if (!selectedPackageManager) {

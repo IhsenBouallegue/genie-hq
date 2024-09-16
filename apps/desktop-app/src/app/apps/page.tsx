@@ -1,6 +1,6 @@
 "use client";
 
-import { useStore } from "@/lib/store/useStore";
+import { useGenieStore } from "@/providers/genie-store-provider";
 import { Button } from "@geniehq/ui/components/button";
 import { Input } from "@geniehq/ui/components/input";
 import { Search, SortAsc, SortDesc, XCircle } from "lucide-react";
@@ -8,7 +8,7 @@ import { useState } from "react";
 import ApplicationFullCard from "./application-full-card";
 
 export default function Page() {
-  const applicationsDetails = useStore((state) => state.applications);
+  const applicationsDetails = useGenieStore((state) => state.applications);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedApplications, setSelectedApplications] = useState<string[]>(
