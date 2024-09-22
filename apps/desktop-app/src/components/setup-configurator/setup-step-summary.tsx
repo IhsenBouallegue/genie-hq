@@ -2,7 +2,6 @@
 
 import Group from "@/components/group";
 import { handleSequentialInstallations } from "@/lib/logic";
-import { useInstallationStore } from "@/lib/store/useInstallationStore";
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Button } from "@geniehq/ui/components/button";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
@@ -18,9 +17,13 @@ export default function SetupStepSummary() {
   const selectedProfile = useGenieStore((state) => state.getSelectedProfile());
   const currentPackageManagerInfo = useGenieStore((state) => state.currentPackageManagerInfo);
   const selectedApplications = useGenieStore((state) => state.getSelectedApplications());
-  const { installationQueue, isLoading, startInstallation, queueApps } = useInstallationStore(
-    (state) => state,
-  );
+  const { installationQueue, isLoading, startInstallation, queueApps } = useGenieStore((state) => ({
+    installationQueue: state.installationQueue,
+    isLoading: state.isLoading,
+    startInstallation: state.startInstallation,
+    queueApps: state.queueApps,
+  }));
+
   const isNothingSelected = !selectedProfile || selectedApplications.length === 0;
 
   // State to manage the installation method
