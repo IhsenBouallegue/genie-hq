@@ -1,29 +1,18 @@
 "use client";
 
+import ExpandableListSelector from "@/components/expandable-list";
 import InstallationSidebar from "@/components/installation-sidebar";
+import Installer from "@/components/installer";
 import SetupConfigurator from "@/components/setup-configurator";
+import SelectableCard from "@geniehq/ui/setup-configurator/selectable-card";
+import { SiWindows } from "@icons-pack/react-simple-icons";
 export default function Page() {
   return (
     <div className="flex w-full">
       <div className="flex flex-1 flex-col">
-        {/* <ExpandableListSelector
-          title="Select your profile"
-          description="Select the profile you want to install"
-          options={[
-            { id: "1" },
-            { id: "2" },
-            { id: "3" },
-            { id: "5" },
-            { id: "6" },
-            { id: "8" },
-          ]}
-          renderOption={(option) => (
-            <SelectableCard title={"someth"} id={option.id} icon={SiWindows} />
-          )}
-        /> */}
         <SetupConfigurator />
       </div>
-      <div className="w-1/3 sticky top-0 h-screen">
+      <div className="">
         <InstallationSidebar />
       </div>
     </div>

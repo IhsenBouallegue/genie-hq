@@ -64,7 +64,7 @@ export type PackageManagerInfo = {
   name: PackageManager;
   description: string;
   supportedOS: OperatingSystem[];
-  icon: IconType;
+  icon: IconId;
   tags: Array<{
     type: "Cross Platform" | "Official" | "Community";
     icon: string; // Lucide icon name
@@ -79,7 +79,7 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
     name: PackageManager.Homebrew,
     description: "The missing package manager for macOS (or Linux).",
     supportedOS: [OperatingSystem.MacOS],
-    icon: CoffeeIcon,
+    icon: "Coffee",
     tags: [
       {
         type: "Official",
@@ -97,7 +97,7 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
     name: PackageManager.Scoop,
     description: "A command-line installer for Windows.",
     supportedOS: [OperatingSystem.Windows],
-    icon: IceCreamBowlIcon,
+    icon: "IceCreamBowl",
     tags: [
       {
         type: "Community",
@@ -110,7 +110,7 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
     name: PackageManager.Winget,
     description: "Windows Package Manager for installing applications on Windows.",
     supportedOS: [OperatingSystem.Windows],
-    icon: AppWindowIcon,
+    icon: "AppWindow",
     tags: [
       {
         type: "Official",
@@ -123,7 +123,7 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
     name: PackageManager.APT,
     description: "Advanced Package Tool, used for managing packages on Debian and its derivatives.",
     supportedOS: [OperatingSystem.Ubuntu, OperatingSystem.Debian],
-    icon: BoxIcon,
+    icon: "Box",
     tags: [
       {
         type: "Official",
@@ -141,7 +141,7 @@ export const PackageManagerDetails: Record<PackageManager, PackageManagerInfo> =
     name: PackageManager.DNF,
     description: "Fedora Package Manager, the next-generation version of Yum.",
     supportedOS: [OperatingSystem.Fedora],
-    icon: BoxIcon,
+    icon: "Box",
     tags: [
       {
         type: "Official",

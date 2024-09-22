@@ -12,7 +12,7 @@ export interface PackageManagerSlice {
   packageManagers: Record<PackageManager, PackageManagerInfo>;
   initializePackageManagers: () => Promise<void>;
   setCurrentPackageManager: (pm: PackageManager) => Promise<void>;
-  supportedPackageManagers: () => PackageManager[];
+  supportedPackageManagers: () => PackageManagerInfo[];
 }
 
 export const createPackageManagerSlice: StateCreator<
@@ -58,6 +58,5 @@ export const createPackageManagerSlice: StateCreator<
       state.packageManagers[pm] = packageManagerInfo;
     });
   },
-  supportedPackageManagers: () =>
-    getSupportedPackageManagers(Object.values(get().packageManagers)).map((pm) => pm.name),
+  supportedPackageManagers: () => getSupportedPackageManagers(Object.values(get().packageManagers)),
 });

@@ -3,9 +3,9 @@ export default function Group({
   children,
 }: { label: string; children: React.ReactNode | React.ReactNode[] }) {
   return (
-    <fieldset className="flex flex-col flex-wrap justify-center my-4 gap-3 border rounded-lg md:p-6">
+    <fieldset className="flex flex-col flex-wrap justify-center gap-3 border rounded-lg md:p-6">
       <legend className="-ml-1 px-1 text-sm font-medium">{label}</legend>
-      {children}
+      <div className="flex flex-wrap">{children}</div>
     </fieldset>
   );
 }

@@ -43,6 +43,7 @@ import {
   SiVlcmediaplayer,
   SiZoom,
 } from "@icons-pack/react-simple-icons";
+import { AppWindow, Box, Coffee, IceCreamBowl } from "lucide-react";
 
 // Step 1: Define IconId as a constant object and use `as const` for immutability
 export const IconId = {
@@ -89,6 +90,10 @@ export const IconId = {
   LibreOffice: "LibreOffice",
   DBeaver: "DBeaver",
   Arc: "Arc",
+  Coffee: "Coffee",
+  AppWindow: "AppWindow",
+  IceCreamBowl: "IceCreamBowl",
+  Box: "Box",
 } as const;
 
 // Step 2: Infer the type of IconId
@@ -139,4 +144,8 @@ export const iconLookup = {
   [IconId.LibreOffice]: SiLibreoffice,
   [IconId.DBeaver]: SiDbeaver,
   [IconId.Arc]: SiArc,
+  [IconId.Coffee]: Coffee,
+  [IconId.IceCreamBowl]: IceCreamBowl,
+  [IconId.AppWindow]: AppWindow,
+  [IconId.Box]: Box,
 } as const;

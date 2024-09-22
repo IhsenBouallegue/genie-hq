@@ -20,7 +20,12 @@ export default function Page() {
   const [searchTerm, setSearchTerm] = useState("");
   const isSupported = useMemo(
     () => (profile: Profile) =>
-      isProfileSupported(profile, applications, currentOS, supportedPackageManagers()),
+      isProfileSupported(
+        profile,
+        applications,
+        currentOS,
+        supportedPackageManagers().map((pm) => pm.name),
+      ),
     [applications, currentOS, supportedPackageManagers],
   );
   // Use the generalized useSort hook with default sorting by title

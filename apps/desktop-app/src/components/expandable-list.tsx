@@ -1,11 +1,11 @@
+import { ScrollArea, ScrollBar } from "@geniehq/ui/components/scroll-area";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Option = {
   id: string;
-  // Other properties
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   [key: string]: any;
 };
@@ -27,7 +27,6 @@ export default function ExpandableListSelector({
 }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-  const optionsRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -35,13 +34,6 @@ export default function ExpandableListSelector({
       setSelectedOption(options[0]);
     }
   }, [options, selectedOption]);
-
-  const handleScroll = () => {
-    if (optionsRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = optionsRef.current;
-      // Update scroll indicators if needed
-    }
-  };
 
   return (
     <motion.div
@@ -66,9 +58,7 @@ export default function ExpandableListSelector({
       <motion.div
         className="p-6 flex justify-between items-center"
         animate={{
-          borderBottom: isExpanded
-            ? "1px solid var(--border)"
-            : "1px solid transparent",
+          borderBottom: isExpanded ? "1px solid var(--border)" : "1px solid transparent",
         }}
         transition={{ duration: 1 }}
       >
@@ -104,7 +94,7 @@ export default function ExpandableListSelector({
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            className="flex flex-1 bg-slate-800"
+            className="flex bg-slate-800"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -113,24 +103,17 @@ export default function ExpandableListSelector({
             <div className="w-40 pr-6">
               <p className="text-muted-foreground">{description}</p>
             </div>
-            {/* Updated Container */}
-            <div className="relative flex-1">
-              <div className="absolute inset-0 overflow-x-auto">
-                <div
-                  className="flex space-x-4 pb-4 relative"
-                  ref={optionsRef}
-                  onScroll={handleScroll}
-                >
-                  {options.map((option) => (
-                    <div key={option.id} className="flex-shrink-0">
-                      {renderOption(option)}
-                    </div>
-                  ))}
-                  {/* Optional gradient overlay */}
-                  <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent pointer-events-none" />
-                </div>
+            {/* Updated Container using ScrollArea */}
+            <ScrollArea className="flex-1">
+              <div className="flex space-x-4 pb-4">
+                {options.map((option) => (
+                  <div key={option.id} className="flex-shrink-0">
+                    {renderOption(option)}
+                  </div>
+                ))}
               </div>
-            </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </motion.div>
         )}
       </AnimatePresence>

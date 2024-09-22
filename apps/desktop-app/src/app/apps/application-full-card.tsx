@@ -1,33 +1,26 @@
-import {
-  isAppSupportedByOS,
-  isAppSupportedByPackageManagers,
-} from "@/lib/app-logic";
+import { isAppSupportedByOS, isAppSupportedByPackageManagers } from "@/lib/app-logic";
 import { getSupportedPackageManagers } from "@/lib/pm-logic";
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Badge } from "@geniehq/ui/components/badge";
-import type {
-  Application,
-  PackageManagerInfo,
-} from "@geniehq/ui/lib/store/types";
+import { iconLookup } from "@geniehq/ui/lib/store/icons";
+import type { Application, PackageManagerInfo } from "@geniehq/ui/lib/store/types";
 import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
 import { AppWindowIcon, Download, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function ApplicationFullCard({ app }: { app: Application }) {
+  const Icon = iconLookup[app.icon];
   const [isSupportedByOS, setIsSupportedByOS] = useState(false);
-  const [isSupportedByPackageManagers, setIsSupportedByPackageManagers] =
-    useState(false);
-  const [supportedPackageManagers, setSupportedPackageManagers] = useState<
-    PackageManagerInfo[]
-  >([]);
+  const [isSupportedByPackageManagers, setIsSupportedByPackageManagers] = useState(false);
+  const [supportedPackageManagers, setSupportedPackageManagers] = useState<PackageManagerInfo[]>(
+    [],
+  );
   const currentOS = useGenieStore((state) => state.currentOS);
   const packageManagers = useGenieStore((state) => state.packageManagers);
   useEffect(() => {
     if (currentOS === null) return;
     setIsSupportedByOS(isAppSupportedByOS(app, currentOS));
-    const supportedPMs = getSupportedPackageManagers(
-      Object.values(packageManagers),
-    );
+    const supportedPMs = getSupportedPackageManagers(Object.values(packageManagers));
     setIsSupportedByPackageManagers(
       isAppSupportedByPackageManagers(
         app,
@@ -45,7 +38,7 @@ export default function ApplicationFullCard({ app }: { app: Application }) {
     >
       <div className="flex justify-between items-start mb-2 w-full">
         <div className="flex items-center gap-2">
-          <AppWindowIcon className="w-6 h-6 text-primary" />
+          <Icon className="w-6 h-6 text-primary" />
           <h2 className="text-xl font-semibold">{app.title}</h2>
         </div>
         {/* <div>
@@ -90,9 +83,7 @@ export default function ApplicationFullCard({ app }: { app: Application }) {
             <Badge
               key={pm}
               variant={
-                supportedPackageManagers.map((pm) => pm.name).includes(pm)
-                  ? "secondary"
-                  : "outline"
+                supportedPackageManagers.map((pm) => pm.name).includes(pm) ? "secondary" : "outline"
               }
             >
               {pm}

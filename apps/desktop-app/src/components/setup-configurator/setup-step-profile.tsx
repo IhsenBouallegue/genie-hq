@@ -15,7 +15,7 @@ export default function SetupStepProfile() {
       <StepDescription>
         Based on this profile we will help you select apps you might need.
       </StepDescription>
-      <div className="flex gap-4 flex-wrap items-center justify-center">
+      <div className="flex gap-3 flex-wrap">
         <AnimatedBackground
           className="rounded-lg bg-zinc-100 dark:bg-slate-400/15"
           transition={{

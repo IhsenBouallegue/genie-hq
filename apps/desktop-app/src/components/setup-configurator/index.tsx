@@ -7,7 +7,7 @@ import SetupStepSummary from "./setup-step-summary";
 
 export default function SetupConfigurator() {
   return (
-    <div className="flex flex-col justify-center w-full">
+    <div className="flex flex-col gap-2 justify-center w-full">
       <SetupStepPackageManager />
       <SetupStepProfile />
       <SetupStepApplications />
