@@ -6,11 +6,9 @@ import type { StateCreator } from "zustand";
 export interface ProfilesSlice {
   profiles: Record<ProfileId, Profile>;
   selectedProfile: ProfileId | null;
-  customApplicationIds: ApplicationId[];
-  selectedApplicationIds: ApplicationId[];
+
   addProfile: (profile: Profile) => void;
   selectProfile: (profileId: ProfileId) => void;
-  toggleApplication: (applicationId: ApplicationId) => void;
   getSelectedProfile: () => Profile | null;
 }
 
@@ -22,8 +20,6 @@ export const createProfilesSlice: StateCreator<
 > = (set, get) => ({
   profiles: Object.fromEntries(profiles.map((profile) => [profile.id, profile])),
   selectedProfile: null,
-  customApplicationIds: [],
-  selectedApplicationIds: [],
 
   addProfile: (profile) =>
     set((state) => {
@@ -37,17 +33,6 @@ export const createProfilesSlice: StateCreator<
         state.selectedProfile = profileId;
         state.selectedApplicationIds = profile.relevantApplications;
         state.customApplicationIds = [];
-      }
-    }),
-
-  toggleApplication: (applicationId) =>
-    set((state) => {
-      const index = state.selectedApplicationIds.indexOf(applicationId);
-      if (index > -1) {
-        state.selectedApplicationIds.splice(index, 1);
-      } else {
-        state.selectedApplicationIds.push(applicationId);
-        if (!state.selectedProfile) state.selectedProfile = "custom";
       }
     }),
 

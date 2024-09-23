@@ -22,7 +22,7 @@ export default function SetupStepPackageManager() {
         Choose the package manager you wish to use for installation based on your operating system:{" "}
         {currentOS}
       </StepDescription>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap gap-4">
         <AnimatedBackground
           className="rounded-lg bg-zinc-100 dark:bg-slate-400/15"
           transition={{

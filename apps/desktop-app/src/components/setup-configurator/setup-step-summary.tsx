@@ -10,10 +10,6 @@ import { ShieldCheckIcon, UserXIcon } from "lucide-react";
 import { useState } from "react";
 
 export default function SetupStepSummary() {
-  const markAppAsCompleted = useGenieStore((state) => state.markAppAsCompleted);
-  const markAppAsFailed = useGenieStore((state) => state.markAppAsFailed);
-  const updateProgress = useGenieStore((state) => state.updateProgress);
-  const finishInstallation = useGenieStore((state) => state.finishInstallation);
   const selectedProfile = useGenieStore((state) => state.getSelectedProfile());
   const currentPackageManagerInfo = useGenieStore((state) => state.currentPackageManagerInfo);
   const selectedApplications = useGenieStore((state) => state.getSelectedApplications());
@@ -87,22 +83,8 @@ export default function SetupStepSummary() {
                   >
                     Queue Apps for Installation
                   </Button>
-                  {installationQueue.length > 0 && (
-                    <Button
-                      onClick={() => {
-                        startInstallation(installationQueue);
-                        handleSequentialInstallations(
-                          selectedApplications,
-                          currentPackageManagerInfo.name,
-                          markAppAsCompleted,
-                          markAppAsFailed,
-                          updateProgress,
-                          finishInstallation,
-                        );
-                      }}
-                      className="w-full"
-                      disabled={isLoading}
-                    >
+                  {Object.values(installationQueue).length > 0 && (
+                    <Button onClick={startInstallation} className="w-full" disabled={isLoading}>
                       {isLoading ? "Installing..." : "Start Installation"}
                     </Button>
                   )}

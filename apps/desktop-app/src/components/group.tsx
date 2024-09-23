@@ -1,11 +1,24 @@
+import { cn } from "@geniehq/ui/lib/utils";
+
 export default function Group({
   label,
   children,
-}: { label: string; children: React.ReactNode | React.ReactNode[] }) {
+  className,
+  ...rest
+}: {
+  label: string;
+  children: React.ReactNode | React.ReactNode[];
+} & React.HTMLAttributes<HTMLFieldSetElement>) {
   return (
-    <fieldset className="flex flex-col flex-wrap justify-center gap-3 border rounded-lg md:p-6">
+    <fieldset
+      className={cn(
+        "flex flex-col flex-wrap justify-center gap-3 border rounded-lg md:p-6",
+        className,
+      )}
+      {...rest}
+    >
       <legend className="-ml-1 px-1 text-sm font-medium">{label}</legend>
-      <div className="flex flex-wrap">{children}</div>
+      {children}
     </fieldset>
   );
 }

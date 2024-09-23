@@ -1,22 +1,25 @@
+import { handleSequentialInstallations } from "@/lib/logic";
 import type { GenieStore } from "@/lib/store/genie-store-type";
 import type { ApplicationId } from "@geniehq/ui/lib/store/types";
 import type { StateCreator } from "zustand";
 
+type InstallationQueue = Record<
+  string,
+  { status: "installing" | "queued" | "finished" | "failed" }
+>;
 export interface InstallationSlice {
-  installingApps: ApplicationId[];
-  completedApps: ApplicationId[];
-  failedApps: Record<ApplicationId, string>;
-  totalApps: number;
   progress: number;
   isLoading: boolean;
-  installationQueue: ApplicationId[];
-  startInstallation: (apps: ApplicationId[]) => void;
+  installationQueue: InstallationQueue;
+  startInstallation: () => void;
   markAppAsCompleted: (appId: ApplicationId) => void;
   markAppAsFailed: (appId: ApplicationId, error: string) => void;
   updateProgress: () => void;
   finishInstallation: () => void;
   queueApps: (apps: ApplicationId | ApplicationId[]) => void;
   processQueue: () => void;
+  addAppToQueue: (appId: ApplicationId) => void;
+  removeAppFromQueue: (appId: ApplicationId) => void;
 }
 
 export const createInstallationSlice: StateCreator<
@@ -25,71 +28,87 @@ export const createInstallationSlice: StateCreator<
   [],
   InstallationSlice
 > = (set, get) => ({
-  installingApps: [],
-  completedApps: [],
-  failedApps: {},
-  totalApps: 0,
   progress: 0,
   isLoading: false,
-  installationQueue: [],
+  installationQueue: {},
 
-  startInstallation: (apps) => {
+  startInstallation: () => {
+    const applications = get().applications;
     set((state) => {
-      state.installingApps = apps;
-      state.totalApps = apps.length;
-      state.isLoading = true;
-      state.progress = 0;
+      if (state.currentPackageManagerInfo) {
+        state.isLoading = true;
+        state.progress = 0;
+        for (const [_, appInfo] of Object.entries(state.installationQueue)) {
+          appInfo.status = "installing";
+        }
+
+        handleSequentialInstallations(
+          Object.values(applications).filter((app) => state.installationQueue[app.id]),
+          state.currentPackageManagerInfo?.name,
+          get().markAppAsCompleted,
+          get().markAppAsFailed,
+          get().updateProgress,
+          get().finishInstallation,
+        );
+      }
     });
   },
 
   markAppAsCompleted: (appId) => {
     set((state) => {
-      state.completedApps.push(appId);
-      state.installingApps = state.installingApps.filter((id) => id !== appId);
-      state.progress = (state.completedApps.length / state.totalApps) * 100;
+      const app = state.installationQueue[appId];
+      if (app) app.status = "finished";
     });
   },
 
   markAppAsFailed: (appId, error) => {
     set((state) => {
-      state.failedApps[appId] = error;
-      state.installingApps = state.installingApps.filter((id) => id !== appId);
-      state.progress =
-        ((state.completedApps.length + Object.keys(state.failedApps).length) / state.totalApps) *
-        100;
+      const app = state.installationQueue[appId];
+      if (app) app.status = "failed";
     });
   },
 
   updateProgress: () => {
     set((state) => {
-      const totalProcessed = state.completedApps.length + Object.keys(state.failedApps).length;
-      state.progress = (totalProcessed / state.totalApps) * 100;
+      const totalApps = Object.keys(get().installationQueue).length;
+
+      const completedApps = Object.values(state.installationQueue)
+        .map((obj) => obj.status)
+        .filter((status) => status === "failed" || status === "finished").length;
+      state.progress = (completedApps / totalApps) * 100;
     });
   },
 
   finishInstallation: () => {
     set((state) => {
       state.isLoading = false;
-      state.installingApps = [];
-      state.totalApps = 0;
     });
   },
 
   queueApps: (apps) => {
     set((state) => {
       const appsToQueue = Array.isArray(apps) ? apps : [apps];
-      state.installationQueue.push(...appsToQueue);
+      state.installationQueue = appsToQueue.reduce((acc: InstallationQueue, appId) => {
+        acc[appId] = { status: "queued" };
+        return acc;
+      }, {});
     });
   },
 
   processQueue: () => {
-    const state = get();
-    if (state.installationQueue.length > 0) {
-      const appsToInstall = state.installationQueue;
-      set((state) => {
-        state.installationQueue = [];
-      });
-      state.startInstallation(appsToInstall);
+    if (Object.keys(get().installationQueue).length > 0) {
+      get().startInstallation();
     }
+  },
+
+  addAppToQueue: (appId) => {
+    set((state) => {
+      state.installationQueue[appId] = { status: "queued" };
+    });
+  },
+  removeAppFromQueue: (appId) => {
+    set((state) => {
+      delete state.installationQueue[appId];
+    });
   },
 });
