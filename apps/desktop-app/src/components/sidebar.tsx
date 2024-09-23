@@ -12,25 +12,22 @@ import { cn } from "@geniehq/ui/lib/utils";
 import {
   ArchiveIcon,
   DownloadIcon,
-  Laptop,
   LaptopIcon,
   LayoutDashboardIcon,
   PackageOpenIcon,
-  RefreshCcw,
-  RefreshCcwDotIcon,
   RefreshCcwIcon,
   ScrollIcon,
-  Settings2,
   SettingsIcon,
-  Subscript,
   Users2Icon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Sidebar() {
-  const [activePage, setActivePage] = useState("/");
+  const activeSegment = usePathname();
+  const [activePage, setActivePage] = useState(activeSegment);
 
   const navigation = [
     { name: "Dashboard", icon: LayoutDashboardIcon, href: "/" },
@@ -80,8 +77,7 @@ export default function Sidebar() {
               href={item.href}
               className={cn(
                 getNavLinkClass(item.href),
-                item.disabled &&
-                  "opacity-60 cursor-default pointer-events-none saturate-90",
+                item.disabled && "opacity-60 cursor-default pointer-events-none saturate-90",
               )}
               onClick={() => setActivePage(item.href)}
             >
