@@ -3,23 +3,27 @@ import type { GenieStore } from "@/lib/store/genie-store-type";
 import type { ApplicationId } from "@geniehq/ui/lib/store/types";
 import type { StateCreator } from "zustand";
 
-type InstallationQueue = Record<
-  string,
-  { status: "installing" | "queued" | "finished" | "failed" }
->;
+export type Status = "installing" | "queued" | "finished" | "failed";
+export interface AppInstallationInfo {
+  status: "installing" | "queued" | "finished" | "failed";
+  stdout?: string;
+  stderr?: string;
+}
+type InstallationQueue = Record<string, AppInstallationInfo>;
 export interface InstallationSlice {
   progress: number;
   isLoading: boolean;
   installationQueue: InstallationQueue;
   startInstallation: () => void;
-  markAppAsCompleted: (appId: ApplicationId) => void;
-  markAppAsFailed: (appId: ApplicationId, error: string) => void;
+  markAppAsCompleted: (appId: ApplicationId, stdout: string) => void;
+  markAppAsFailed: (appId: ApplicationId, stderr: string) => void;
   updateProgress: () => void;
   finishInstallation: () => void;
   queueApps: (apps: ApplicationId | ApplicationId[]) => void;
   processQueue: () => void;
   addAppToQueue: (appId: ApplicationId) => void;
   removeAppFromQueue: (appId: ApplicationId) => void;
+  resetQueue: () => void;
 }
 
 export const createInstallationSlice: StateCreator<
@@ -41,7 +45,6 @@ export const createInstallationSlice: StateCreator<
         for (const [_, appInfo] of Object.entries(state.installationQueue)) {
           appInfo.status = "installing";
         }
-
         handleSequentialInstallations(
           Object.values(applications).filter((app) => state.installationQueue[app.id]),
           state.currentPackageManagerInfo?.name,
@@ -54,17 +57,23 @@ export const createInstallationSlice: StateCreator<
     });
   },
 
-  markAppAsCompleted: (appId) => {
+  markAppAsCompleted: (appId, stdout) => {
     set((state) => {
       const app = state.installationQueue[appId];
-      if (app) app.status = "finished";
+      if (app) {
+        app.status = "finished";
+        app.stdout = stdout;
+      }
     });
   },
 
   markAppAsFailed: (appId, error) => {
     set((state) => {
       const app = state.installationQueue[appId];
-      if (app) app.status = "failed";
+      if (app) {
+        app.status = "failed";
+        app.stderr = error;
+      }
     });
   },
 
@@ -106,9 +115,16 @@ export const createInstallationSlice: StateCreator<
       state.installationQueue[appId] = { status: "queued" };
     });
   },
+
   removeAppFromQueue: (appId) => {
     set((state) => {
       delete state.installationQueue[appId];
+    });
+  },
+
+  resetQueue: () => {
+    set((state) => {
+      state.installationQueue = {};
     });
   },
 });

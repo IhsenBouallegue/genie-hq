@@ -12,7 +12,7 @@ export default function Group({
   return (
     <fieldset
       className={cn(
-        "flex flex-col flex-wrap justify-center gap-3 border rounded-lg md:p-6",
+        "flex flex-col flex-wrap justify-center gap-3 border-2 border-secondary/20 rounded-lg md:p-6",
         className,
       )}
       {...rest}

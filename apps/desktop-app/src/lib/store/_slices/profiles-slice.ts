@@ -1,6 +1,6 @@
 import type { GenieStore } from "@/lib/store/genie-store-type";
 import { profiles } from "@geniehq/ui/lib/store/data";
-import type { ApplicationId, Profile, ProfileId } from "@geniehq/ui/lib/store/types";
+import type { Profile, ProfileId } from "@geniehq/ui/lib/store/types";
 import type { StateCreator } from "zustand";
 
 export interface ProfilesSlice {
@@ -26,7 +26,7 @@ export const createProfilesSlice: StateCreator<
       state.profiles[profile.id] = profile;
     }),
 
-  selectProfile: (profileId) =>
+  selectProfile: (profileId) => {
     set((state) => {
       const profile = state.profiles[profileId];
       if (profile) {
@@ -34,7 +34,10 @@ export const createProfilesSlice: StateCreator<
         state.selectedApplicationIds = profile.relevantApplications;
         state.customApplicationIds = [];
       }
-    }),
+    });
+    get().resetQueue();
+    get().queueApps(get().selectedApplicationIds);
+  },
 
   getSelectedProfile: () => {
     const state = get();

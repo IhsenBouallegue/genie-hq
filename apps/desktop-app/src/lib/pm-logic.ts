@@ -139,9 +139,13 @@ export async function getPackageManagerInfo(packageManager: PackageManager): Pro
     }
 
     const output = await executeCommand(command);
-    console.log(`Output for ${packageManager}:`, output);
+    if (output.stderr || !output.stdout) {
+      throw new Error(output.stderr);
+    }
 
-    const version = parseVersion(output);
+    console.log(`Output for ${packageManager}:`, output.stdout);
+
+    const version = parseVersion(output.stdout);
     console.log(`Version for ${packageManager}:`, version);
 
     const updateAvailable = await checkForUpdates(packageManager);

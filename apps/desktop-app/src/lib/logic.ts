@@ -5,71 +5,84 @@ import { Command } from "@tauri-apps/plugin-shell";
 export async function handleSequentialInstallations(
   applications: Application[],
   packageManager: PackageManager,
-  markAppAsCompleted: (id: string) => void,
-  markAppAsFailed: (id: string, message: string) => void,
+  markAppAsCompleted: (id: string, stderr: string) => void,
+  markAppAsFailed: (id: string, stderr: string) => void,
   updateProgress: () => void,
   finishInstallation: () => void,
 ): Promise<void> {
   for (const application of applications) {
-    try {
-      const command = await getInstallationCommand(application, packageManager);
+    const command = await getInstallationCommand(application, packageManager);
 
-      const output =
-        process.env.NODE_ENV === "development"
-          ? await fakeExecuteCommand(command)
-          : await executeCommand(command);
+    const executionCommad =
+      process.env.NODE_ENV === "development"
+        ? fakeExecuteCommand(command)
+        : executeCommand(command);
 
-      console.log(`Installation successful for ${application.title}:`, output);
-
-      // Mark as completed
-      markAppAsCompleted(application.id);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(`Installation failed for ${application.title}:`, error);
-        // Mark as failed
-        markAppAsFailed(application.id, error.message);
-      } else {
-        console.error("Installation failed due to an unknown error:", error);
-        markAppAsFailed(application.id, "Unknown error");
-      }
-    }
-
-    updateProgress();
+    await executionCommad
+      .then((result) => {
+        if (result.stdout) {
+          console.log(`Installation successful for ${application.title}:`, result);
+          markAppAsCompleted(application.id, result.stdout || "");
+        } else if (result.stderr) {
+          console.error(`Installation failed for ${application.title}:`, result);
+          markAppAsFailed(application.id, result.stderr);
+        }
+      })
+      .catch((error) => {
+        if (error instanceof Error) {
+          console.error(`Installation failed for ${application.title}:`, error);
+          markAppAsFailed(application.id, error.message);
+        } else {
+          console.error("Installation failed due to an unknown error:", error);
+          markAppAsFailed(application.id, "Unknown error");
+        }
+      })
+      .finally(() => {
+        updateProgress();
+      });
   }
 
   finishInstallation();
 }
 
 // Real command execution
-export async function executeCommand(command: string[]): Promise<string> {
-  const osType = await detectOSType();
-  let cmd: Command<string>;
+export async function executeCommand(
+  command: string[],
+): Promise<{ stdout?: string; stderr?: string }> {
+  return new Promise((resolve, reject) => {
+    detectOSType().then((osType) => {
+      let cmd: Command<string>;
 
-  if (osType === OperatingSystem.Windows) {
-    // Use PowerShell for Windows
-    cmd = Command.create("cmd", ["/C", command.join(" ")]);
-  } else {
-    // Use sh for Linux-based systems (macOS and Ubuntu)
-    cmd = Command.create("sh", ["-c", command.join(" ")]);
-  }
-  const result = await cmd.execute();
-  if (result.code !== 0 && result.stderr) {
-    throw new Error(`Command failed with code ${result.code}: ${result.stderr}`);
-  }
-  return result.stdout;
+      if (osType === OperatingSystem.Windows) {
+        // Use PowerShell for Windows
+        cmd = Command.create("cmd", ["/C", command.join(" ")]);
+      } else {
+        // Use sh for Linux-based systems (macOS and Ubuntu)
+        cmd = Command.create("sh", ["-c", command.join(" ")]);
+      }
+      cmd.execute().then((result) => {
+        if (result.code !== 0 && result.stderr) {
+          resolve({ stderr: result.stderr });
+        }
+        resolve({ stdout: result.stdout });
+      });
+    });
+  });
 }
 
 // Fake command execution for development
-async function fakeExecuteCommand(command: string[]): Promise<string> {
+async function fakeExecuteCommand(
+  command: string[],
+): Promise<{ stdout?: string; stderr?: string }> {
   console.log(`Simulating execution of command: ${command.join(" ")}`);
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // Simulate a delay (e.g., 1 second)
     setTimeout(() => {
       // Random success or failure
       if (Math.random() > 0.2) {
-        resolve("Simulated installation successful");
+        resolve({ stdout: "Simulated installation successful" });
       } else {
-        reject(new Error("Simulated installation failed"));
+        resolve({ stderr: "Simulated installation failed" });
       }
     }, 2000);
   });
