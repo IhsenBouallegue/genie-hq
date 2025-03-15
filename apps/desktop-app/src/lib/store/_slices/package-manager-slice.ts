@@ -39,7 +39,7 @@ export const createPackageManagerSlice: StateCreator<
   },
 
   setCurrentPackageManager: async (pm) => {
-    const { packageManagers } = get();
+    const packageManagers = get().packageManagers;
 
     let packageManagerInfo = packageManagers[pm] || {
       ...PackageManagerDetails[pm],
