@@ -19,14 +19,22 @@
       "identifier": "shell:allow-execute",
       "allow": [
         {
+          "name": "binaries/mise",
+          "cmd": "mise",
+          "args": true,
+          "sidecar": true
+        },
+        {
           "name": "sh",
           "cmd": "sh",
-          "args": true
+          "args": true,
+          "sidecar": false
         },
         {
           "name": "powershell",
           "cmd": "powershell",
-          "args": true
+          "args": true,
+          "sidecar": false
         },
         {
           "name": "cmd",

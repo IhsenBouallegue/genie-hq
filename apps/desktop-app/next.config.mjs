@@ -14,7 +14,7 @@ const nextConfig = {
   },
   // Configure assetPrefix or else the server won't properly resolve your assets.
   // assetPrefix: isProd ? null : `http://${internalHost}:3000`,
-  assetPrefix: isProd ? undefined : `http://${internalHost}:3002`,
+  // assetPrefix: isProd ? undefined : `http://${internalHost}:3002`,
 };
 
 export default nextConfig;

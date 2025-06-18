@@ -1,9 +1,4 @@
-import type {
-  Application,
-  OperatingSystem,
-  PackageManager,
-  PackageManagerInfo,
-} from "@geniehq/ui/lib/store/types";
+import type { Application, OperatingSystem, PackageManager } from "@geniehq/ui/lib/store/types";
 
 export function isAppSupportedByOS(application: Application, currentOs: OperatingSystem): boolean {
   return application.installationMethods.map((im) => im.os).some((os) => os === currentOs);

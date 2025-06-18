@@ -4,7 +4,7 @@ import { Button } from "@geniehq/ui/components/button";
 import { iconLookup } from "@geniehq/ui/lib/store/icons";
 import type { PackageManagerInfo } from "@geniehq/ui/lib/store/types";
 import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
-import { CheckCircle, Download, Package, RefreshCw, XCircle } from "lucide-react";
+import { CheckCircle, Download, RefreshCw, XCircle } from "lucide-react";
 
 export default function PackageManagerFullCard({ pm }: { pm: PackageManagerInfo }) {
   const isSupported = pm.status !== "unsupported";

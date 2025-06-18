@@ -11,6 +11,7 @@ import {
 import { cn } from "@geniehq/ui/lib/utils";
 import {
   ArchiveIcon,
+  ContainerIcon,
   DownloadIcon,
   LaptopIcon,
   LayoutDashboardIcon,
@@ -22,7 +23,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -36,6 +37,11 @@ export default function Sidebar() {
       name: "Package Managers",
       icon: ArchiveIcon,
       href: "/package-managers",
+    },
+    {
+      name: "Environment",
+      icon: ContainerIcon,
+      href: "/environment",
     },
     { name: "Apps", icon: PackageOpenIcon, href: "/apps", badge: 6 },
     { name: "Profiles", icon: Users2Icon, href: "/profiles" },

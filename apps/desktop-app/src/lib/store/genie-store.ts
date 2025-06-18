@@ -1,6 +1,7 @@
 import { createApplicationsSlice } from "@/lib/store/_slices/applications-slice";
 import { createHydrationSlice } from "@/lib/store/_slices/hydration-slice";
 import { createInstallationSlice } from "@/lib/store/_slices/installation-slice";
+import { createMiseEnvironmentSlice } from "@/lib/store/_slices/mise-environment-slice";
 import { createOSSlice } from "@/lib/store/_slices/os-slice";
 import { createPackageManagerSlice } from "@/lib/store/_slices/package-manager-slice";
 import { createProfilesSlice } from "@/lib/store/_slices/profiles-slice";
@@ -22,6 +23,7 @@ export const createGenieStore = (initialProps: {
         ...createApplicationsSlice(...a),
         ...createInstallationSlice(...a),
         ...createHydrationSlice(...a),
+        ...createMiseEnvironmentSlice(...a),
       })),
       {
         name: "storage-genie",
