@@ -1,4 +1,5 @@
 import AboutUs from "@/components/abouts-us";
+import { Downloads } from "@/components/downloads";
 import Faq from "@/components/faq";
 import { Features } from "@/components/features";
 import Hero from "@/components/hero";
@@ -12,6 +13,7 @@ export default function Home() {
       <ParallaxBackground />
       <SetupConfiguratorAccordion />
       <Features />
+      <Downloads />
       <Faq />
       <AboutUs />
     </main>
