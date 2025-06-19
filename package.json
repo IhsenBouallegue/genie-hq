@@ -7,9 +7,9 @@
     "typescript": "5.4.5"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
-  "packageManager": "bun@1.1.21",
+  "packageManager": "bun@1.2.16",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -22,6 +22,8 @@
   "trustedDependencies": [
     "@biomejs/biome",
     "@swc/core",
-    "@vercel/speed-insights"
+    "@vercel/speed-insights",
+    "esbuild",
+    "sharp"
   ]
 }

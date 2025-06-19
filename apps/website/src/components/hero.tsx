@@ -19,7 +19,7 @@ export default function Hero() {
           </p>
           <div className="flex gap-4">
             <Button asChild>
-              <Link href="#downloads" className="flex items-center gap-2">
+              <Link href="#downloads" className="flex items-center gap-2" legacyBehavior>
                 <Download className="w-4 h-4" />
                 Download Now
               </Link>
@@ -37,7 +37,7 @@ export default function Hero() {
               Available for Windows with more platforms coming soon.
             </p>
             <Button className="w-full" asChild>
-              <Link href="#downloads" className="flex items-center gap-2">
+              <Link href="#downloads" className="flex items-center gap-2" legacyBehavior>
                 <Download className="w-4 h-4" />
                 Download for Windows
               </Link>

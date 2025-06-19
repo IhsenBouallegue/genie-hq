@@ -14,7 +14,11 @@ import { SubscribeDialog } from "./subscribe-dialog";
 export default function Header() {
   return (
     <header className="flex h-16 w-full items-center justify-between px-4 md:px-6 max-w-screen-lg m-auto">
-      <Link href="/" className="flex items-center gap-2" prefetch={false}>
+      <Link
+        href="/"
+        className="flex items-center gap-2"
+        prefetch={false}
+        legacyBehavior>
         <Image src="/geniehq_logo.svg" alt="GenieHQ" width={32} height={32} />
         <span className="text-lg font-semibold">GenieHQ</span>
       </Link>
@@ -48,7 +52,6 @@ export default function Header() {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-
       <SubscribeDialog>
         <Button className="hidden md:flex">
           <DownloadIcon className="h-4 w-4 mr-2" />
