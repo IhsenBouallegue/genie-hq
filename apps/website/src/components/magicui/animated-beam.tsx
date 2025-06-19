@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 
 export interface AnimatedBeamProps {
   className?: string;
-  containerRef: RefObject<HTMLElement>; // Container ref
-  fromRef: RefObject<HTMLElement>;
-  toRef: RefObject<HTMLElement>;
+  containerRef: RefObject<HTMLElement | null>; // Accept any HTMLElement or null
+  fromRef: RefObject<HTMLElement | null>; // Accept any HTMLElement or null
+  toRef: RefObject<HTMLElement | null>; // Accept any HTMLElement or null
   curvature?: number;
   reverse?: boolean;
   pathColor?: string;
