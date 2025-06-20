@@ -9,20 +9,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@geniehq/ui/components/dialog";
+import { DownloadIcon } from "lucide-react";
 import { EmailForm } from "./email-form";
 
 export function SubscribeDialog({
   disabled,
-  children = <Button disabled={disabled}>Download GenieHQ Installer</Button>,
+  children,
 }: { disabled?: boolean; children?: React.ReactNode }) {
   return (
     <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button className="hidden md:flex">Subscribe to Newsletter</Button>
+      </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Be the first to the party!</DialogTitle>
+          <DialogTitle>Stay Updated with GenieHQ</DialogTitle>
           <DialogDescription>
-            We are still working hard on GenieHQ. But we will let you know as soon as we are ready.
+            Get notified about new features, platform releases, and when GenieHQ becomes available
+            on your preferred platform.
           </DialogDescription>
         </DialogHeader>
         <EmailForm origin="setup-tool" />

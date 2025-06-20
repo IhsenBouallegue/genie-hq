@@ -1,5 +1,3 @@
-import { DownloadIcon } from "lucide-react";
-
 import { Button, buttonVariants } from "@geniehq/ui/components/button";
 import {
   NavigationMenu,
@@ -7,6 +5,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@geniehq/ui/components/navigation-menu";
+import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SubscribeDialog } from "./subscribe-dialog";
@@ -14,11 +13,7 @@ import { SubscribeDialog } from "./subscribe-dialog";
 export default function Header() {
   return (
     <header className="flex h-16 w-full items-center justify-between px-4 md:px-6 max-w-screen-lg m-auto">
-      <Link
-        href="/"
-        className="flex items-center gap-2"
-        prefetch={false}
-        legacyBehavior>
+      <Link href="/" className="flex items-center gap-2" prefetch={false}>
         <Image src="/geniehq_logo.svg" alt="GenieHQ" width={32} height={32} />
         <span className="text-lg font-semibold">GenieHQ</span>
       </Link>
@@ -26,25 +21,30 @@ export default function Header() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/#features" legacyBehavior passHref>
-                <NavigationMenuLink className={buttonVariants({ variant: "link" })}>
-                  Features
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink href="/#features" className={buttonVariants({ variant: "link" })}>
+                Features
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#about-us" legacyBehavior passHref>
-                <NavigationMenuLink className={buttonVariants({ variant: "link" })}>
-                  About Us
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink href="/#about-us" className={buttonVariants({ variant: "link" })}>
+                About Us
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#faq" legacyBehavior passHref>
-                <NavigationMenuLink className={buttonVariants({ variant: "link" })}>
-                  FAQ
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink href="/#faq" className={buttonVariants({ variant: "link" })}>
+                FAQ
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                href="https://github.com/IhsenBouallegue/genie-hq" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonVariants({ variant: "link" })}
+              >
+                <Github className="w-4 h-4 mr-1" />
+                GitHub
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <Button className="md:hidden" disabled>
               Download
@@ -52,12 +52,7 @@ export default function Header() {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-      <SubscribeDialog>
-        <Button className="hidden md:flex">
-          <DownloadIcon className="h-4 w-4 mr-2" />
-          Download
-        </Button>
-      </SubscribeDialog>
+      <SubscribeDialog />
     </header>
   );
 }

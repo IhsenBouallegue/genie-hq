@@ -97,9 +97,9 @@ function Faq() {
             </Accordion>
           </CardContent>
         </MotionCard>
-        <div className=" relative w-full min-h-80 h-full">
+        <div className="relative w-full min-h-80 h-full">
           <Image
-            src="/genie-no-bg-new-icons.png"
+            src="/genie_2.png"
             alt="Genie"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
