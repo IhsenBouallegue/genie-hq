@@ -12,19 +12,20 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 const metadataTitle = "GenieHQ - Cross-Platform Device Setup Automation Tool";
-const metadataDescription = "Automate your device setup with GenieHQ. Install all your essential apps and configurations on Windows, macOS, and Linux in minutes. Open source, free, and community-driven.";
+const metadataDescription =
+  "Automate your device setup with GenieHQ. Install all your essential apps and configurations on Windows, macOS, and Linux in minutes. Open source, free, and community-driven.";
 
 export const metadata: Metadata = {
   title: {
     default: metadataTitle,
-    template: "%s | GenieHQ"
+    template: "%s | GenieHQ",
   },
   description: metadataDescription,
   keywords: [
     "device setup automation",
     "cross-platform setup tool",
     "Windows automation",
-    "macOS automation", 
+    "macOS automation",
     "Linux automation",
     "app installation automation",
     "system configuration",
@@ -32,12 +33,9 @@ export const metadata: Metadata = {
     "GenieHQ",
     "device management",
     "software installation",
-    "development tools"
+    "development tools",
   ],
-  authors: [
-    { name: "IhsenBouallegue" },
-    { name: "GenieHQ Team" }
-  ],
+  authors: [{ name: "IhsenBouallegue" }, { name: "GenieHQ Team" }],
   creator: "IhsenBouallegue",
   publisher: "GenieHQ",
   formatDetection: {
@@ -107,48 +105,49 @@ export default function RootLayout({
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-TileColor" content="#ff7f00" />
           <meta name="msapplication-tap-highlight" content="no" />
-          
+
           {/* Favicon */}
           <link rel="icon" href="/geniehq_logo.ico" />
           <link rel="apple-touch-icon" href="/geniehq_logo.ico" />
           <link rel="manifest" href="/manifest.json" />
-          
+
           {/* Preconnect to external domains */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://api.github.com" />
-          
+
           {/* Structured Data */}
           <script
             type="application/ld+json"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "GenieHQ",
-                "description": metadataDescription,
-                "url": "https://geniehq.xyz",
-                "applicationCategory": "DeveloperApplication",
-                "operatingSystem": ["Windows", "macOS", "Linux"],
-                "softwareVersion": "1.0.0",
-                "author": {
+                name: "GenieHQ",
+                description: metadataDescription,
+                url: "https://geniehq.xyz",
+                applicationCategory: "DeveloperApplication",
+                operatingSystem: ["Windows", "macOS", "Linux"],
+                softwareVersion: "1.0.0",
+                author: {
                   "@type": "Organization",
-                  "name": "GenieHQ",
-                  "url": "https://geniehq.xyz"
+                  name: "GenieHQ",
+                  url: "https://geniehq.xyz",
                 },
-                "offers": {
+                offers: {
                   "@type": "Offer",
-                  "price": "0",
-                  "priceCurrency": "USD"
+                  price: "0",
+                  priceCurrency: "USD",
                 },
-                "downloadUrl": "https://geniehq.xyz/downloads",
-                "softwareRequirements": "Windows 10+, macOS 10.15+, or Linux",
-                "aggregateRating": {
+                downloadUrl: "https://geniehq.xyz/downloads",
+                softwareRequirements: "Windows 10+, macOS 10.15+, or Linux",
+                aggregateRating: {
                   "@type": "AggregateRating",
-                  "ratingValue": "4.8",
-                  "ratingCount": "150"
-                }
-              })
+                  ratingValue: "4.8",
+                  ratingCount: "150",
+                },
+              }),
             }}
           />
         </head>

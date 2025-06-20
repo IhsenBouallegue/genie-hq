@@ -61,7 +61,7 @@ export default function Sidebar() {
       : "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary";
 
   return (
-    <div className="flex h-full max-h-screen flex-col gap-2">
+    <div className="flex h-full max-h-screen flex-col gap-2 overflow-auto">
       {/* Header */}
       <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <Link
@@ -122,7 +122,7 @@ export default function Sidebar() {
             Clear Store
           </Button>
         )}
-        <Card className="opacity-70 cursor-default select-none pointer-events-none">
+        {/* <Card className="opacity-70 cursor-default select-none pointer-events-none">
           <CardHeader className="p-2 pt-0 md:p-4">
             <Badge variant="secondary" className="max-w-fit opacity-40 mb-2">
               Coming Soon
@@ -137,7 +137,7 @@ export default function Sidebar() {
               Upgrade
             </Button>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );

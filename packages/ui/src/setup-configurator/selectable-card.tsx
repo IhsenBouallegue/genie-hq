@@ -1,12 +1,13 @@
 "use client";
 
+import type { LucideIcon } from "lucide-react";
 import React from "react";
 import { cn } from "#lib/utils";
 
 interface SelectableCardProps {
   id: string;
   title: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   isSelected?: boolean;
   onToggle?: (id: string) => void;
   enableHover?: boolean;
