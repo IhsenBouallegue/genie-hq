@@ -18,7 +18,8 @@ export default function ProfileCard({
   };
 
   return (
-    <div
+    <button
+      type="button"
       className={cn(
         "relative h-36 w-28 flex flex-col items-center gap-2 rounded-lg p-3 cursor-pointer",
         isSelected ? "bg-primary/40" : "bg-transparent",
@@ -48,6 +49,6 @@ export default function ProfileCard({
         />
       </div>
       <p className="text-sm text-center">{title}</p>
-    </div>
+    </button>
   );
 }

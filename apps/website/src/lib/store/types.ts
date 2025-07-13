@@ -1,5 +1,3 @@
-import type { IconType } from "@icons-pack/react-simple-icons";
-
 export type ApplicationId = string;
 export type ProfileId = string;
 

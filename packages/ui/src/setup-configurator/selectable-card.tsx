@@ -60,7 +60,7 @@ export function Selectable({
   enableHover?: boolean;
   enableBorder?: boolean;
   className?: string;
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button

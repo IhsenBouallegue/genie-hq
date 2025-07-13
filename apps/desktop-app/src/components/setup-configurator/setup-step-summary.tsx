@@ -1,7 +1,6 @@
 "use client";
 
 import Group from "@/components/group";
-import { handleSequentialInstallations } from "@/lib/logic";
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Button } from "@geniehq/ui/components/button";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
@@ -73,23 +72,21 @@ export default function SetupStepSummary() {
               </div>
             </div>
             {currentPackageManagerInfo && (
-              <>
-                <div className="flex space-x-4">
-                  <Button
-                    onClick={() => {
-                      queueApps(selectedApplications.map((app) => app.id));
-                    }}
-                    className="w-full"
-                  >
-                    Queue Apps for Installation
+              <div className="flex space-x-4">
+                <Button
+                  onClick={() => {
+                    queueApps(selectedApplications.map((app) => app.id));
+                  }}
+                  className="w-full"
+                >
+                  Queue Apps for Installation
+                </Button>
+                {Object.values(installationQueue).length > 0 && (
+                  <Button onClick={startInstallation} className="w-full" disabled={isLoading}>
+                    {isLoading ? "Installing..." : "Start Installation"}
                   </Button>
-                  {Object.values(installationQueue).length > 0 && (
-                    <Button onClick={startInstallation} className="w-full" disabled={isLoading}>
-                      {isLoading ? "Installing..." : "Start Installation"}
-                    </Button>
-                  )}
-                </div>
-              </>
+                )}
+              </div>
             )}
           </>
         )}

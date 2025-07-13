@@ -1,11 +1,10 @@
 "use client";
 
+import { Button } from "@geniehq/ui/components/button";
+import { cn } from "@geniehq/ui/lib/utils";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as React from "react";
-
-import { Button } from "@/components/ui/button";
-import { cn } from "#lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -123,8 +122,6 @@ const Carousel = React.forwardRef<
         ref={ref}
         onKeyDownCapture={handleKeyDown}
         className={cn("relative", className)}
-        role="region"
-        aria-roledescription="carousel"
         {...props}
       >
         {children}

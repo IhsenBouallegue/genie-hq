@@ -9,11 +9,7 @@ import { User, XCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function ProfileFullCard({
-  profile,
-}: {
-  profile: Profile;
-}) {
+export default function ProfileFullCard({ profile }: { profile: Profile }) {
   const [isSupported, setIsSupported] = useState(false);
   const applications = useGenieStore((state) => state.applications);
   const currentOS = useGenieStore((state) => state.currentOS);
@@ -24,14 +20,7 @@ export default function ProfileFullCard({
     const supportedPackageManagers = getSupportedPackageManagers(
       Object.values(packageManagers),
     ).map((pm) => pm.name);
-    setIsSupported(
-      isProfileSupported(
-        profile,
-        applications,
-        currentOS,
-        supportedPackageManagers,
-      ),
-    );
+    setIsSupported(isProfileSupported(profile, applications, currentOS, supportedPackageManagers));
   }, [applications, currentOS, packageManagers, profile]);
   return (
     <Selectable

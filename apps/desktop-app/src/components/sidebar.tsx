@@ -1,13 +1,7 @@
-import { privateStore } from "@/lib/store/tauri-storage";
 import { Badge } from "@geniehq/ui/components/badge";
 import { Button } from "@geniehq/ui/components/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@geniehq/ui/components/card";
+
+import { privateStore } from "@/lib/store/tauri-storage";
 import { cn } from "@geniehq/ui/lib/utils";
 import {
   ArchiveIcon,

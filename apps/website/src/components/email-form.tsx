@@ -39,7 +39,7 @@ export function EmailForm({ origin }: { origin: "hero" | "setup-tool" }) {
       } else {
         setStatus("failed");
       }
-    } catch (error) {
+    } catch (_error) {
       setStatus("failed");
     }
   };

@@ -1,8 +1,7 @@
 "use client";
 
-import { getSupportedPackageManagers } from "@/lib/pm-logic";
 import { isProfileSupported } from "@/lib/profile-logic";
-import { useSort } from "@/lib/sorting"; // Import the sorting hook
+import { useSort } from "@/lib/sorting";
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Button } from "@geniehq/ui/components/button";
 import { Input } from "@geniehq/ui/components/input";

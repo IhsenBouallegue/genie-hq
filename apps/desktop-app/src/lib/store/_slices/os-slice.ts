@@ -8,7 +8,6 @@ export interface OSSlice {
 
 export const createOSSlice: (
   initialOS: OperatingSystem,
-) => StateCreator<GenieStore, [["zustand/immer", never]], [], OSSlice> =
-  (initialOS) => () => ({
-    currentOS: initialOS,
-  });
+) => StateCreator<GenieStore, [["zustand/immer", never]], [], OSSlice> = (initialOS) => () => ({
+  currentOS: initialOS,
+});

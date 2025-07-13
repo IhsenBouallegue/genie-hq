@@ -92,82 +92,80 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head>
-          <meta name="theme-color" content="#ff7f00" />
-          <meta name="color-scheme" content="dark light" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-          <meta name="application-name" content="GenieHQ" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-          <meta name="apple-mobile-web-app-title" content="GenieHQ" />
-          <meta name="mobile-web-app-capable" content="yes" />
-          <meta name="msapplication-TileColor" content="#ff7f00" />
-          <meta name="msapplication-tap-highlight" content="no" />
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#ff7f00" />
+        <meta name="color-scheme" content="dark light" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="application-name" content="GenieHQ" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="GenieHQ" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#ff7f00" />
+        <meta name="msapplication-tap-highlight" content="no" />
 
-          {/* Favicon */}
-          <link rel="icon" href="/geniehq_logo.ico" />
-          <link rel="apple-touch-icon" href="/geniehq_logo.ico" />
-          <link rel="manifest" href="/manifest.json" />
+        {/* Favicon */}
+        <link rel="icon" href="/geniehq_logo.ico" />
+        <link rel="apple-touch-icon" href="/geniehq_logo.ico" />
+        <link rel="manifest" href="/manifest.json" />
 
-          {/* Preconnect to external domains */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link rel="preconnect" href="https://api.github.com" />
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.github.com" />
 
-          {/* Structured Data */}
-          <script
-            type="application/ld+json"
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "SoftwareApplication",
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: iss okay
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "GenieHQ",
+              description: metadataDescription,
+              url: "https://geniehq.xyz",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: ["Windows", "macOS", "Linux"],
+              softwareVersion: "1.0.0",
+              author: {
+                "@type": "Organization",
                 name: "GenieHQ",
-                description: metadataDescription,
                 url: "https://geniehq.xyz",
-                applicationCategory: "DeveloperApplication",
-                operatingSystem: ["Windows", "macOS", "Linux"],
-                softwareVersion: "1.0.0",
-                author: {
-                  "@type": "Organization",
-                  name: "GenieHQ",
-                  url: "https://geniehq.xyz",
-                },
-                offers: {
-                  "@type": "Offer",
-                  price: "0",
-                  priceCurrency: "USD",
-                },
-                downloadUrl: "https://geniehq.xyz/downloads",
-                softwareRequirements: "Windows 10+, macOS 10.15+, or Linux",
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "4.8",
-                  ratingCount: "150",
-                },
-              }),
-            }}
-          />
-        </head>
-        <body className={cn(inter.className, "relative w-full")}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem={false}
-            disableTransitionOnChange
-          >
-            <NoiseBackground>
-              <Header />
-              {children}
-              <Footer />
-            </NoiseBackground>
-            <Analytics />
-            <SpeedInsights />
-          </ThemeProvider>
-        </body>
-      </html>
-    </>
+              },
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+              downloadUrl: "https://geniehq.xyz/downloads",
+              softwareRequirements: "Windows 10+, macOS 10.15+, or Linux",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.8",
+                ratingCount: "150",
+              },
+            }),
+          }}
+        />
+      </head>
+      <body className={cn(inter.className, "relative w-full")}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <NoiseBackground>
+            <Header />
+            {children}
+            <Footer />
+          </NoiseBackground>
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

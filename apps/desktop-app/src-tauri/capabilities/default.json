@@ -15,6 +15,7 @@
     "core:tray:default",
     "os:default",
     "shell:allow-open",
+    "store:default",
     {
       "identifier": "shell:allow-execute",
       "allow": [
@@ -43,7 +44,6 @@
           "sidecar": false
         }
       ]
-    },
-    "store:default"
+    }
   ]
 }

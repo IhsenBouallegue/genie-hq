@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 
 type Option = {
   id: string;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  [key: string]: any;
+  label: string;
 };
 
 type Props = {

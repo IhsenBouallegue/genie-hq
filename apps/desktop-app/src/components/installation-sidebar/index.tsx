@@ -5,7 +5,6 @@ import { Button } from "@geniehq/ui/components/button";
 import { cn } from "@geniehq/ui/lib/utils";
 import { motion } from "framer-motion";
 import { MonitorDown } from "lucide-react";
-import { MagicMotion } from "react-magic-motion";
 export default function InstallationSidebar() {
   const installationQueue = useGenieStore((state) => state.installationQueue);
   const applications = useGenieStore((state) => state.applications);

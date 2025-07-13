@@ -1,5 +1,5 @@
 import { buttonVariants } from "@geniehq/ui/components/button";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
 function Footer() {
@@ -13,8 +13,8 @@ function Footer() {
           <Link className={buttonVariants({ variant: "link" })} href="/impressum">
             Impressum
           </Link>
-          <Link 
-            className={buttonVariants({ variant: "link" })} 
+          <Link
+            className={buttonVariants({ variant: "link" })}
             href="https://github.com/IhsenBouallegue/genie-hq"
             target="_blank"
             rel="noopener noreferrer"
@@ -22,8 +22,8 @@ function Footer() {
             <Github className="w-4 h-4 mr-1" />
             GitHub
           </Link>
-          <Link 
-            className={buttonVariants({ variant: "link" })} 
+          <Link
+            className={buttonVariants({ variant: "link" })}
             href="https://github.com/IhsenBouallegue/genie-hq/releases"
             target="_blank"
             rel="noopener noreferrer"
@@ -33,7 +33,8 @@ function Footer() {
           </Link>
         </div>
         <p className="text-sm text-muted-foreground text-center">
-          &copy; 2024 GenieHQ. All rights reserved. Open source software for automating device setup.
+          &copy; 2024 GenieHQ. All rights reserved. Open source software for automating device
+          setup.
         </p>
       </div>
     </footer>

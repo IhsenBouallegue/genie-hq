@@ -1,12 +1,11 @@
 import { Category } from "@/lib/store/types";
 import { useStore } from "@/lib/store/useStore";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
-import { PlusIcon } from "lucide-react";
-
 import ApplicationCard from "@geniehq/ui/setup-configurator/application-card";
 import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
+import { PlusIcon } from "lucide-react";
 export default function SetupStepApplications() {
   const applications = useStore((state) => Object.values(state.applications));
   const categories = Object.values(Category);

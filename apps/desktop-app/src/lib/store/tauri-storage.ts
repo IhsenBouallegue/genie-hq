@@ -1,8 +1,8 @@
-import { Store } from "@tauri-apps/plugin-store";
+import { LazyStore } from "@tauri-apps/plugin-store";
 
-export const privateStore = new Store("./store.bin");
+export const privateStore = new LazyStore("./store.bin");
 
-export const getStorage = (store: Store) => ({
+export const getStorage = (store: LazyStore) => ({
   getItem: async (name: string): Promise<string | null> => {
     return (await store.get(name)) || null;
   },

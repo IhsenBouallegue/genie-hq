@@ -5,7 +5,7 @@ import { Badge } from "@geniehq/ui/components/badge";
 import { iconLookup } from "@geniehq/ui/lib/store/icons";
 import type { Application, PackageManagerInfo } from "@geniehq/ui/lib/store/types";
 import { Selectable } from "@geniehq/ui/setup-configurator/selectable-card";
-import { AppWindowIcon, Download, XCircle } from "lucide-react";
+import { Download, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function ApplicationFullCard({ app }: { app: Application }) {

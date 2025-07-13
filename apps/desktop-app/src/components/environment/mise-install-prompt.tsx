@@ -3,8 +3,7 @@
 import { useGenieStore } from "@/providers/genie-store-provider";
 import { Alert, AlertDescription, AlertTitle } from "@geniehq/ui/components/alert";
 import { Button } from "@geniehq/ui/components/button";
-import { AlertCircle, Download } from "lucide-react";
-import { Loader2 } from "lucide-react";
+import { AlertCircle, Download, Loader2 } from "lucide-react";
 
 export function MiseInstallPrompt() {
   const isLoading = useGenieStore((state) => state.isLoading);

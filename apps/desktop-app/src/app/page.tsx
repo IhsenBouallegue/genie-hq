@@ -8,8 +8,6 @@ import { RecentActivityWidget } from "@/components/dashboard-widgets/recent-acti
 import { SystemStatusWidget } from "@/components/dashboard-widgets/system-status-widget";
 import { UpcomingFeaturesWidget } from "@/components/dashboard-widgets/upcoming-features-widget";
 import { Button } from "@geniehq/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@geniehq/ui/components/card";
-import { Switch } from "@geniehq/ui/components/switch";
 import { useState } from "react";
 
 // Mock data - in a real app, this would come from your state management system
@@ -36,7 +34,7 @@ export default function Dashboard() {
     upcomingFeatures: false,
   });
 
-  const toggleWidget = (widget: keyof typeof widgets) => {
+  const _toggleWidget = (widget: keyof typeof widgets) => {
     setWidgets((prev) => ({ ...prev, [widget]: !prev[widget] }));
   };
 

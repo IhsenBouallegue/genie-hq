@@ -11,7 +11,7 @@ import {
 import { iconLookup } from "@geniehq/ui/lib/store/icons";
 import type { Application } from "@geniehq/ui/lib/store/types";
 import { cn } from "@geniehq/ui/lib/utils";
-import { AlertCircleIcon, CheckIcon, Loader2Icon, Logs, LogsIcon } from "lucide-react";
+import { AlertCircleIcon, CheckIcon, Loader2Icon } from "lucide-react";
 
 export default function InstallationApplication({
   title,

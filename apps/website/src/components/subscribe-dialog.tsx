@@ -9,13 +9,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@geniehq/ui/components/dialog";
-import { DownloadIcon } from "lucide-react";
 import { EmailForm } from "./email-form";
 
-export function SubscribeDialog({
-  disabled,
-  children,
-}: { disabled?: boolean; children?: React.ReactNode }) {
+export function SubscribeDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -49,7 +49,7 @@ export async function handleSequentialInstallations(
 export async function executeCommand(
   command: string[],
 ): Promise<{ stdout?: string; stderr?: string }> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     detectOSType().then((osType) => {
       let cmd: Command<string>;
 

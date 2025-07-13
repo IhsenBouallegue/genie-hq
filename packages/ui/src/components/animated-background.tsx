@@ -37,8 +37,8 @@ export default function AnimatedBackground({
     }
   }, [defaultValue]);
 
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  return Children.map(children, (child: any, index) => {
+  // biome-ignore lint/suspicious/noExplicitAny: not sure
+  return Children.map(children, (child: any, _index) => {
     const id = child.props["data-id"];
 
     const interactionProps = enableHover
@@ -53,8 +53,7 @@ export default function AnimatedBackground({
     return cloneElement(
       child,
       {
-        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-        key: index,
+        key: id,
         className: cn("relative inline-flex", child.props.className),
         "aria-selected": activeId === id,
         "data-checked": activeId === id ? "true" : "false",

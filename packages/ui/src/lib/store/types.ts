@@ -1,14 +1,3 @@
-import type { IconType } from "@icons-pack/react-simple-icons";
-import {
-  AppWindow,
-  AppWindowIcon,
-  AppWindowMac,
-  AppleIcon,
-  BoxIcon,
-  CoffeeIcon,
-  IceCreamBowlIcon,
-} from "lucide-react";
-import { ElementType, ReactElement } from "react";
 import type { IconId } from "./icons";
 
 export type ApplicationId = string;

@@ -1,10 +1,8 @@
 import {
   PackageManager,
-  PackageManagerDetails,
   type PackageManagerInfo,
   isSupportedPackageManager,
 } from "@geniehq/ui/lib/store/types";
-import { Command } from "@tauri-apps/plugin-shell";
 import { detectOSType, executeCommand } from "./logic";
 
 // Function to check the installation status of the package manager
@@ -25,7 +23,7 @@ export async function getPackageManagerStatus(
   }
 }
 // Simulate checking for updates
-async function checkForUpdates(packageManager: PackageManager): Promise<boolean> {
+async function checkForUpdates(_packageManager: PackageManager): Promise<boolean> {
   // Add logic here to determine if updates are available for the package manager
   // For now, we simulate this with a random outcome
   return Math.random() > 0.5;

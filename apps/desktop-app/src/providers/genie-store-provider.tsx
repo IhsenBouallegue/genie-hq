@@ -1,10 +1,10 @@
 "use client";
 
+import type { OperatingSystem } from "@geniehq/ui/lib/store/types";
+import { createContext, type ReactNode, useContext, useRef } from "react";
+import { useStore } from "zustand";
 import { createGenieStore } from "@/lib/store/genie-store";
 import type { GenieStore } from "@/lib/store/genie-store-type";
-import type { OperatingSystem } from "@geniehq/ui/lib/store/types";
-import { type ReactNode, createContext, useContext, useRef } from "react";
-import { useStore } from "zustand";
 
 export type GenieStoreApi = ReturnType<typeof createGenieStore>;
 
@@ -16,11 +16,7 @@ interface GenieStoreProviderProps {
 }
 
 export const GenieStoreProvider = ({ children, os }: GenieStoreProviderProps) => {
-  const storeRef = useRef<ReturnType<typeof createGenieStore>>();
-
-  if (!storeRef.current) {
-    storeRef.current = createGenieStore({ currentOS: os });
-  }
+  const storeRef = useRef<ReturnType<typeof createGenieStore>>(createGenieStore({ currentOS: os }));
 
   return (
     <GenieStoreContext.Provider value={storeRef.current}>{children}</GenieStoreContext.Provider>

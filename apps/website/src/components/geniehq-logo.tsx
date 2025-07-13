@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import type { ClassValue } from "clsx";
-import React from "react";
 
 export default function GenieHQLogo({ className }: { className?: ClassValue }) {
   return (

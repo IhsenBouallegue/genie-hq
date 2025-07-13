@@ -1,6 +1,6 @@
-const isProd = process.env.NODE_ENV === "production";
+const _isProd = process.env.NODE_ENV === "production";
 
-const internalHost = process.env.TAURI_DEV_HOST || "localhost";
+const _internalHost = process.env.TAURI_DEV_HOST || "localhost";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

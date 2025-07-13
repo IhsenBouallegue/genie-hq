@@ -1,5 +1,5 @@
 import { Button } from "@geniehq/ui/components/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@geniehq/ui/components/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@geniehq/ui/components/card";
 import {
   DownloadIcon,
   HardDriveIcon,

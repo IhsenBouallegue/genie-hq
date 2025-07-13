@@ -3,7 +3,6 @@ import AnimatedBackground from "@geniehq/ui/components/animated-background";
 import StepContainer from "@geniehq/ui/setup-configurator/base/step-container";
 import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import StepTitle from "@geniehq/ui/setup-configurator/base/step-title";
-
 import ProfileCard from "@geniehq/ui/setup-configurator/profile-card";
 
 export default function SetupStepProfile() {

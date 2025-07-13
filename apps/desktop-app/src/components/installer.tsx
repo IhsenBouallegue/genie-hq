@@ -5,7 +5,6 @@ import {
   AccordionTrigger,
 } from "@geniehq/ui/components/accordion";
 import { Card, CardContent } from "@geniehq/ui/components/card";
-import * as React from "react";
 
 export default function Installer() {
   const genres = [
@@ -81,12 +80,13 @@ export default function Installer() {
           <AccordionContent>
             <div className="w-full max-w-full overflow-x-auto">
               <div className="flex space-x-4 p-4  max-w-full overflow-x-auto flex-wrap">
-                {genre.albums.map((album, albumIndex) => (
+                {genre.albums.map((album) => (
                   <Card
                     key={album.artist}
                     className="w-[150px] flex-shrink-0 transition-transform duration-300 hover:scale-105"
                   >
                     <CardContent className="p-4">
+                      {/** biome-ignore lint/performance/noImgElement: ig iss okay */}
                       <img
                         src={album.cover}
                         alt={`${album.title} cover`}

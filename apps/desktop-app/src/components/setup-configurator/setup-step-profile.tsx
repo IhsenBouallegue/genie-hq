@@ -1,9 +1,8 @@
+import { isProfileSupported } from "@/lib/profile-logic";
 import { useGenieStore } from "@/providers/genie-store-provider";
 import AnimatedBackground from "@geniehq/ui/components/animated-background";
-import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
-
-import { isProfileSupported } from "@/lib/profile-logic";
 import type { Profile } from "@geniehq/ui/lib/store/types";
+import StepDescription from "@geniehq/ui/setup-configurator/base/step-description";
 import ProfileCard from "@geniehq/ui/setup-configurator/profile-card";
 import { useMemo } from "react";
 import Group from "../group";

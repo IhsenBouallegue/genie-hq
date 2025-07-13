@@ -3,20 +3,14 @@ import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 interface GridPatternProps {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  width?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  height?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  x?: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  y?: any;
+  width?: number;
+  height?: number;
+  x?: number;
+  y?: number;
   squares?: Array<[x: number, y: number]>;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  strokeDasharray?: any;
+  strokeDasharray?: number;
   className?: string;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export function GridPattern({
@@ -47,8 +41,7 @@ export function GridPattern({
       </defs>
       <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
       {squares && (
-        // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
-        (<svg x={x} y={y} className="overflow-visible">
+        <svg x={x} y={y} className="overflow-visible" aria-hidden="true">
           {squares.map(([x, y]) => (
             <rect
               strokeWidth="0"
@@ -59,7 +52,7 @@ export function GridPattern({
               y={y * height + 1}
             />
           ))}
-        </svg>)
+        </svg>
       )}
     </svg>
   );

@@ -1,5 +1,4 @@
 import {
-  type CommandResult,
   type InstalledTool,
   type RegistryTool,
   type ToolVersion,
@@ -37,6 +36,7 @@ export interface MiseEnvironmentActions {
   setToolVersion: (tool: string, version: string, global?: boolean) => Promise<void>;
   uninstallToolVersion: (tool: string, version: string) => Promise<void>;
   installToolFromRegistry: (toolName: string) => Promise<void>;
+  installRegistryToolVersion: (toolName: string, version: string) => Promise<void>;
   clearError: () => void;
 }
 
@@ -154,8 +154,8 @@ export const createMiseEnvironmentSlice: StateCreator<GenieStore, [], [], MiseEn
 
   setToolVersion: async (tool: string, version: string, global = false) => {
     set({ isLoading: true, error: null });
+    const result = await useVersion(tool, version, global);
     try {
-      const result = await useVersion(tool, version, global);
       if (result.success) {
         // Refresh the installed tools
         await get().loadInstalledTools();
@@ -202,6 +202,24 @@ export const createMiseEnvironmentSlice: StateCreator<GenieStore, [], [], MiseEn
     } catch (error) {
       console.error(`Failed to install tool ${toolName}:`, error);
       set({ error: `Failed to install tool ${toolName}` });
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  installRegistryToolVersion: async (toolName: string, version: string) => {
+    set({ isLoading: true, error: null });
+    try {
+      const result = await installVersion(toolName, version);
+      if (result.success) {
+        // Refresh the installed tools
+        await get().loadInstalledTools();
+      } else {
+        set({ error: `Failed to install ${toolName}@${version}: ${result.stderr}` });
+      }
+    } catch (error) {
+      console.error(`Failed to install ${toolName}@${version}:`, error);
+      set({ error: `Failed to install ${toolName}@${version}` });
     } finally {
       set({ isLoading: false });
     }

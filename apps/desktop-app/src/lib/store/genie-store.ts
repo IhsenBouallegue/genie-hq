@@ -11,9 +11,7 @@ import type { OperatingSystem } from "@geniehq/ui/lib/store/types";
 import { createStore } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-export const createGenieStore = (initialProps: {
-  currentOS: OperatingSystem;
-}) => {
+export const createGenieStore = (initialProps: { currentOS: OperatingSystem }) => {
   return createStore<GenieStore>()(
     persist(
       immer((...a) => ({

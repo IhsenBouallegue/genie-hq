@@ -16,9 +16,8 @@ export function RecentActivityWidget({ enabled, recentActivity }: RecentActivity
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          {recentActivity.map((activity, index) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            <div key={index} className="flex items-center">
+          {recentActivity.map((activity) => (
+            <div key={activity.app} className="flex items-center">
               <Badge variant="secondary" className="mr-2">
                 {activity.type}
               </Badge>

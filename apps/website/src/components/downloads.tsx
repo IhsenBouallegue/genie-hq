@@ -1,7 +1,6 @@
 "use client";
 
 import { Badge } from "@geniehq/ui/components/badge";
-import { Button } from "@geniehq/ui/components/button";
 import { MotionCard } from "@geniehq/ui/components/card";
 import { ScrollArea, ScrollBar } from "@geniehq/ui/components/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@geniehq/ui/components/tabs";
@@ -205,10 +204,14 @@ export function Downloads() {
 
   if (loading) {
     return (
-      <section className="max-w-6xl mx-auto px-4 py-16" id="downloads" aria-label="Download GenieHQ">
+      <section
+        className="max-w-6xl mx-auto px-4 py-16"
+        id="downloads"
+        aria-label="Download GenieHQ"
+      >
         <Heading>Download GenieHQ</Heading>
         <div className="flex items-center justify-center py-12 mt-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" aria-label="Loading downloads" />
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
         </div>
       </section>
     );
@@ -216,7 +219,11 @@ export function Downloads() {
 
   if (error) {
     return (
-      <section className="max-w-6xl mx-auto px-4 py-16" id="downloads" aria-label="Download GenieHQ">
+      <section
+        className="max-w-6xl mx-auto px-4 py-16"
+        id="downloads"
+        aria-label="Download GenieHQ"
+      >
         <Heading>Download GenieHQ</Heading>
         <div className="flex items-center justify-center py-12 mt-12">
           <div className="text-center">
@@ -229,18 +236,18 @@ export function Downloads() {
   }
 
   return (
-    <section 
-      id="downloads" 
+    <section
+      id="downloads"
       className="flex flex-col justify-center items-center p-6 max-w-6xl"
       aria-label="Download GenieHQ - Cross-platform device setup automation tool"
     >
       <Heading>Download GenieHQ</Heading>
-      
+
       {/* SEO-friendly description */}
       <div className="text-center mb-8 max-w-2xl">
         <p className="text-muted-foreground">
-          Download GenieHQ for Windows, macOS, or Linux. Automate your device setup with our cross-platform 
-          tool that installs all your essential apps and configurations in minutes.
+          Download GenieHQ for Windows, macOS, or Linux. Automate your device setup with our
+          cross-platform tool that installs all your essential apps and configurations in minutes.
         </p>
       </div>
 
@@ -256,7 +263,7 @@ export function Downloads() {
             priority
           />
         </div>
-        
+
         {/* Right: Content */}
         <MotionCard className="shadow-lg md:w-[600px] md:max-w-fit bg-transparent border-none">
           {/* Header Section with Version and Disclaimer */}
@@ -293,8 +300,17 @@ export function Downloads() {
           {/* Platform Tabs */}
           <Tabs defaultValue={getDefaultTab()} className="w-full">
             <ScrollArea>
-              <TabsList className="mb-3 w-full flex justify-center" role="tablist" aria-label="Select your operating system">
-                <TabsTrigger value="windows" className="group flex-1" role="tab" aria-selected={getDefaultTab() === "windows"}>
+              <TabsList
+                className="mb-3 w-full flex justify-center"
+                role="tablist"
+                aria-label="Select your operating system"
+              >
+                <TabsTrigger
+                  value="windows"
+                  className="group flex-1"
+                  role="tab"
+                  aria-selected={getDefaultTab() === "windows"}
+                >
                   <SiWindows11 className="-ms-0.5 me-1.5 opacity-60" size={16} aria-hidden="true" />
                   Windows
                   {userPlatform === "windows" && (
@@ -306,7 +322,12 @@ export function Downloads() {
                     </Badge>
                   )}
                 </TabsTrigger>
-                <TabsTrigger value="macos" className="group flex-1" role="tab" aria-selected={getDefaultTab() === "macos"}>
+                <TabsTrigger
+                  value="macos"
+                  className="group flex-1"
+                  role="tab"
+                  aria-selected={getDefaultTab() === "macos"}
+                >
                   <SiApple className="-ms-0.5 me-1.5 opacity-60" size={16} aria-hidden="true" />
                   macOS
                   {userPlatform === "macos" && (
@@ -318,7 +339,12 @@ export function Downloads() {
                     </Badge>
                   )}
                 </TabsTrigger>
-                <TabsTrigger value="linux" className="group flex-1" role="tab" aria-selected={getDefaultTab() === "linux"}>
+                <TabsTrigger
+                  value="linux"
+                  className="group flex-1"
+                  role="tab"
+                  aria-selected={getDefaultTab() === "linux"}
+                >
                   <SiLinux className="-ms-0.5 me-1.5 opacity-60" size={16} aria-hidden="true" />
                   Linux
                   {userPlatform === "linux" && (
@@ -334,7 +360,12 @@ export function Downloads() {
               <ScrollBar orientation="horizontal" />
             </ScrollArea>
 
-            <TabsContent value="windows" className="pt-1" role="tabpanel" aria-label="Windows downloads">
+            <TabsContent
+              value="windows"
+              className="pt-1"
+              role="tabpanel"
+              aria-label="Windows downloads"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {windowsDownloads.map((link) => (
                   <DownloadCard key={link.filename} link={link} />
@@ -342,7 +373,12 @@ export function Downloads() {
               </div>
             </TabsContent>
 
-            <TabsContent value="macos" className="pt-1" role="tabpanel" aria-label="macOS downloads">
+            <TabsContent
+              value="macos"
+              className="pt-1"
+              role="tabpanel"
+              aria-label="macOS downloads"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {macosDownloads.map((link) => (
                   <DownloadCard key={link.filename} link={link} />
@@ -350,7 +386,12 @@ export function Downloads() {
               </div>
             </TabsContent>
 
-            <TabsContent value="linux" className="pt-1" role="tabpanel" aria-label="Linux downloads">
+            <TabsContent
+              value="linux"
+              className="pt-1"
+              role="tabpanel"
+              aria-label="Linux downloads"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {linuxDownloads.map((link) => (
                   <DownloadCard key={link.filename} link={link} />
@@ -371,7 +412,9 @@ export function Downloads() {
           </div>
           <div>
             <h3 className="font-medium text-foreground mb-2">Open Source</h3>
-            <p>Transparent, community-driven development with full source code available on GitHub.</p>
+            <p>
+              Transparent, community-driven development with full source code available on GitHub.
+            </p>
           </div>
           <div>
             <h3 className="font-medium text-foreground mb-2">Fast Setup</h3>

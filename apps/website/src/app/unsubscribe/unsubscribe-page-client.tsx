@@ -26,7 +26,7 @@ const UnsubscribePageClient = ({ email }: { email: string | null }) => {
         } else {
           setStatus("failed");
         }
-      } catch (error) {
+      } catch (_error) {
         setStatus("failed");
       }
     };

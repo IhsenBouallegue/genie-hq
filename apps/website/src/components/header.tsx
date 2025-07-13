@@ -36,8 +36,8 @@ export default function Header() {
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink 
-                href="https://github.com/IhsenBouallegue/genie-hq" 
+              <NavigationMenuLink
+                href="https://github.com/IhsenBouallegue/genie-hq"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={buttonVariants({ variant: "link" })}
